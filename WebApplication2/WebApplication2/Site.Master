@@ -95,6 +95,7 @@
                                     </li>
                                 </ul>
                                 <p class="copyright text-muted small">Copyright &copy; Jobroll Ltd. <%: DateTime.Now.Year %>. All Rights Reserved</p>
+                                <br />
                             </div>
                         </div>
                     </div>
