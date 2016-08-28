@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProfilePage.aspx.cs" Inherits="WebApplication2.ProfilePage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/Site.Master" CodeBehind="ProfilePage.aspx.cs" Inherits="WebApplication2.ProfilePage" %>
 
 <!DOCTYPE html>
 
