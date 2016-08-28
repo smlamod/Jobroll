@@ -8,28 +8,48 @@
     <title>JobRoll Profile Page</title>
     <style type="text/css">
         body {
-            padding-top: 50px;
-            padding-bottom: 200px;
-            padding-left: 15px;
-            padding-right: 15px;
+            padding: 50px 15px 200px 15px;
             width: 60%;
             margin: 0 auto;
             font-family: sans-serif;
+            background-color: #f8f8f8;
         }
 
         #leftsidebar {
             float: left;
             position: fixed;
-            width: 230px;
+            width: 210px;
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            padding: 10px 10px 0 10px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
         }
 
-        #username{
-            padding: 10px 0;            
+        #footer p {
+            top: 200%;
+            position: absolute;
+            font-size: 0.65em;           
+            color:#b4b4b4;
+            margin: 10px 0 0 -10px;
         }
 
-        #footer{
-            margin-top: 125%;
-            font-size: 0.75em;
+        #maincontent {
+            width: 77%;
+            margin-left: 250px;
+            
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            padding: 0 20px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        #username {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .userinfo {
@@ -37,23 +57,19 @@
             padding: 0;
         }
 
-        .userinfo li {
-            margin: 10px 0;
-        }
+            .userinfo li {
+                margin: 10px 0;
+            }
 
-        .userinfo li a {
-            text-decoration: none;
-        }
+                .userinfo li a {
+                    text-decoration: none;
+                }
 
         #profilepic {
             border: 0;
         }
 
-        #maincontent {
-            width: 78%;
-            margin-left: 240px;
-        }
-        
+
 
         /* Responsive: Portrait tablets and up */
         @media screen and (min-width: 768px) {
@@ -83,7 +99,7 @@
                     <li><a href="">Skills</a></li>
                     <li><a href="">Experience</a></li>
                 </ul>
-            </div>            
+            </div>
             <div id="footer">
                 <p>Copyright (C) 2016. All rights reserved.</p>
             </div>
