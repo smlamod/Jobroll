@@ -1101,12 +1101,13 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #93c54b;
+  /*color: #93c54b;*/
+  color: #2081d5;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #79a736;
+  color: #2f9eff;
   text-decoration: underline;
 }
 a:focus {
@@ -1586,8 +1587,7 @@ pre code {
   overflow-y: scroll;
 }
 .container {
-  margin-right: auto;
-  margin-left: auto;
+  margin: auto;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -4592,8 +4592,10 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #cccccc;
 }
 .navbar-inverse {
-  background-color: #93c54b;
-  border-color: #93c54b;
+  /*background-color: #93c54b;
+  border-color: #93c54b;*/
+  background-color: #3470a2;
+  border-color: #3470a2;
 }
 .navbar-inverse .navbar-brand {
   color: #ffffff;
@@ -4607,7 +4609,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #dfd7ca;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #6b9430;
+  /*color: #6b9430;*/
+  color: #0d3f6a;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {

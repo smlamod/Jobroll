@@ -1,14 +1,15 @@
 ﻿
 body {
     padding: 50px 15px 200px 15px;
-    width: 60%;
-    margin: 0 auto;
+    width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
     font-family: sans-serif;
     background-color: #f8f8f8;
 }
 
 #leftsidebar {
-    float: left;
+    display: inline-block;
     position: fixed;
     width: 210px;
     border: 1px solid #e0e0e0;
@@ -19,17 +20,17 @@ body {
     border-radius: 3px;
 }
 
-#footer p {
-    top: 200%;
-    position: absolute;
-    font-size: 0.65em;
-    color: #b4b4b4;
-    margin: 10px 0 0 -10px;
+#footer {
+    float: left;
+    width: 210px;
+    margin: 10px 0;
+    font-size: 0.8em;
+    color: #98978b;
 }
 
 #maincontent {
-    width: 77%;
-    margin-left: 250px;
+    width: 925px;
+    margin-left: 220px;
     border: 1px solid #e0e0e0;
     background-color: #ffffff;
     padding: 0 20px;
@@ -58,18 +59,4 @@ body {
 
 #profilepic {
     border: 0;
-}
-
-
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    body {
-        margin-top: 20px;
-        width: 70%;
-    }
-
-    #userimage {
-        width: 51px;
-    }
 }
