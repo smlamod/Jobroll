@@ -16,7 +16,7 @@ namespace WebApplication2.Account
     {
 
 
-        /*
+        
         protected string SuccessMessage
         {
             get;
@@ -126,6 +126,6 @@ namespace WebApplication2.Account
 
             Response.Redirect("/Account/Manage");
         }
-         */
+         
     }
 }
