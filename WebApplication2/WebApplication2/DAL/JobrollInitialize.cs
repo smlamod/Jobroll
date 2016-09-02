@@ -9,21 +9,9 @@ namespace WebApplication2.DAL
     {
         protected override void Seed(JobrollContext context)
         {
-            var commons = new List<Common>
-                {
-                    new Common{Membertype=false,Email="DieterSchultz@armyspy.com",Contact="+639062578436"},
-                    new Common{Membertype=false,Email="DeniseAWebster@jourrapide.com",Contact="+639062545782"},
-                    new Common{Membertype=false,Email="shawn.lamod@gmail.com",Contact="+639062532889"},
-                    new Common{Membertype=true,Email="EliFRoush@teleworm.us",Contact="+02452789"}
-                };
-
-            commons.ForEach(s => context.Commons.Add(s));
-            context.SaveChanges();
-
-            var users = new List<User>
+            var users = new List<Member>
             {
-                new User{
-                    UserId=1,
+                new Member{
                     LastName="Schultz",
                     FirstMidName="Dieter",
 
@@ -42,8 +30,7 @@ namespace WebApplication2.DAL
                     Location="Makati",
                     ExpSalary=25000},
 
-                new User{
-                    UserId=2,
+                new Member{
                     LastName="Webster",
                     FirstMidName="Denise",
 
@@ -63,8 +50,7 @@ namespace WebApplication2.DAL
                     Location="Manila",
                     ExpSalary=20000},
 
-                new User{
-                    UserId=3,
+                new Member{
                     LastName="Lamod",
                     FirstMidName="Shawn",
 
@@ -96,6 +82,8 @@ namespace WebApplication2.DAL
                         CompanyAddr="Bellevue, WA",
                         CompanyDesc="Contoso Ltd. (also known as Contoso and Contoso University) is a fictional company used by Microsoft as an example company and domain.",
                         CompanyLogo=""
+
+                        
                     }
                 };
 
@@ -105,9 +93,7 @@ namespace WebApplication2.DAL
                 var jobs = new List<Job>
                 {
                     new Job{
-                        JobId = 1,
-                        CompanyId = 1, 
-
+                        CompanyId=1,
                         JobName = "Data Scientist",
                         JobDesc = "Able to extract information from large sets of data",
                         JobReqt = "Graduate of Applied Mathematics, Computer Science",
@@ -121,9 +107,7 @@ namespace WebApplication2.DAL
                     },
 
                     new Job{
-                        JobId = 2,
-                        CompanyId = 1, 
-
+                        CompanyId =1,
                         JobName = "System Administrator",
                         JobDesc = "Manages and Maintains Production Servers",
                         JobReqt = "Graduate of Computer Engineering, Computer Science",

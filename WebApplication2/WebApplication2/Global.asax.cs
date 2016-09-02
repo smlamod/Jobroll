@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using WebApplication2.DAL;
 
 namespace WebApplication2
 {
@@ -16,6 +17,10 @@ namespace WebApplication2
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            System.Data.Entity.Database.SetInitializer(new JobrollInitialize());
+            JobrollContext db = new JobrollContext();
+            db.Database.Initialize(true);
         }
     }
 }

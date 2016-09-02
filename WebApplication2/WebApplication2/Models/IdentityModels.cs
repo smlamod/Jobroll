@@ -21,6 +21,8 @@ namespace WebApplication2.Models
             return userIdentity;
         }
 
+        public bool IsCompany { get; set; }
+
         public Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager manager)
         {
             return Task.FromResult(GenerateUserIdentity(manager));
@@ -40,6 +42,7 @@ namespace WebApplication2.Models
         }
     }
 }
+
 
 #region Helpers
 namespace WebApplication2

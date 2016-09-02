@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication2.Models
 {
-    public class User
+    public class Member
     {
         //Identification
-        public int UserId { get; set; }
-        public virtual Common Common { get; set; }
+        [Key]
+        public int MemberId { get; set; }
+        
+        public string UserID { get; set; }
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser User { get; set; }
+        
 
         public string LastName { get; set; }
         public string FirstMidName { get; set; }
