@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <link type="text/css" href="Content/profile-page.css" rel="stylesheet">
-    
+
     <div id="leftsidebar">
         <img alt="" src="" style="height: 100px; width: 100px; padding-right: 5px" />
         <div id="username">
@@ -20,9 +20,13 @@
 
     </div>
     <div id="maincontent">
-        <div id="banner">
-            <h1>AdventureWorks Styling Page</h1>
-            <h2>Making CSS Styling Easier in Design View</h2>
+        <div id="profile-banner">
+            <span class="profile-title">[Some user's name]</span>
+            <ul class="basic-qual">
+                <li>[Highest Edu Attained, Degree] (Year Graduated)</li>
+                <li>School</li>
+                <span> Contact Number Email Salary Grade? Region of Residence in the PH</span>
+            </ul>
         </div>
 
         <p>

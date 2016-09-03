@@ -73,20 +73,19 @@
             </div>
         </div>
 
-
-
-        <div class="container body-content">
+        <%--        <div class="container body-content">--%>
+        <div class="container">
 
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
 
-            <div id="footer">                
-                <p class="copyright text-muted small">Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
-                <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a></p>
+            <div id="footer">
+                <p class="copyright text-muted small">
+                    Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
+                    <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
+                </p>
             </div>
         </div>
-
-
 
     </form>
 </body>
