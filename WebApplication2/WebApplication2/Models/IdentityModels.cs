@@ -34,6 +34,7 @@ namespace WebApplication2.Models
         public ApplicationDbContext()
             : base("JBConnection", throwIfV1Schema: false)
         {
+
         }
 
         public static ApplicationDbContext Create()

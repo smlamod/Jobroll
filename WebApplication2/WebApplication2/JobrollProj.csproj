@@ -298,6 +298,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Common.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Account\ProfilePage.aspx.cs">

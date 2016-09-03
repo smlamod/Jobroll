@@ -12,6 +12,7 @@ namespace WebApplication2.DAL
             var users = new List<Member>
             {
                 new Member{
+                    MemberId=1,
                     LastName="Schultz",
                     FirstMidName="Dieter",
 
@@ -31,6 +32,7 @@ namespace WebApplication2.DAL
                     ExpSalary=25000},
 
                 new Member{
+                    MemberId=2,
                     LastName="Webster",
                     FirstMidName="Denise",
 
@@ -51,6 +53,7 @@ namespace WebApplication2.DAL
                     ExpSalary=20000},
 
                 new Member{
+                    MemberId=3,
                     LastName="Lamod",
                     FirstMidName="Shawn",
 
@@ -70,7 +73,7 @@ namespace WebApplication2.DAL
                     ExpSalary=30000},
                 };
 
-                users.ForEach(s => context.Users.Add(s));
+                users.ForEach(s => context.Members.Add(s));
                 context.SaveChanges();
 
                 var companies = new List<Company>
@@ -93,6 +96,7 @@ namespace WebApplication2.DAL
                 var jobs = new List<Job>
                 {
                     new Job{
+                        JobId=1,
                         CompanyId=1,
                         JobName = "Data Scientist",
                         JobDesc = "Able to extract information from large sets of data",
@@ -107,6 +111,7 @@ namespace WebApplication2.DAL
                     },
 
                     new Job{
+                        JobId=2,
                         CompanyId =1,
                         JobName = "System Administrator",
                         JobDesc = "Manages and Maintains Production Servers",

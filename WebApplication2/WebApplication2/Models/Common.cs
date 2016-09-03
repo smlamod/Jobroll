@@ -4,20 +4,15 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace WebApplication2.Models
 {
-    public class Common
+    public class Common : IdentityUser
     {
         //Common Attributes
-        [Key]
-        public string ID { get; set; }
-        
 
-        public bool Membertype { get; set; }
-        public string Email { get; set; }
-        public string Contact { get; set; }
-
-  
+        public virtual Member Member { get; set; }
+        public virtual Company Company { get; set; }
     }
 }
