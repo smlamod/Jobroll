@@ -4,115 +4,59 @@
     <link type="text/css" href="Content/profile-page.css" rel="stylesheet">
 
     <div id="leftsidebar">
-        <img alt="" src="" style="height: 100px; width: 100px; padding-right: 5px" />
-        <div id="username">
-            <b>[Some user's name]</b>
-        </div>
-        <div id="sidebarmenu">
+        <p class="profile-title">
+            <img alt="" src="" style="border: none; height: 125px; width: 125px; margin: 20px auto; clear: right;" />
+            Shawn Lamod
+        </p>
+        <ul style="list-style: none; padding: 0; line-height: 150%; word-wrap: break-word; display: inline-block">
+            <li><span class="glyphicon glyphicon-earphone"></span><p>+63 912 345 6789</p></li>
+            <li ><span class="glyphicon glyphicon-envelope"></span><p>shawn.lamod.blahblahhahahahahahahaha@gmail.com</p></li>
+            <li><span class="glyphicon glyphicon-tree-conifer"></span><p>Metro Manila, PH</p></li>
+        </ul>
+
+        <%--<div id="sidebarmenu">
             <ul class="userinfo">
                 <li><a href="">About Me</a></li>
                 <li><a href="">Education</a></li>
                 <li><a href="">Skills</a></li>
                 <li><a href="">Experience</a></li>
             </ul>
+        </div>--%>
+        <div id="footer">
+            <span>Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
+                <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
+            </span>
         </div>
-
-
     </div>
     <div id="maincontent">
         <div id="profile-banner">
-            <span class="profile-title">[Some user's name]</span>
-            <ul class="basic-qual">
-                <li>[Highest Edu Attained, Degree] (Year Graduated)</li>
-                <li>School</li>
-                <span> Contact Number Email Salary Grade? Region of Residence in the PH</span>
-            </ul>
-        </div>
 
-        <p>
-            Pellentesque mattis tincidunt ipsum. Donec tempus, nunc vitae rhoncus imperdiet, eros turpis accumsan risus, ut luctus ipsum 
-    lacus a felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean convallis euismod 
-    nulla. Suspendisse potenti. Donec in mi nec odio tincidunt luctus. Donec euismod, mauris cursus molestie convallis, quam 
-    pede tempus magna, mollis dapibus quam est et magna. Aenean eros massa, elementum vehicula, dapibus eget, lobortis non, 
-    mauris. Vivamus nisl ante, interdum eget, sagittis vel, scelerisque nec, magna. Praesent placerat nibh vel metus viverra 
-    tincidunt.
-        </p>
-        <p>
-            Fusce magna urna, gravida non, sodales vehicula, consequat ac, lacus. Ut sed eros sit amet neque malesuada 
-    malesuada. Fusce porttitor cursus eros. Maecenas libero odio, convallis vel, tristique id, sodales vel, leo. Curabitur nibh 
-    neque, interdum eget, convallis id, adipiscing nec, risus. Suspendisse rutrum dui sed urna. Pellentesque leo felis, tempor eu, 
-    convallis venenatis, auctor vitae, justo. In at massa.
-        </p>
-        <p>
-            Pellentesque mattis tincidunt ipsum. Donec tempus, nunc vitae rhoncus imperdiet, eros turpis accumsan risus, ut luctus ipsum 
-    lacus a felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean convallis euismod 
-    nulla. Suspendisse potenti. Donec in mi nec odio tincidunt luctus. Donec euismod, mauris cursus molestie convallis, quam 
-    pede tempus magna, mollis dapibus quam est et magna. Aenean eros massa, elementum vehicula, dapibus eget, lobortis non, 
-    mauris. Vivamus nisl ante, interdum eget, sagittis vel, scelerisque nec, magna. Praesent placerat nibh vel metus viverra 
-    tincidunt.
-        </p>
-        <p>
-            Fusce magna urna, gravida non, sodales vehicula, consequat ac, lacus. Ut sed eros sit amet neque malesuada 
-    malesuada. Fusce porttitor cursus eros. Maecenas libero odio, convallis vel, tristique id, sodales vel, leo. Curabitur nibh 
-    neque, interdum eget, convallis id, adipiscing nec, risus. Suspendisse rutrum dui sed urna. Pellentesque leo felis, tempor eu, 
-    convallis venenatis, auctor vitae, justo. In at massa.
-        </p>
-        <p>
-            Pellentesque mattis tincidunt ipsum. Donec tempus, nunc vitae rhoncus imperdiet, eros turpis accumsan risus, ut luctus ipsum 
-    lacus a felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean convallis euismod 
-    nulla. Suspendisse potenti. Donec in mi nec odio tincidunt luctus. Donec euismod, mauris cursus molestie convallis, quam 
-    pede tempus magna, mollis dapibus quam est et magna. Aenean eros massa, elementum vehicula, dapibus eget, lobortis non, 
-    mauris. Vivamus nisl ante, interdum eget, sagittis vel, scelerisque nec, magna. Praesent placerat nibh vel metus viverra 
-    tincidunt.
-        </p>
-        <p>
-            Fusce magna urna, gravida non, sodales vehicula, consequat ac, lacus. Ut sed eros sit amet neque malesuada 
-    malesuada. Fusce porttitor cursus eros. Maecenas libero odio, convallis vel, tristique id, sodales vel, leo. Curabitur nibh 
-    neque, interdum eget, convallis id, adipiscing nec, risus. Suspendisse rutrum dui sed urna. Pellentesque leo felis, tempor eu, 
-    convallis venenatis, auctor vitae, justo. In at massa.
-        </p>
-        <p>
-            Pellentesque mattis tincidunt ipsum. Donec tempus, nunc vitae rhoncus imperdiet, eros turpis accumsan risus, ut luctus ipsum 
-    lacus a felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean convallis euismod 
-    nulla. Suspendisse potenti. Donec in mi nec odio tincidunt luctus. Donec euismod, mauris cursus molestie convallis, quam 
-    pede tempus magna, mollis dapibus quam est et magna. Aenean eros massa, elementum vehicula, dapibus eget, lobortis non, 
-    mauris. Vivamus nisl ante, interdum eget, sagittis vel, scelerisque nec, magna. Praesent placerat nibh vel metus viverra 
-    tincidunt.
-        </p>
-        <p>
-            Fusce magna urna, gravida non, sodales vehicula, consequat ac, lacus. Ut sed eros sit amet neque malesuada 
-    malesuada. Fusce porttitor cursus eros. Maecenas libero odio, convallis vel, tristique id, sodales vel, leo. Curabitur nibh 
-    neque, interdum eget, convallis id, adipiscing nec, risus. Suspendisse rutrum dui sed urna. Pellentesque leo felis, tempor eu, 
-    convallis venenatis, auctor vitae, justo. In at massa.
-        </p>
-        <p>
-            Pellentesque mattis tincidunt ipsum. Donec tempus, nunc vitae rhoncus imperdiet, eros turpis accumsan risus, ut luctus ipsum 
-    lacus a felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean convallis euismod 
-    nulla. Suspendisse potenti. Donec in mi nec odio tincidunt luctus. Donec euismod, mauris cursus molestie convallis, quam 
-    pede tempus magna, mollis dapibus quam est et magna. Aenean eros massa, elementum vehicula, dapibus eget, lobortis non, 
-    mauris. Vivamus nisl ante, interdum eget, sagittis vel, scelerisque nec, magna. Praesent placerat nibh vel metus viverra 
-    tincidunt.
-        </p>
-        <p>
-            Fusce magna urna, gravida non, sodales vehicula, consequat ac, lacus. Ut sed eros sit amet neque malesuada 
-    malesuada. Fusce porttitor cursus eros. Maecenas libero odio, convallis vel, tristique id, sodales vel, leo. Curabitur nibh 
-    neque, interdum eget, convallis id, adipiscing nec, risus. Suspendisse rutrum dui sed urna. Pellentesque leo felis, tempor eu, 
-    convallis venenatis, auctor vitae, justo. In at massa.
-        </p>
-        <p>
-            Pellentesque mattis tincidunt ipsum. Donec tempus, nunc vitae rhoncus imperdiet, eros turpis accumsan risus, ut luctus ipsum 
-    lacus a felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean convallis euismod 
-    nulla. Suspendisse potenti. Donec in mi nec odio tincidunt luctus. Donec euismod, mauris cursus molestie convallis, quam 
-    pede tempus magna, mollis dapibus quam est et magna. Aenean eros massa, elementum vehicula, dapibus eget, lobortis non, 
-    mauris. Vivamus nisl ante, interdum eget, sagittis vel, scelerisque nec, magna. Praesent placerat nibh vel metus viverra 
-    tincidunt.
-        </p>
-        <p>
-            Fusce magna urna, gravida non, sodales vehicula, consequat ac, lacus. Ut sed eros sit amet neque malesuada 
-    malesuada. Fusce porttitor cursus eros. Maecenas libero odio, convallis vel, tristique id, sodales vel, leo. Curabitur nibh 
-    neque, interdum eget, convallis id, adipiscing nec, risus. Suspendisse rutrum dui sed urna. Pellentesque leo felis, tempor eu, 
-    convallis venenatis, auctor vitae, justo. In at massa.
-        </p>
+            <h2>Education</h2>
+            <div id="sec-edu">
+                <table class="school-table">
+                    <tr>
+                        <th>2008 - 2010</th>
+                        <td>
+                            <p class="sch-title">Mapua Institute of Technology</p>
+                            <p>Lorem ipsum dolor...</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>2012 - 2014</th>
+                        <td>
+                            <p class="sch-title">De La Salle University, Taft</p>
+                            <p>Lorem ipsum dolor...</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <hr />
+
+            <h2>Skills</h2>
+            <div id="sec-skl">
+            </div>
+            <hr />
+        </div>
     </div>
 </asp:Content>
 

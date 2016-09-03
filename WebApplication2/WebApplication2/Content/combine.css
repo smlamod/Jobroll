@@ -26,9 +26,8 @@ body {
 
 #footer {
     position: fixed;
-    top: 70%;
     width: 210px;
-    margin: 10px 0;
+    margin: 35px 0 0 0;
     font-size: 0.8em;
     color: #98978b;
 }
@@ -39,7 +38,7 @@ body {
     margin-bottom: 20px;
     border: 1px solid #e0e0e0;
     background-color: #ffffff;
-    padding: 0 20px;
+    padding: 0 15px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -55,23 +54,59 @@ body {
     padding: 0;
 }
 
-.userinfo li {
-    margin: 10px 0;
-}
+    .userinfo li {
+        margin: 10px 0;
+    }
 
 
-#profile-banner{
-    margin: 20px auto;
+#profile-banner {
+    margin: 15px auto;
 }
-.profile-title{
+
+.profile-container {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.profile-title {
     font-size: 1.5em;
+    line-height: 100%;
+    text-align: center;
+    margin-bottom: 20px;
 }
+
+.contact-info-basic {
+    font-size: 1em;
+    text-align: left;
+    list-style: none;
+}
+
 
 
 .userinfo li a, .basic-qual li a {
     text-decoration: none;
 }
 
-#profilepic {
-    border: 0;
+table, th, td {
+    border-collapse: collapse;
+}
+
+#leftsidebar ul li p {
+    display: inline-block;
+    vertical-align: top;
+    word-wrap: break-word;
+    width: 165px;
+    margin: 0 auto;
+}
+
+.school-table th {
+    width: 110px;
+    color: #FF673B;
+    vertical-align: top;
+}
+
+.sch-title {
+    color: #447995;
+    font-weight: bold;
+    margin: auto;
 }
