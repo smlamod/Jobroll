@@ -14,8 +14,8 @@ namespace WebApplication2.Models
         [Key]
         public int MemberId { get; set; }
         
-       // public string UserID { get; set; }
-      // [ForeignKey("UserId")]
+        public string UserId { get; set; }
+       [ForeignKey("UserId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
         //public virtual Common User { get; set; }
 

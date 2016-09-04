@@ -19,6 +19,7 @@ namespace WebApplication2.DAL
             string password = passwordHash.HashPassword("coe125");
             var iuser = new ApplicationUser
                 {
+                    Id = "User1",
                     Email = "shawn.lamod@gmail.com",
                     UserName = "shawn.lamod@gmail.com",
                     PasswordHash = password,
@@ -30,6 +31,7 @@ namespace WebApplication2.DAL
             password = passwordHash.HashPassword("coe125");
             iuser = new ApplicationUser
             {
+                Id = "User2",
                 Email = "DieterSchultz@armyspy.com",
                 UserName = "DieterSchultz@armyspy.com",
                 PasswordHash = password,
@@ -41,6 +43,7 @@ namespace WebApplication2.DAL
             password = passwordHash.HashPassword("coe125");
             iuser = new ApplicationUser
             {
+                Id = "User3",
                 Email = "DeniseAWebster@jourrapide.com",
                 UserName = "DeniseAWebster@jourrapide.com",
                 PasswordHash = password,
@@ -52,6 +55,7 @@ namespace WebApplication2.DAL
             password = passwordHash.HashPassword("coe125");
             iuser = new ApplicationUser
             {
+                Id = "User4",
                 Email = "EliFRoush@teleworm.us",
                 UserName = "EliFRoush@teleworm.us",
                 PasswordHash = password,
@@ -66,6 +70,7 @@ namespace WebApplication2.DAL
             {
                 new Member{
                     MemberId=1,
+                    UserId = "User2",
                     LastName="Schultz",
                     FirstMidName="Dieter",
 
@@ -86,6 +91,7 @@ namespace WebApplication2.DAL
 
                 new Member{
                     MemberId=2,
+                    UserId = "User3",
                     LastName="Webster",
                     FirstMidName="Denise",
 
@@ -107,6 +113,7 @@ namespace WebApplication2.DAL
 
                 new Member{
                     MemberId=3,
+                    UserId = "User1",
                     LastName="Lamod",
                     FirstMidName="Shawn",
 
@@ -133,7 +140,7 @@ namespace WebApplication2.DAL
                 {
                     new Company{
                         CompanyId=1,
-
+                        UserId="User4",
                         CompanyName="Contoso Ltd.",
                         CompanyAddr="Bellevue, WA",
                         CompanyDesc="Contoso Ltd. (also known as Contoso and Contoso University) is a fictional company used by Microsoft as an example company and domain.",
