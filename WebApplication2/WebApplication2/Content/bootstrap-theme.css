@@ -275,6 +275,7 @@ th {
 .glyphicon {
   position: relative;
   top: 1px;
+  margin-right: 7px;
   display: inline-block;
   font-family: 'Glyphicons Halflings';
   font-style: normal;
@@ -1269,27 +1270,27 @@ h6 .small,
 }
 h1,
 .h1 {
-  font-size: 36px;
+  font-size: 32px;
 }
 h2,
 .h2 {
-  font-size: 30px;
+  font-size: 24px;
 }
 h3,
 .h3 {
-  font-size: 24px;
+  font-size: 21px;
 }
 h4,
 .h4 {
-  font-size: 18px;
+  font-size: 16px;
 }
 h5,
 .h5 {
-  font-size: 14px;
+  font-size: 12px;
 }
 h6,
 .h6 {
-  font-size: 12px;
+  font-size: 10px;
 }
 p {
   margin: 0 0 10px;
@@ -4331,6 +4332,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-bottom: 10px;
   line-height: 20px;
 }
+
+
 @media (max-width: 767px) {
   .navbar-nav .open .dropdown-menu {
     position: static;
@@ -4352,6 +4355,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-nav .open .dropdown-menu > li > a:focus {
     background-image: none;
+    background-color: #2c5e87;
   }
 }
 @media (min-width: 768px) {
@@ -4609,13 +4613,12 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #dfd7ca;
 }
 .navbar-inverse .navbar-nav > li > a {
-  /*color: #6b9430;*/
   color: #0d3f6a;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #ffffff;
-  background-color: transparent;
+  color: #c5dbec;
+  background-color: #326b9a;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
@@ -4623,6 +4626,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ffffff;
   background-color: #89be3d;
 }
+
 .navbar-inverse .navbar-nav > .disabled > a,
 .navbar-inverse .navbar-nav > .disabled > a:hover,
 .navbar-inverse .navbar-nav > .disabled > a:focus {
@@ -4634,19 +4638,19 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-  background-color: #89be3d;
+  background-color: #145e9f;
 }
 .navbar-inverse .navbar-toggle .icon-bar {
-  background-color: #6b9430;
+  background-color: #0d3f6a;
 }
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
-  border-color: #81b33a;
+  border-color: #0e4371;
 }
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #89be3d;
+  background-color: #145e9f;
   color: #ffffff;
 }
 @media (max-width: 767px) {
