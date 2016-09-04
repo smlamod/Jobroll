@@ -37,10 +37,13 @@ namespace WebApplication2.DAL
                                    .Ignore(c => c.EmailConfirmed)
                                    .Ignore(c => c.PhoneNumberConfirmed)
                                    ;
+    
+            
             modelBuilder.Entity<IdentityUserLogin>().ToTable("AspNetUserLogins").HasKey<string>(l => l.UserId);
             modelBuilder.Entity<IdentityRole>().ToTable("AspNetRoles").HasKey<string>(r => r.Id);
             modelBuilder.Entity<IdentityUserRole>().ToTable("AspNetUserRoles").HasKey(r => new { r.RoleId, r.UserId });
             modelBuilder.Entity<IdentityUserClaim>().ToTable("AspNetUserClaims");
+             
         }
 
         public DbQuery<T> Query<T>() where T : class

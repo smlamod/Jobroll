@@ -7,14 +7,33 @@ using WebApplication2.Models;
 
 namespace WebApplication2.DAL
 {
-    public class JobrollInitialize : System.Data.Entity.DropCreateDatabaseIfModelChanges<JobrollContext>
+    public class JobrollInitialize : System.Data.Entity.DropCreateDatabaseAlways<JobrollContext>
     {
         protected override void Seed(JobrollContext context)
         {
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var rmanager = new RoleManager<IdentityRole>(roleStore);
 
+            if (!rmanager.RoleExists("member"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "member";
+                rmanager.Create(role);
+
+            }
+
+            if (!rmanager.RoleExists("company"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "company";
+                rmanager.Create(role);
+
+            }
+
+            var userStore = new UserStore<ApplicationUser>(context);
+            var manager = new UserManager<ApplicationUser>(userStore);
+            //ApplicationUserManager manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
             
-            ApplicationUserManager manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
-
             var passwordHash = new PasswordHasher();
             string password = passwordHash.HashPassword("coe125");
             var iuser = new ApplicationUser
@@ -25,7 +44,10 @@ namespace WebApplication2.DAL
                     PasswordHash = password,                    
                     IsCompany = false
                 };
+            
             manager.Create(iuser);
+            manager.AddToRole(iuser.Id, "member");
+
 
             password = passwordHash.HashPassword("coe125");
             iuser = new ApplicationUser
@@ -37,7 +59,9 @@ namespace WebApplication2.DAL
                 
                 IsCompany = false
             };
+           
             manager.Create(iuser);
+            manager.AddToRole(iuser.Id, "member");
 
             password = passwordHash.HashPassword("coe125");
             iuser = new ApplicationUser
@@ -49,7 +73,9 @@ namespace WebApplication2.DAL
                
                 IsCompany = false
             };
+            
             manager.Create(iuser);
+            manager.AddToRole(iuser.Id, "member");
 
             password = passwordHash.HashPassword("coe125");
             iuser = new ApplicationUser
@@ -62,8 +88,9 @@ namespace WebApplication2.DAL
                 IsCompany = true,
                 
             };
-            manager.Create(iuser);
             
+            manager.Create(iuser);
+            manager.AddToRole(iuser.Id, "company");
 
             var users = new List<Member>
             {
