@@ -1,4 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
+﻿@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
 /*!
  * bootswatch v3.3.7
  * Homepage: http://bootswatch.com
@@ -191,10 +191,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-td,
-th {
-  padding: 0;
-}
+
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
   *,
@@ -274,8 +271,8 @@ th {
 }
 .glyphicon {
   position: relative;
-  top: 1px;
-  margin-right: 7px;
+  top: 2px;
+  margin-right: 10px;
   display: inline-block;
   font-family: 'Glyphicons Halflings';
   font-style: normal;
@@ -4250,7 +4247,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar-static-top {
-    border-radius: 0;
+    border  -radius: 0;
   }
 }
 .navbar-fixed-top,
@@ -4596,10 +4593,10 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #cccccc;
 }
 .navbar-inverse {
-  /*background-color: #93c54b;
-  border-color: #93c54b;*/
-  background-color: #3470a2;
-  border-color: #3470a2;
+  /*background-color: #3470a2;
+  border-color: #3470a2; blue scheme!*/
+  background-color: #225378;
+  border-color: #225378;
 }
 .navbar-inverse .navbar-brand {
   color: #ffffff;
@@ -4613,18 +4610,21 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #dfd7ca;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #0d3f6a;
+  color: #ffffff;
+  opacity: 0.5;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #c5dbec;
-  background-color: #326b9a;
+  color: #1695a3;
+  opacity: 1;
+  background-color: #264761;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #ffffff;
-  background-color: #89be3d;
+  color: #1695a3;  
+  opacity: 1;
+  background-color: #264761;
 }
 
 .navbar-inverse .navbar-nav > .disabled > a,
@@ -4638,10 +4638,10 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-  background-color: #145e9f;
+  background-color: #264761;
 }
 .navbar-inverse .navbar-toggle .icon-bar {
-  background-color: #0d3f6a;
+  background-color: #1695a3;
 }
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
