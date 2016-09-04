@@ -16,8 +16,8 @@ namespace WebApplication2.Models
         public int CompanyId { get; set; }
 
         //public string UserID { get; set; }
-        //[ForeignKey("UserId")]
-        //public virtual ApplicationUser User { get; set; }
+      //  [ForeignKey("UserId")]
+       public virtual ApplicationUser ApplicationUser { get; set; }
         //public virtual Common User { get; set; }
 
         public virtual ICollection<Job> Jobs { get; set; }

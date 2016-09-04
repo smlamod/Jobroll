@@ -19,7 +19,6 @@ namespace WebApplication2.DAL
 
         }
 
-       // public DbSet<Common> Commons { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Job> Jobs { get; set; }
@@ -29,7 +28,7 @@ namespace WebApplication2.DAL
             base.OnModelCreating(modelBuilder);
 
             
-            modelBuilder.Entity<IdentityUser>().ToTable("AspNetUsers");
+            modelBuilder.Entity<ApplicationUser>().ToTable("AspNetUsers");
             /*
                                    .Ignore(c => c.AccessFailedCount)
                                    .Ignore(c => c.LockoutEnabled)

@@ -7,11 +7,12 @@ using WebApplication2.Models;
 
 namespace WebApplication2.DAL
 {
-    public class JobrollInitialize : System.Data.Entity.DropCreateDatabaseIfModelChanges<JobrollContext>
+    public class JobrollInitialize : System.Data.Entity.DropCreateDatabaseAlways<JobrollContext>
     {
         protected override void Seed(JobrollContext context)
         {
 
+            
             ApplicationUserManager manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
 
             var passwordHash = new PasswordHasher();
@@ -55,10 +56,11 @@ namespace WebApplication2.DAL
                 UserName = "EliFRoush@teleworm.us",
                 PasswordHash = password,
                 PhoneNumber = "+02452789",
-                IsCompany = true
+                IsCompany = true,
+                
             };
             manager.Create(iuser);
-
+            
 
             var users = new List<Member>
             {

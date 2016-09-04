@@ -11,7 +11,7 @@ namespace WebApplication2.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(WebApplication2.Models.ApplicationDbContext context)
@@ -28,7 +28,7 @@ namespace WebApplication2.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
+            /*
             var passwordHash = new PasswordHasher();
             string password = passwordHash.HashPassword("coe125");
             context.Users.AddOrUpdate(u => u.UserName,
@@ -79,7 +79,7 @@ namespace WebApplication2.Migrations
                 });
 
   
-             
+             */
              
         }
     }

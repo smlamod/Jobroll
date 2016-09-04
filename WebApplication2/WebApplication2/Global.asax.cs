@@ -20,7 +20,7 @@ namespace WebApplication2
 
             System.Data.Entity.Database.SetInitializer(new JobrollInitialize());
             JobrollContext db = new JobrollContext();
-            //db.Database.Initialize(true);
+            db.Database.Initialize(true);
         }
     }
 }
