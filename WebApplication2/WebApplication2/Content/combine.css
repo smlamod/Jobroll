@@ -12,21 +12,74 @@ body {
     background-color: #f8f8f8;
 }
 
+h2 {
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 1.5em;
+}
+
+ul {
+    margin: 7px auto 20px auto;
+    padding-left: 20px;
+}
+
 #leftsidebar {
-    display: inline-block;
     position: fixed;
     width: 210px;
-    border: 1px solid #e0e0e0;
-    background-color: #ffffff;
-    padding: 10px 10px 0 10px;
+    padding: 15px 15px;
+}
+
+#leftsidebar img {
+    display: inline-block;
+    border: none;
+    height: 130px;
+    width: 130px;
+    margin: 0 25px;
+    clip-path: circle(65px at center);
+    -webkit-clip-path: circle(65px at center);
+}
+
+#leftsidebar .user-name {
+    display: table;
+    margin: 15px auto 15px auto;
+    font-size: 1.5em;
+    font-family: Roboto;
+    font-weight: 400;
+    text-align: center;
+    line-height: 100%;
+}
+
+#leftsidebar p {
+    width: 155px;
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+#leftsidebar ul {
+    display: table;
+    list-style: none;
+    padding: 0;
+    margin: auto;
+    word-wrap: break-word;
+    /*border: 1px solid #e0e0e0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border-radius: 3px;
+    border-radius: 3px;*/
 }
+
+#leftsidebar li {
+    padding-top: 5px;
+}
+
+
 
 #footer {
     position: fixed;
+    float: left;
     width: 210px;
+    bottom: 5%;
     margin: 35px 0 0 0;
     font-size: 0.8em;
     color: #98978b;
@@ -38,7 +91,7 @@ body {
     margin-bottom: 20px;
     border: 1px solid #e0e0e0;
     background-color: #ffffff;
-    padding: 0 15px;
+    padding: 0 20px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -59,21 +112,10 @@ body {
     }
 
 
-#profile-banner {
-    margin: 15px auto;
+.profile-title p {
 }
 
-.profile-container {
-    display: inline-block;
-    margin-top: 5px;
-}
 
-.profile-title {
-    font-size: 1.5em;
-    line-height: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-}
 
 .contact-info-basic {
     font-size: 1em;
@@ -91,22 +133,37 @@ table, th, td {
     border-collapse: collapse;
 }
 
-#leftsidebar ul li p {
-    display: inline-block;
-    vertical-align: top;
-    word-wrap: break-word;
-    width: 165px;
-    margin: 0 auto;
+#sec-skl {
+    column-count: 3;
 }
 
-.school-table th {
-    width: 110px;
-    color: #FF673B;
+.edu-tbl th, .exp-tbl th {
+    width: 100px;
+    font-family: Roboto;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    /*color: #FF673B;*/
     vertical-align: top;
 }
 
-.sch-title {
-    color: #447995;
-    font-weight: bold;
+.ent-name, .sch-name {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 0.85em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     margin: auto;
+}
+
+.ent-pos, .sch-pos {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 1.10em;
+    margin: auto;
+}
+
+.ent-loc, .sch-loc {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 0.85em;
 }
