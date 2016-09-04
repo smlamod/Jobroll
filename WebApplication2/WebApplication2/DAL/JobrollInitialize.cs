@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebApplication2.Models;
@@ -9,6 +11,55 @@ namespace WebApplication2.DAL
     {
         protected override void Seed(JobrollContext context)
         {
+
+            ApplicationUserManager manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+
+            var passwordHash = new PasswordHasher();
+            string password = passwordHash.HashPassword("coe125");
+            var iuser = new ApplicationUser
+                {
+                    Email = "shawn.lamod@gmail.com",
+                    UserName = "shawn.lamod@gmail.com",
+                    PasswordHash = password,
+                    PhoneNumber = "+639062532889",
+                    IsCompany = false
+                };
+            manager.Create(iuser);
+
+            password = passwordHash.HashPassword("coe125");
+            iuser = new ApplicationUser
+            {
+                Email = "DieterSchultz@armyspy.com",
+                UserName = "DieterSchultz@armyspy.com",
+                PasswordHash = password,
+                PhoneNumber = "+639062578436",
+                IsCompany = false
+            };
+            manager.Create(iuser);
+
+            password = passwordHash.HashPassword("coe125");
+            iuser = new ApplicationUser
+            {
+                Email = "DeniseAWebster@jourrapide.com",
+                UserName = "DeniseAWebster@jourrapide.com",
+                PasswordHash = password,
+                PhoneNumber = "+639062545782",
+                IsCompany = false
+            };
+            manager.Create(iuser);
+
+            password = passwordHash.HashPassword("coe125");
+            iuser = new ApplicationUser
+            {
+                Email = "EliFRoush@teleworm.us",
+                UserName = "EliFRoush@teleworm.us",
+                PasswordHash = password,
+                PhoneNumber = "+02452789",
+                IsCompany = true
+            };
+            manager.Create(iuser);
+
+
             var users = new List<Member>
             {
                 new Member{
@@ -25,8 +76,8 @@ namespace WebApplication2.DAL
 
                     XpPosition="Web Developer",
                     XpCompany="Contoso Ltd.",
-                    XpStart=DateTime.Parse("2012-06-01"),
-                    XpStop=DateTime.Parse("2014-12-31"),
+                    XpStart=DateTime.ParseExact("2012-06-01","yyyy-mm-dd",null),
+                    XpStop=DateTime.ParseExact("2014-12-31","yyyy-mm-dd",null),
 
                     Location="Makati",
                     ExpSalary=25000},
@@ -45,8 +96,8 @@ namespace WebApplication2.DAL
 
                     XpPosition="Restaurant Manager",
                     XpCompany="9 Spoons",
-                    XpStart=DateTime.Parse("2014-01-01"),
-                    XpStop=DateTime.Parse("2014-06-31"),
+                    XpStart=DateTime.ParseExact("2014-01-01","yyyy-mm-dd",null),
+                    XpStop=DateTime.ParseExact("2014-06-31","yyyy-mm-dd",null),
                 
 
                     Location="Manila",
@@ -66,8 +117,8 @@ namespace WebApplication2.DAL
 
                     XpPosition="System Admin",
                     XpCompany="Contoso Ltd",
-                    XpStart=DateTime.Parse("2017-01-01"),
-                    XpStop=DateTime.Parse("2018-12-31"),
+                    XpStart=DateTime.ParseExact("2017-01-01","yyyy-mm-dd",null),
+                    XpStop=DateTime.ParseExact("2018-12-31","yyyy-mm-dd",null),
 
                     Location="Manila",
                     ExpSalary=30000},
@@ -106,8 +157,8 @@ namespace WebApplication2.DAL
                         JobLocation = "Bellevue, WA",
 
                         JobPublished = true,
-                        JobStart = DateTime.Parse("2016-01-01"),
-                        JobEnd = DateTime.Parse("207-01-01")
+                        JobStart = DateTime.ParseExact("2016-01-01","yyyy-mm-dd",null),
+                        JobEnd = DateTime.ParseExact("2017-01-01","yyyy-mm-dd",null)
                     },
 
                     new Job{
@@ -121,8 +172,8 @@ namespace WebApplication2.DAL
                         JobLocation = "Bellevue, WA",
 
                         JobPublished = true,
-                        JobStart = DateTime.Parse("2016-01-01"),
-                        JobEnd = DateTime.Parse("207-01-01")
+                        JobStart = DateTime.ParseExact("2016-01-01","yyyy-mm-dd",null),
+                        JobEnd = DateTime.ParseExact("2017-01-01","yyyy-mm-dd",null)
                     }              
                 
                 };
