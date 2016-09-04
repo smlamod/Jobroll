@@ -19,7 +19,8 @@ namespace WebApplication2.Models
        [ForeignKey("UserId")]
        public virtual ApplicationUser ApplicationUser { get; set; }
         //public virtual Common User { get; set; }
-        
+
+       public string PhoneNumber { get; set; }
         public virtual ICollection<Job> Jobs { get; set; }
 
         public string CompanyName { get; set; }

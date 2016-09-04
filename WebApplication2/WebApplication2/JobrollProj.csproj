@@ -144,9 +144,11 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account\CompanyProfile.aspx" />
+    <Content Include="Account\EditMemberProfile.aspx" />
     <Content Include="Account\Lockout.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\ManageLogins.aspx" />
     <Content Include="Account\ManagePassword.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
@@ -227,6 +229,13 @@
     <Compile Include="Account\CompanyProfile.aspx.designer.cs">
       <DependentUpon>CompanyProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\EditMemberProfile.aspx.cs">
+      <DependentUpon>EditMemberProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditMemberProfile.aspx.designer.cs">
+      <DependentUpon>EditMemberProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\Lockout.aspx.cs">
       <DependentUpon>Lockout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -247,6 +256,13 @@
     </Compile>
     <Compile Include="Account\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ManageLogins.aspx.cs">
+      <DependentUpon>ManageLogins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ManageLogins.aspx.designer.cs">
+      <DependentUpon>ManageLogins.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ManagePassword.aspx.cs">
       <DependentUpon>ManagePassword.aspx</DependentUpon>
@@ -314,9 +330,6 @@
       <DependentUpon>Global.asax</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Account\UserProfile.aspx.cs">
@@ -328,6 +341,7 @@
     </Compile>
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -343,7 +357,6 @@
     </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

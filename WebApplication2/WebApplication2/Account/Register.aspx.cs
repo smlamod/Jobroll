@@ -15,7 +15,7 @@ namespace WebApplication2.Account
         {
           
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
+            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, IsCompany = CheckBox1.Checked };
             IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {

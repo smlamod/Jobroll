@@ -19,8 +19,10 @@ namespace WebApplication2.Models
         public virtual ApplicationUser ApplicationUser { get; set; }
         //public virtual Common User { get; set; }
 
+       public string PhoneNumber { get; set; }
         public string LastName { get; set; }
         public string FirstMidName { get; set; }
+ 
 
         //Resume 
         public string Profpic { get; set; }

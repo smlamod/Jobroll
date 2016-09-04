@@ -18,6 +18,15 @@
                     CssClass="text-danger" ErrorMessage="The email field is required." />
             </div>
         </div>
+
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="CheckBox1" CssClass="col-md-2" >Employer ?</asp:Label>
+            <div class="col-md-10">           
+                 <asp:CheckBox runat="server" ID="CheckBox1" CssClass="form-inline" />
+            </div>
+        </div>
+
+
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
             <div class="col-md-10">
@@ -42,4 +51,5 @@
             </div>
         </div>
     </div>
+    
 </asp:Content>

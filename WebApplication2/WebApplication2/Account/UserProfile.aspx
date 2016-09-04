@@ -4,12 +4,16 @@
 
     <div id="leftsidebar">
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/Harry-Potter-1-.jpg"/>
-        <span class="user-name">James Carlo A. Atienza</span>
+        <span class="user-name">
+            <asp:Label runat="server" Text="James Carlo" Id="lfirst"/>
+            <asp:Label runat="server" Text=" " />
+            <asp:Label runat="server" Text="Atienza" Id="llast"/>
+        </span>
 
         <ul>
-            <li><span class="glyphicon glyphicon-earphone" style="color: gray;"></span><p>+63 912 345 6789</p></li>
-            <li><span class="glyphicon glyphicon-envelope" style="color: gray;"></span><p>shawn.lamod.blahblahhaha@gmail.com</p></li>
-            <li><span class="glyphicon glyphicon-tree-conifer" style="color: gray;"></span><p>Metro Manila, PH</p></li>
+            <li><span class="glyphicon glyphicon-earphone" style="color: gray;"></span><p><asp:Label runat="server" Text="+63 912 345 6789" Id="lphone"/> </p></li>
+            <li><span class="glyphicon glyphicon-envelope" style="color: gray;"></span><p><asp:Label runat="server" Text="softeng@jobroll.com" Id="lemail"/></p></li>
+            <li><span class="glyphicon glyphicon-tree-conifer" style="color: gray;"></span><p><asp:Label runat="server" Text="Metro Manila, PH" Id="lloc"/></p></li>
         </ul>
         
         <div id="footer">

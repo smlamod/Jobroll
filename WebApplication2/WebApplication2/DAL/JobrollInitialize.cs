@@ -7,7 +7,7 @@ using WebApplication2.Models;
 
 namespace WebApplication2.DAL
 {
-    public class JobrollInitialize : System.Data.Entity.DropCreateDatabaseAlways<JobrollContext>
+    public class JobrollInitialize : System.Data.Entity.DropCreateDatabaseIfModelChanges<JobrollContext>
     {
         protected override void Seed(JobrollContext context)
         {
@@ -22,8 +22,7 @@ namespace WebApplication2.DAL
                     Id = "User1",
                     Email = "shawn.lamod@gmail.com",
                     UserName = "shawn.lamod@gmail.com",
-                    PasswordHash = password,
-                    PhoneNumber = "+639062532889",
+                    PasswordHash = password,                    
                     IsCompany = false
                 };
             manager.Create(iuser);
@@ -35,7 +34,7 @@ namespace WebApplication2.DAL
                 Email = "DieterSchultz@armyspy.com",
                 UserName = "DieterSchultz@armyspy.com",
                 PasswordHash = password,
-                PhoneNumber = "+639062578436",
+                
                 IsCompany = false
             };
             manager.Create(iuser);
@@ -47,7 +46,7 @@ namespace WebApplication2.DAL
                 Email = "DeniseAWebster@jourrapide.com",
                 UserName = "DeniseAWebster@jourrapide.com",
                 PasswordHash = password,
-                PhoneNumber = "+639062545782",
+               
                 IsCompany = false
             };
             manager.Create(iuser);
@@ -59,7 +58,7 @@ namespace WebApplication2.DAL
                 Email = "EliFRoush@teleworm.us",
                 UserName = "EliFRoush@teleworm.us",
                 PasswordHash = password,
-                PhoneNumber = "+02452789",
+                
                 IsCompany = true,
                 
             };
@@ -69,11 +68,34 @@ namespace WebApplication2.DAL
             var users = new List<Member>
             {
                 new Member{
+                    MemberId=3,
+                    UserId = "User1",
+                    LastName="Lamod",
+                    FirstMidName="Shawn",
+
+                    PhoneNumber = "+639062532889",
+                    Profpic="",
+                    About="Entschudigung sie bitte",
+                    EduDegree="Computer Engineering",
+                    EduSchool="Mapua Institute of Technology",
+                    FieldWork="System Administration",
+                    Skills="Bash Scripting, C C# C++ Intel x86 Programming",
+
+                    XpPosition="System Admin",
+                    XpCompany="Contoso Ltd",
+                    XpStart=DateTime.ParseExact("2017-01-01","yyyy-mm-dd",null),
+                    XpStop=DateTime.ParseExact("2018-12-31","yyyy-mm-dd",null),
+
+                    Location="Manila",
+                    ExpSalary=30000},               
+
+                new Member{
                     MemberId=1,
                     UserId = "User2",
                     LastName="Schultz",
                     FirstMidName="Dieter",
 
+                    PhoneNumber = "+639062578436",
                     Profpic="",
                     About="Fusce magna urna, gravida non, sodales vehicula, consequat ac, lacus. Ut sed eros sit amet neque malesuada malesuada. Fusce porttitor cursus eros. Maecenas libero odio, convallis vel, tristique id, sodales vel, leo. ",
                     EduDegree="Computer Science",
@@ -95,6 +117,7 @@ namespace WebApplication2.DAL
                     LastName="Webster",
                     FirstMidName="Denise",
 
+                     PhoneNumber = "+639062545782",
                     Profpic="",
                     About="about me",
                     EduDegree="Hotel and Room Management",
@@ -109,29 +132,8 @@ namespace WebApplication2.DAL
                 
 
                     Location="Manila",
-                    ExpSalary=20000},
-
-                new Member{
-                    MemberId=3,
-                    UserId = "User1",
-                    LastName="Lamod",
-                    FirstMidName="Shawn",
-
-                    Profpic="",
-                    About="Entschudigung sie bitte",
-                    EduDegree="Computer Engineering",
-                    EduSchool="Mapua Institute of Technology",
-                    FieldWork="System Administration",
-                    Skills="Bash Scripting, C C# C++ Intel x86 Programming",
-
-                    XpPosition="System Admin",
-                    XpCompany="Contoso Ltd",
-                    XpStart=DateTime.ParseExact("2017-01-01","yyyy-mm-dd",null),
-                    XpStop=DateTime.ParseExact("2018-12-31","yyyy-mm-dd",null),
-
-                    Location="Manila",
-                    ExpSalary=30000},
-                };
+                    ExpSalary=20000}}
+                    ;
 
                 users.ForEach(s => context.Members.Add(s));
                 context.SaveChanges();
@@ -141,11 +143,13 @@ namespace WebApplication2.DAL
                     new Company{
                         CompanyId=1,
                         UserId="User4",
+                        
+                        PhoneNumber = "+02452789",
                         CompanyName="Contoso Ltd.",
                         CompanyAddr="Bellevue, WA",
                         CompanyDesc="Contoso Ltd. (also known as Contoso and Contoso University) is a fictional company used by Microsoft as an example company and domain.",
                         CompanyLogo=""
-
+                        
                         
                     }
                 };

@@ -29,6 +29,7 @@ namespace WebApplication2.Models
         }
     }
 
+    /*
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -42,6 +43,7 @@ namespace WebApplication2.Models
             return new ApplicationDbContext();
         }
     }
+     */
 }
 
 

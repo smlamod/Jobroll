@@ -28,8 +28,8 @@ namespace WebApplication2.DAL
             base.OnModelCreating(modelBuilder);
 
             
-            modelBuilder.Entity<ApplicationUser>().ToTable("AspNetUsers");
-            /*
+            modelBuilder.Entity<ApplicationUser>().ToTable("AspNetUsers")
+                                   .Ignore(c => c.PhoneNumber)
                                    .Ignore(c => c.AccessFailedCount)
                                    .Ignore(c => c.LockoutEnabled)
                                    .Ignore(c => c.LockoutEndDateUtc)                                  
@@ -37,9 +37,6 @@ namespace WebApplication2.DAL
                                    .Ignore(c => c.EmailConfirmed)
                                    .Ignore(c => c.PhoneNumberConfirmed)
                                    ;
-            */
-          //  modelBuilder.Entity<Member>().ToTable("Members");
-          //  modelBuilder.Entity<Company>().ToTable("Companies");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("AspNetUserLogins").HasKey<string>(l => l.UserId);
             modelBuilder.Entity<IdentityRole>().ToTable("AspNetRoles").HasKey<string>(r => r.Id);
             modelBuilder.Entity<IdentityUserRole>().ToTable("AspNetUserRoles").HasKey(r => new { r.RoleId, r.UserId });
@@ -51,5 +48,9 @@ namespace WebApplication2.DAL
             return Set<T>().AsNoTracking();
         }
 
+        public static JobrollContext Create()
+        {
+            return new JobrollContext();
+        }
     }
 }
