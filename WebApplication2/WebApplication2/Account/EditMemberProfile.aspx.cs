@@ -5,14 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
-using WebApplication2.DAL;
 
 namespace WebApplication2.Account
 {
     public partial class EditMemberProfile : System.Web.UI.Page
     {
-        protected void EditMember_Click (object sender, EventArgs e)
+        protected void EditMember_Click(object sender, EventArgs e)
         {
+            /*
             string usrid = User.Identity.GetUserId();
             using (var context = new JobrollContext())
             {
@@ -36,6 +36,8 @@ namespace WebApplication2.Account
 
                 }
             }
+        }
+             */
         }
     }
 }

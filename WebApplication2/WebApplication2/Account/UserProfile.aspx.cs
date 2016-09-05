@@ -11,7 +11,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
 using WebApplication2.Models;
-using WebApplication2.DAL;
 
 namespace WebApplication2
 {
@@ -21,6 +20,7 @@ namespace WebApplication2
         protected void Page_Load(object sender, EventArgs e)
         {
             //var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            /*
                 string usrid = User.Identity.GetUserId();
                 using (var context = new JobrollContext())
                 {
@@ -31,7 +31,9 @@ namespace WebApplication2
                     lemail.Text = User.Identity.GetUserName();
                     lloc.Text = jmember.Location;
 
-                }            
+                }
+             */
+               
         }
     }
 }

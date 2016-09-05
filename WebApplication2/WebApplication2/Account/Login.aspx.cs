@@ -5,11 +5,20 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using WebApplication2.Models;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace WebApplication2.Account
 {
     public partial class Login : Page
     {
+        SqlConnection sqlcon;
+        DataSet ds;
+        SqlDataAdapter da;
+        SqlCommand com;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register";
@@ -25,6 +34,28 @@ namespace WebApplication2.Account
 
         protected void LogIn(object sender, EventArgs e)
         {
+
+            try
+            {
+                string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ToString();
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                ds = new DataSet();
+                com = new SqlCommand("SignIn");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                com.Parameters.AddWithValue("@mail", Email.Text);
+                com.Parameters.AddWithValue("@pass", Password.Text);
+                da.Fill(ds, "LOGIN");
+                com.ExecuteNonQuery();
+                Session["USER"] = Email.Text;
+                Session["PASS"] = Password.Text;
+            }
+            catch
+            { }
+            
+            /*
             if (IsValid)
             {
                 // Validate the user password
@@ -56,6 +87,7 @@ namespace WebApplication2.Account
                         break;
                 }
             }
+             * */
         }
     }
 }

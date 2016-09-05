@@ -8,7 +8,6 @@ using Microsoft.Owin.Security.DataProtection;
 using Owin;
 using WebApplication2.Models;
 using Owin.Security.Providers.LinkedIn;
-using WebApplication2.DAL;
 
 namespace WebApplication2
 {
@@ -18,9 +17,9 @@ namespace WebApplication2
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(JobrollContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            //app.CreatePerOwinContext(JobrollContext.Create);
+            //app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            //app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider

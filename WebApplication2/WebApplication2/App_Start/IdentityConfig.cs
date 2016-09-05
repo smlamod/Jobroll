@@ -7,7 +7,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using WebApplication2.Models;
-using WebApplication2.DAL;
 
 namespace WebApplication2
 {
@@ -37,8 +36,10 @@ namespace WebApplication2
         {
         }
 
+        /*
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
+            
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<JobrollContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
@@ -82,22 +83,25 @@ namespace WebApplication2
                 manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+             
         }
     }
 
-    public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
-    {
-        public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager) :
-            base(userManager, authenticationManager) { }
-
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
+             */
+        public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
         {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
-        }
+            public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager) :
+                base(userManager, authenticationManager) { }
 
-        public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
-        {
-            return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
+            public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
+            {
+                return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
+            }
+
+            public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
+            {
+                return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
+            }
         }
     }
 }

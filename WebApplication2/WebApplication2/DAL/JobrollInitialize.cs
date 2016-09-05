@@ -120,7 +120,7 @@ namespace WebApplication2.DAL
                     MemberId=1,
                     UserId = "User2",
                     LastName="Schultz",
-                    FirstMidName="Dieter",
+                    FirstMidName="Schultz",
 
                     PhoneNumber = "+639062578436",
                     Profpic="",

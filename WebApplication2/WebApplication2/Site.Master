@@ -57,6 +57,10 @@
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
+                            <ul class="nav navbar-nav">
+                                <li><a runat="server" href="~/Account/UserProfile">My Profile</a></li>
+                                 <li><a runat="server" href="~/Account/CompanyProfile">Company Profile</a></li>
+                            </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Welcome, <%: Context.User.Identity.GetUserName()  %> !</a></li>
 
@@ -66,33 +70,6 @@
 
                             </ul>
                         </LoggedInTemplate>
-                        <RoleGroups>
-                            <asp:RoleGroup Roles="member">
-                                <ContentTemplate>
-                                    <ul class="nav navbar-nav">
-                                        <li><a runat="server" href="~/Account/UserProfile">My Profile</a></li>
-                                    </ul>
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Profile">Edit Profile</a></li>
-                                    </ul>
-                                </ContentTemplate>
-                            </asp:RoleGroup>
-                            <asp:RoleGroup Roles="company">
-                                <ContentTemplate>
-                                    <ul class="nav navbar-nav">
-                                        <li><a runat="server" href="~/Account/CompanyProfile">Company Profile</a></li>
-                                    </ul>
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li><a runat="server" href="~/Account/Manage" title="Manage your account">Welcome, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                        <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Profile">Edit Profile</a></li>
-                                        <li>
-                                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                        </li>
-
-                                    </ul>
-                                </ContentTemplate>
-                            </asp:RoleGroup>
-                        </RoleGroups>
                     </asp:LoginView>
                 </div>
             </div>
