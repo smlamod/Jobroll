@@ -102,32 +102,6 @@ ul {
     border-bottom: 1px solid #e0e0e0;
 }
 
-.userinfo, .basic-qual {
-    list-style: none;
-    padding: 0;
-}
-
-    .userinfo li {
-        margin: 10px 0;
-    }
-
-
-.profile-title p {
-}
-
-
-
-.contact-info-basic {
-    font-size: 1em;
-    text-align: left;
-    list-style: none;
-}
-
-
-
-.userinfo li a, .basic-qual li a {
-    text-decoration: none;
-}
 
 table, th, td {
     border-collapse: collapse;
@@ -142,7 +116,6 @@ table, th, td {
     font-family: Roboto;
     font-weight: 700;
     letter-spacing: -0.015em;
-    /*color: #FF673B;*/
     vertical-align: top;
 }
 
