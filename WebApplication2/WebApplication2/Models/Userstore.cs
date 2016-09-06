@@ -85,7 +85,7 @@ namespace WebApplication2.Models
         
         public virtual Task DeleteAsync(User user)
         {
-            /*
+            
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -95,8 +95,8 @@ namespace WebApplication2.Models
                     connection.Execute("delete from Users where UserId = @userId", new { user.UserId });
             });
             
-            */
-            throw new NotImplementedException();
+            
+            //throw new NotImplementedException();
         }
 
         public virtual Task<User> FindByIdAsync(string userId)
@@ -118,43 +118,23 @@ namespace WebApplication2.Models
             //throw new NotImplementedException();
         }
 
+
         public virtual Task<User> FindByNameAsync(string userName)
         {
-            
+
+            User usr = new User();
+
             if (string.IsNullOrWhiteSpace(userName))
                 throw new ArgumentNullException("userName");
 
             return Task.Factory.StartNew(() =>
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                 return connection.Query<User>("select * from Users where lower(UserName) = lower(@userName)", new { userName }).SingleOrDefault();
-
-                /*
-                using (sqlcon = new SqlConnection(conn))
-                {
-                    sqlcon.Open();
-                    com = new SqlCommand("GetbyName");
-                    com.CommandType = CommandType.StoredProcedure;
-                    com.Connection = sqlcon;
-                    da = new SqlDataAdapter(com);
-                    com.Parameters.AddWithValue("@usnm", userName);
-                    da.Fill(dt);
-                    com.ExecuteNonQuery();
-
-                    var dr = from row in dt.AsEnumerable()
-                             select new
-                             {
-                                 userName = row.Field<string>("First")
-                             };
-
-                    return dr;
-                } 
-              */
+        
+                 using (SqlConnection com = new SqlConnection(connectionString))
+                     return com.Query<User>("GetbyName", new { @usnm = userName }, commandType: CommandType.StoredProcedure).SingleOrDefault();          
+                   
             });
              
-            
-            
-            //throw new NotImplementedException();
         }
 
         public virtual Task UpdateAsync(User user)
@@ -165,8 +145,21 @@ namespace WebApplication2.Models
 
             return Task.Factory.StartNew(() =>
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                    connection.Execute("update Users set UserName = @userName, PasswordHash = @passwordHash, SecurityStamp = @securityStamp where UserId = @userId", user);
+                //using (SqlConnection connection = new SqlConnection(connectionString))
+                //    connection.Execute("update Users set UserName = @userName, PasswordHash = @passwordHash, SecurityStamp = @securityStamp where UserId = @userId", user);
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                com = new SqlCommand("Userupdate");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                com.Parameters.AddWithValue("@uid", user.UserId);
+                com.Parameters.AddWithValue("@usnm", user.Email);
+                com.Parameters.AddWithValue("@mail", user.Email);
+                com.Parameters.AddWithValue("@pash", user.PasswordHash);
+                com.Parameters.AddWithValue("@scsp", user.SecurityStamp);
+                com.ExecuteNonQuery();
+            
             });
              
             throw new NotImplementedException();
@@ -185,9 +178,25 @@ namespace WebApplication2.Models
 
             return Task.Factory.StartNew(() =>
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                    connection.Execute("insert into ExternalLogins(ExternalLoginId, UserId, LoginProvider, ProviderKey) values(@externalLoginId, @userId, @loginProvider, @providerKey)",
-                        new { externalLoginId = Guid.NewGuid(), userId = user.UserId, loginProvider = login.LoginProvider, providerKey = login.ProviderKey });
+              //  using (SqlConnection connection = new SqlConnection(connectionString))
+              //      connection.Execute("insert into",
+              //          new { externalLoginId = Guid.NewGuid(), userId = user.UserId, loginProvider = login.LoginProvider, providerKey = login.ProviderKey });
+
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                com = new SqlCommand("AddElogin");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                com.Parameters.AddWithValue("@eid", Guid.NewGuid());
+                com.Parameters.AddWithValue("@uid", user.UserId);
+                
+                com.Parameters.AddWithValue("@lpr", login.LoginProvider);
+                com.Parameters.AddWithValue("@pky", login.ProviderKey);
+
+                com.ExecuteNonQuery();
+            
+            
             });
              
             //throw new NotImplementedException();

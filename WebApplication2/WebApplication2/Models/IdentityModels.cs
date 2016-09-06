@@ -5,6 +5,7 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace WebApplication2.Models
 {
@@ -23,7 +24,6 @@ namespace WebApplication2.Models
             get { return UserId.ToString(); }
         }
 
-
-
+ 
     }
 }
