@@ -15,15 +15,12 @@ namespace WebApplication2.Account
         {
           
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, IsCompany = CheckBox1.Checked };
+            var user = new JBUser() { Email = Email.Text, Role = CheckBox1.Checked };
             IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                //string code = manager.GenerateEmailConfirmationToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-
+             
+                /*
                 if (CheckBox1.Checked)
                 {
                     manager.AddToRole(user.Id, "company");
@@ -32,7 +29,9 @@ namespace WebApplication2.Account
                 {
                     manager.AddToRole(user.Id, "member");
                 }
-                IdentityHelper.SignIn(manager, user, isPersistent: false);
+                 */
+
+               // IdentityHelper.SignIn(manager, user, isPersistent: false);
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }
             else 
