@@ -13,7 +13,6 @@ using System.Data.SqlClient;
 namespace WebApplication2.Models
 {
     public class UserStore :
-        
         IUserStore<User>,
         IUserLoginStore<User>,
         IUserPasswordStore<User>,
@@ -24,9 +23,9 @@ namespace WebApplication2.Models
         SqlDataAdapter da;
         SqlCommand com;
 
-        private string connectionString;
+        private readonly string connectionString;
 
-        public void UserStore(string connectionString)
+        public UserStore(string connectionString)
         {
             if (string.IsNullOrWhiteSpace(connectionString))
                 throw new ArgumentNullException("connectionString");
@@ -34,7 +33,7 @@ namespace WebApplication2.Models
             this.connectionString = connectionString;
         }
 
-        public void UserStore()
+        public  UserStore()
         {
             this.connectionString = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
         }
