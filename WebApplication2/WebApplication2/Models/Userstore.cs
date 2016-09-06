@@ -8,15 +8,16 @@ using System.Threading.Tasks;
 using System.Web.Providers.Entities;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
+
 
 namespace WebApplication2.Models
 {
-    public class Userstore :
-        IUserStore<JBUser>,
-        IUserLoginStore<JBUser>,
-        IUserPasswordStore<JBUser>,
-        IUserSecurityStampStore<JBUser>
+    public class UserStore :
+        
+        IUserStore<User>,
+        IUserLoginStore<User>,
+        IUserPasswordStore<User>,
+        IUserSecurityStampStore<User>
     {
         SqlConnection sqlcon;
         DataSet ds;
@@ -38,6 +39,12 @@ namespace WebApplication2.Models
             this.connectionString = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
         }
 
+        void IDisposable.Dispose()
+        {
+            //throw new NotImplementedException(); 
+
+        } 
+
         #region IUserStore
         public virtual Task CreateAsync(User user)
         {
@@ -58,22 +65,19 @@ namespace WebApplication2.Models
                 com.CommandType = CommandType.StoredProcedure;
                 com.Connection = sqlcon;
                 da = new SqlDataAdapter(com);
-                com.Parameters.AddWithValue("@uid", TextBox1.Text);
-                com.Parameters.AddWithValue("@empl", TextBox2.Text);
-                com.Parameters.AddWithValue("@mail", TextBox3.Text);
-                com.Parameters.AddWithValue("@pash", bday);
-                com.Parameters.AddWithValue("@scsp", gender);
+                com.Parameters.AddWithValue("@uid", user.UserId);
+                com.Parameters.AddWithValue("@empl",user.Role);
+                com.Parameters.AddWithValue("@mail",user.Email);
+                com.Parameters.AddWithValue("@pash",user.PasswordHash);
+                com.Parameters.AddWithValue("@scsp",user.SecurityStamp);
                 com.ExecuteNonQuery();
-
-
 
             });
         }
-        #endregion
-
-        /*
+        
         public virtual Task DeleteAsync(User user)
         {
+            /*
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -82,10 +86,14 @@ namespace WebApplication2.Models
                 using (SqlConnection connection = new SqlConnection(connectionString))
                     connection.Execute("delete from Users where UserId = @userId", new { user.UserId });
             });
+            
+            */
+            throw new NotImplementedException();
         }
 
         public virtual Task<User> FindByIdAsync(string userId)
         {
+            /*
             if (string.IsNullOrWhiteSpace(userId))
                 throw new ArgumentNullException("userId");
 
@@ -98,10 +106,13 @@ namespace WebApplication2.Models
                 using (SqlConnection connection = new SqlConnection(connectionString))
                     return connection.Query<User>("select * from Users where UserId = @userId", new { userId = parsedUserId }).SingleOrDefault();
             });
+             */
+            throw new NotImplementedException();
         }
 
         public virtual Task<User> FindByNameAsync(string userName)
         {
+            /*
             if (string.IsNullOrWhiteSpace(userName))
                 throw new ArgumentNullException("userName");
 
@@ -110,10 +121,13 @@ namespace WebApplication2.Models
                 using (SqlConnection connection = new SqlConnection(connectionString))
                     return connection.Query<User>("select * from Users where lower(UserName) = lower(@userName)", new { userName }).SingleOrDefault();
             });
+             */ 
+            throw new NotImplementedException();
         }
 
         public virtual Task UpdateAsync(User user)
         {
+            /*
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -122,12 +136,15 @@ namespace WebApplication2.Models
                 using (SqlConnection connection = new SqlConnection(connectionString))
                     connection.Execute("update Users set UserName = @userName, PasswordHash = @passwordHash, SecurityStamp = @securityStamp where UserId = @userId", user);
             });
+             */
+            throw new NotImplementedException();
         }
         #endregion
 
         #region IUserLoginStore
         public virtual Task AddLoginAsync(User user, UserLoginInfo login)
         {
+            /*
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -140,10 +157,13 @@ namespace WebApplication2.Models
                     connection.Execute("insert into ExternalLogins(ExternalLoginId, UserId, LoginProvider, ProviderKey) values(@externalLoginId, @userId, @loginProvider, @providerKey)",
                         new { externalLoginId = Guid.NewGuid(), userId = user.UserId, loginProvider = login.LoginProvider, providerKey = login.ProviderKey });
             });
+             */
+            throw new NotImplementedException();
         }
 
         public virtual Task<User> FindAsync(UserLoginInfo login)
         {
+            /*
             if (login == null)
                 throw new ArgumentNullException("login");
 
@@ -153,10 +173,13 @@ namespace WebApplication2.Models
                     return connection.Query<User>("select u.* from Users u inner join ExternalLogins l on l.UserId = u.UserId where l.LoginProvider = @loginProvider and l.ProviderKey = @providerKey",
                         login).SingleOrDefault();
             });
+             */
+            throw new NotImplementedException();
         }
 
         public virtual Task<IList<UserLoginInfo>> GetLoginsAsync(User user)
         {
+            /*
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -165,10 +188,13 @@ namespace WebApplication2.Models
                 using (SqlConnection connection = new SqlConnection(connectionString))
                     return (IList<UserLoginInfo>)connection.Query<UserLoginInfo>("select LoginProvider, ProviderKey from ExternalLogins where UserId = @userId", new { user.UserId }).ToList();
             });
+             */
+            throw new NotImplementedException();
         }
 
         public virtual Task RemoveLoginAsync(User user, UserLoginInfo login)
         {
+            /*
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -181,6 +207,8 @@ namespace WebApplication2.Models
                     connection.Execute("delete from ExternalLogins where UserId = @userId and LoginProvider = @loginProvider and ProviderKey = @providerKey",
                         new { user.UserId, login.LoginProvider, login.ProviderKey });
             });
+             */
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -231,7 +259,7 @@ namespace WebApplication2.Models
 
         #endregion
 
-        */
+        
 
     }
 

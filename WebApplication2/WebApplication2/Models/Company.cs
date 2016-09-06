@@ -17,7 +17,7 @@ namespace WebApplication2.Models
 
         public string UserId { get; set; }
        [ForeignKey("UserId")]
-       public virtual ApplicationUser ApplicationUser { get; set; }
+       public virtual JBUser JBUser { get; set; }
         //public virtual Common User { get; set; }
 
        public string PhoneNumber { get; set; }

@@ -91,7 +91,7 @@ namespace WebApplication2.Account
                 return;
             }
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var user = new ApplicationUser() { UserName = email.Text, Email = email.Text };
+            var user = new JBUser() { UserName = email.Text, Email = email.Text };
             IdentityResult result = manager.Create(user);
             if (result.Succeeded)
             {
@@ -101,7 +101,9 @@ namespace WebApplication2.Account
                     RedirectOnFail();
                     return;
                 }
-                result = manager.AddLogin(user.Id, loginInfo.Login);
+               // result = manager.AddLogin(user.Id,loginInfo.Login);
+              
+
                 if (result.Succeeded)
                 {
                     IdentityHelper.SignIn(manager, user, isPersistent: false);
