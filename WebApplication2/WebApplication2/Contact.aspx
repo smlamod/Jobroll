@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
 
-    <h2>Let's Chat.</h2>
+    <h2>Contact</h2>
     <h3>Jobroll Ltd.</h3>
     <address>
         1004 Muralla St.<br />

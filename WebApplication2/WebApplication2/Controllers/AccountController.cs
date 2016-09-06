@@ -11,8 +11,6 @@ using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
-    public class UsersController : Controller
-    {
         [Authorize]
         public class AccountController : Controller
         {
@@ -408,4 +406,4 @@ namespace WebApplication2.Controllers
             #endregion
         }
     }
-}
+
