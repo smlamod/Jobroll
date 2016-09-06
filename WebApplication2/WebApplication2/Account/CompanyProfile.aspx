@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CompanyProfile.aspx.cs" Inherits="WebApplication2.Account.CompanyProfile" %>
+﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CompanyProfile.aspx.cs" Inherits="WebApplication2.Account.CompanyProfile" %>
 
 <!DOCTYPE html>
 
@@ -7,10 +7,77 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="Frm_CompanyProfile" runat="server">
     <div>
     
     </div>
     </form>
 </body>
-</html>
+</html>--%>
+
+<%@ Page Title="Company Profile" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="CompanyProfile.aspx.cs" Inherits="WebApplication2.Account.CompanyProfile" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="company-header">
+        <img src="http://www.myiconfinder.com/uploads/iconsets/256-256-da92ce9f71a953e629f8f49813b77c46-hp.png"/>
+        <span class="company-name">Hewlett-Packard Enterprise</span>
+        <ul>
+            <li><span class="glyphicon glyphicon-earphone" style="color: gray;"></span><span class="info-content">+63 919 302 9182</span></li>
+            <li><span class="glyphicon glyphicon-envelope" style="color: gray;"></span><span class="info-content"><asp:Label runat="server" Text="softeng@jobroll.com" Id="lemail"/></span></li>
+            <li><span class="glyphicon glyphicon-tree-conifer" style="color: gray;"></span><span class="info-content"><asp:Label runat="server" Text="Metro Manila, PH" Id="lloc"/></span></li>
+        </ul>
+    </div>
+    <hr class="custom-hr"/>
+    <div class="company-desc">
+        <div>
+            <h3>Overview</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text 
+                ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        </div>
+        <div>
+            <h3>Why join us?</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text 
+                ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        </div>
+        <div>
+            <h3>Company Snapshot</h3>
+            <table>
+                <tr>
+                    <th>Average application processing time</th>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <th>Industry</th>  
+                    <td>Enterprise Products/FMCG</td>
+                </tr>
+                <tr>
+                    <th>Website</th>  
+                    <td>http://www.hpe.com</td>
+                </tr>
+                <tr>
+                    <th>Company Size</th>  
+                    <td>501 - 1000 </td>
+                </tr>        
+                <tr>
+                    <th>Employees Working Hours</th>  
+                    <td>Saturdays or Shift required except for Support Group</td>
+                </tr>
+                <tr>
+                    <th>Dress Code</th>  
+                    <td>Business (e.g. Shirts)</td>
+                </tr> 
+            </table>
+        </div>
+        
+    </div>
+
+    
+    <div class="job-listing">
+        <span class="company-job-listing">Latest Jobs</span>
+    </div>
+
+
+    <footer>Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
+            <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
+    </footer>
+</asp:Content>

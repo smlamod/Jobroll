@@ -6,11 +6,13 @@
 
 
 .intro-header {
-    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-    padding-bottom: 50px;
     color: #f8f8f8;
-    background: url(../img/intro-bg.jpg) no-repeat center center;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5)
+    ), url(../img/intro-bg.jpg) no-repeat center center;
     background-size: cover;
+    margin: -2% -10% 0 -10%;
 }
 
 .intro-message {
@@ -18,12 +20,27 @@
     padding-top: 20%;
     padding-bottom: 20%;
     text-align: center;
+    z-index: 3;
 }
 
 .intro-message > h1 {
     margin: 0;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    /*text-shadow: 2px 2px 3px rgba(0,0,0,0.6);*/
     font-size: 5em;
+    font-family: Roboto;
+    font-weight: 100;
+    position: relative;
+}
+
+
+.intro-message > h3 {
+    /*text-shadow: 2px 2px 3px rgba(0,0,0,0.6);*/
+    width: 700px;
+    margin: 20px auto 0 auto;
+    font-family: Roboto;
+    font-weight: 300;
+    position: relative;
+    line-height: 1.35em;
 }
 
 .intro-divider {
@@ -32,8 +49,64 @@
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
-.intro-message > h3 {
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+.features {
+    font-family: Roboto;
+    font-weight: 300;
+}
+
+.features h2 {
+    font-size: 2.5em;
+    font-family: Roboto;
+    font-weight: 300;    
+    margin: 30px auto -10px auto;
+}
+
+.feat-1 {
+    margin: 0 auto;
+    padding: 20px 0;
+    display: inline-block;
+    height: 200px;
+}
+
+.feat-2 {
+    width: 120%;
+    margin: 0px -10%;
+    float: right;
+    padding: 20px 0;
+    display: inline-block;
+    height: 200px;
+    text-align: right;    
+    background-color: #e0e0e0;
+}
+
+.feat-message-2 {
+    margin-right: 10%;
+}
+
+.feat-3 {
+    margin: 0 auto;
+    padding: 20px 0;
+    display: inline-block;
+    height: 200px;
+}
+
+.def-footer {
+    width: 120%;
+    margin: 0px -10%;
+    background-color: #e0e0e0;    
+}
+
+.get-started {    
+    color: rgba(0,0,0,0.6);    
+}
+
+footer {
+    position: relative;
+    float: left;
+    bottom: 20px;
+    margin: 35px 0 0 0;
+    font-size: 0.8em;
+    color: #98978b;
 }
 
 @media(max-width:767px) {

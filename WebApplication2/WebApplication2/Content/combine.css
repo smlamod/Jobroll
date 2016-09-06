@@ -15,7 +15,7 @@ body {
 h2 {
     font-family: Roboto;
     font-weight: 300;
-    font-size: 1.5em;
+    font-size: 2.5em;
 }
 
 ul {
@@ -139,4 +139,75 @@ table, th, td {
     font-family: Roboto;
     font-weight: 400;
     font-size: 0.85em;
+}
+
+.custom-hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #c6c6c6;
+}
+
+.company-header {
+    display: inline-block;
+    text-align: left;
+    overflow: auto;
+}
+
+.company-header img {
+    display: inline-block;
+    float: left;
+    border: none;
+    height: 130px;
+    width: 130px;
+    margin: 0 25px 0 0;
+}
+.company-header .info-content {
+    padding-right: 20px;
+}
+
+.company-header ul {
+    list-style: none;
+}
+
+.company-header ul li {
+    float: left;
+}
+
+.company-name {
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 3em;
+    vertical-align: middle;
+    display: inline-block;
+    word-wrap: break-word;
+    margin-top: 25px;
+}
+
+.company-desc h3 {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 1.75em;
+}
+
+.company-desc div {
+    display: table;
+    float: left;
+    width: 350px;
+    margin-right: 30px;
+}
+
+.company-desc table {
+    vertical-align: top;
+    border-collapse: collapse;
+}
+
+.company-desc table tr {
+    margin-bottom: 10px;
+}
+
+.company-job-listing {
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 2.5em;
 }
