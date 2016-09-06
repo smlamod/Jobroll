@@ -26,6 +26,11 @@ namespace WebApplication2.Controllers
 
             public UserManager<User> UserManager { get; private set; }
 
+            // GET: /Account/UserProfile
+            //
+
+
+
             //
             // GET: /Account/Login
             [AllowAnonymous]
