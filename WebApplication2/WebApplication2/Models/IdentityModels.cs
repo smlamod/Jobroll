@@ -12,6 +12,7 @@ namespace WebApplication2.Models
     {
         public Guid UserId { get; set; }
         public bool Role { get; set; }
+
         public string UserName { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }

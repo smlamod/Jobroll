@@ -77,7 +77,7 @@ namespace WebApplication2.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new User() { UserName = model.UserName };
+                    var user = new User() { UserName=model.Email,  Email = model.Email, Role = model.Role };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
