@@ -1,0 +1,84 @@
+﻿@Styles.Render("~/Content/combine.css")
+
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+@using (Html.BeginForm("UserProfile", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    
+    <div id="leftsidebar">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/Harry-Potter-1-.jpg" />  
+            <span class="user-name">
+            @ViewBag.FirstMidName
+            @ViewBag.LastName
+        </span>
+
+
+        <ul>
+            <li><span class="glyphicon glyphicon-earphone" style="color: gray;"></span><p>@ViewBag.PhoneNumber </p></li>
+            <li><span class="glyphicon glyphicon-envelope" style="color: gray;"></span><p>@ViewBag.Email</p></li>
+            <li><span class="glyphicon glyphicon-tree-conifer" style="color: gray;"></span><p>@ViewBag.Location</p></li>
+        </ul>
+    </div>
+    <div id="maincontent">
+
+        <h2>Skills</h2>
+        <div id="sec-skl">
+            <ul>
+                <li>@ViewBag.Skills</li>
+
+            </ul>
+        </div>
+        <hr />
+
+        <h2>Education</h2>
+        <div id="sec-edu">
+            <table class="edu-tbl">
+                <tr>
+                    <th>June 2004 - August 2008</th>
+                    <td>
+                        <div class="edu-head">
+                            <span class="sch-pos">@ViewBag.EduDegree</span>
+                            <br />
+                            <span class="sch-name">@ViewBag.EduSchool</span> —
+                            <span class="ent-loc">Intramuros, Manila</span>
+                        </div>
+                        <ul>
+                            <!--<li>Emphasis in Business Analytics</li>
+                            <li>Top 5% in class.</li>-->
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <hr />
+
+        <h2>Experience</h2>
+        <div id="sec-exp">
+            <table class="exp-tbl">
+                <tr>
+                    <th>Aug 2011 - Present</th>
+                    <td>
+                        <p>
+                            <span class="ent-pos">@ViewBag.XpPosition</span>
+                            <br />
+                            <span class="ent-name">@ViewBag.XpCompany</span> 
+
+                        </p>
+                        <ul>
+                            <!--<li>Spearhead supply chain process improvement and systems implementation projects.</li>
+                            <li>Develop metrics used to determine inefficiencies and areas of improvement across the hospital.</li>
+                                -->
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

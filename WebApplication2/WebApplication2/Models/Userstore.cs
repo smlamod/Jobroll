@@ -148,8 +148,6 @@ namespace WebApplication2.Models
 
             return Task.Factory.StartNew(() =>
             {
-                //using (SqlConnection connection = new SqlConnection(connectionString))
-                //    connection.Execute("update Users set UserName = @userName, PasswordHash = @passwordHash, SecurityStamp = @securityStamp where UserId = @userId", user);
                 sqlcon = new SqlConnection(conn);
                 sqlcon.Open();
                 com = new SqlCommand("Userupdate");
@@ -181,9 +179,6 @@ namespace WebApplication2.Models
 
             return Task.Factory.StartNew(() =>
             {
-              //  using (SqlConnection connection = new SqlConnection(connectionString))
-              //      connection.Execute("insert into",
-              //          new { externalLoginId = Guid.NewGuid(), userId = user.UserId, loginProvider = login.LoginProvider, providerKey = login.ProviderKey });
 
                 sqlcon = new SqlConnection(conn);
                 sqlcon.Open();
