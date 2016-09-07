@@ -8,12 +8,25 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using WebApplication2.Models;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace WebApplication2.Controllers
 {
         [Authorize]
         public class AccountController : Controller
         {
+            SqlConnection sqlcon;
+            DataSet ds;
+            DataTable dt;
+            SqlDataAdapter da;
+            SqlCommand com;
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ToString();
+
+
+            
+
             public AccountController()
                 : this(new UserManager<User>(new UserStore()))
             {
@@ -28,8 +41,76 @@ namespace WebApplication2.Controllers
 
             // GET: /Account/UserProfile
             //
+            public ActionResult EditMember()
+            {
+                return View();
+            }
 
+            [HttpPost]
+           
+            public ActionResult EditMember (EditMemberViewModel model)
+            {
+                if (ModelState.IsValid)
+                {
+                    sqlcon = new SqlConnection(conn);
+                    sqlcon.Open();
+                    ds = new DataSet();
+                    com = new SqlCommand("MemberCheck");
+                    com.CommandType = CommandType.StoredProcedure;
+                    com.Connection = sqlcon;
+                    da = new SqlDataAdapter(com);
 
+                    com.Parameters.AddWithValue("@uid", User.Identity.GetUserId());
+                    da.Fill(ds, "PROFILE");
+                    com.ExecuteNonQuery();
+                    if (ds.Tables["PROFILE"].Rows.Count == 0)
+                    {
+                        com = new SqlCommand("MemberCreate");
+                        com.CommandType = CommandType.StoredProcedure;
+                        com.Connection = sqlcon;
+                        da = new SqlDataAdapter(com);
+                        com.Parameters.AddWithValue("@uid", User.Identity.GetUserId());
+                        com.Parameters.AddWithValue("@pnum", model.PhoneNumber);
+                        com.Parameters.AddWithValue("@lname", model.LastName);
+                        com.Parameters.AddWithValue("@fname", model.FirstMidName);
+
+                        com.Parameters.AddWithValue("@skls", model.Skills);
+                        com.Parameters.AddWithValue("@edegree", model.EduDegree);
+                        com.Parameters.AddWithValue("@eschool", model.EduSchool);
+
+                        com.Parameters.AddWithValue("@xpos", model.XpPosition);
+                        com.Parameters.AddWithValue("@xcom", model.XpCompany);
+                        com.Parameters.AddWithValue("@loc", model.Location);
+                        com.Parameters.AddWithValue("@salry", model.ExpSalary);
+                        com.ExecuteNonQuery();
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        com = new SqlCommand("MemberUpdate");
+                        com.CommandType = CommandType.StoredProcedure;
+                        com.Connection = sqlcon;
+                        da = new SqlDataAdapter(com);
+                        com.Parameters.AddWithValue("@uid", User.Identity.GetUserId());
+                        com.Parameters.AddWithValue("@pnum", model.PhoneNumber);
+                        com.Parameters.AddWithValue("@lname", model.LastName);
+                        com.Parameters.AddWithValue("@fname", model.FirstMidName);
+
+                        com.Parameters.AddWithValue("@skls", model.Skills);
+                        com.Parameters.AddWithValue("@edegree", model.EduDegree);
+                        com.Parameters.AddWithValue("@eschool", model.EduSchool);
+
+                        com.Parameters.AddWithValue("@xpos", model.XpPosition);
+                        com.Parameters.AddWithValue("@xcom", model.XpCompany);
+                        com.Parameters.AddWithValue("@loc", model.Location);
+                        com.Parameters.AddWithValue("@salry", model.ExpSalary);
+                        com.ExecuteNonQuery();
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+                return View(model);
+            }
 
             //
             // GET: /Account/Login
@@ -87,7 +168,7 @@ namespace WebApplication2.Controllers
                     if (result.Succeeded)
                     {
                         await SignInAsync(user, isPersistent: false);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("EditMember", "Account");
                     }
                     else
                     {

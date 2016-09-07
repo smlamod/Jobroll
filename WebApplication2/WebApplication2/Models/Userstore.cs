@@ -13,6 +13,7 @@ using Dapper;
 
 namespace WebApplication2.Models
 {
+
     public class UserStore :
         IUserStore<User>,
         IUserLoginStore<User>,
@@ -117,6 +118,8 @@ namespace WebApplication2.Models
              
             //throw new NotImplementedException();
         }
+
+
 
 
         public virtual Task<User> FindByNameAsync(string userName)
