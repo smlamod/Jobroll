@@ -39,18 +39,14 @@ namespace WebApplication2.Controllers
 
             public UserManager<User> UserManager { get; private set; }
 
-            public ActionResult UserProfile()
-            {
-                return View();
-            }
+
 
             // GET: /Account/UserProfile
             //
             [HttpGet]
-            public ActionResult UserProfile(ProfileMemberViewModel model)
+            public ActionResult UserProfile()
             {
-                if (ModelState.IsValid)
-                {
+           
                     sqlcon = new SqlConnection(conn);
                     sqlcon.Open();
                     ds = new DataSet();
@@ -64,27 +60,24 @@ namespace WebApplication2.Controllers
                     com.ExecuteNonQuery();
                     if (ds.Tables["PROFILE"].Rows.Count != 0)
                     {
-                        model.FirstMidName = ds.Tables["PROFILE"].Rows[0][4].ToString();
-                        model.LastName = ds.Tables["PROFILE"].Rows[0][3].ToString();
-                        model.PhoneNumber = ds.Tables["PROFILE"].Rows[0][2].ToString();
+                        //$("label[for*='']").text("State");
+                        ViewBag.FirstMidName = ds.Tables["PROFILE"].Rows[0][4].ToString();
+                        ViewBag.LastName = ds.Tables["PROFILE"].Rows[0][3].ToString();
+                        ViewBag.PhoneNumber = ds.Tables["PROFILE"].Rows[0][2].ToString();
+                        ViewBag.Email = User.Identity.Name.ToString();
+                        ViewBag.Skills = ds.Tables["PROFILE"].Rows[0][6].ToString();
+                        ViewBag.EduDegree = ds.Tables["PROFILE"].Rows[0][7].ToString();
+                        ViewBag.EduSchool = ds.Tables["PROFILE"].Rows[0][8].ToString();
 
-                        model.Skills = ds.Tables["PROFILE"].Rows[0][6].ToString();
-                        model.EduDegree = ds.Tables["PROFILE"].Rows[0][7].ToString();
-                        model.EduSchool = ds.Tables["PROFILE"].Rows[0][8].ToString();
-
-                        model.XpPosition = ds.Tables["PROFILE"].Rows[0][11].ToString();
-                        model.XpCompany = ds.Tables["PROFILE"].Rows[0][12].ToString();
-
-                        model.Location = ds.Tables["PROFILE"].Rows[0][15].ToString();
+                        ViewBag.XpPosition = ds.Tables["PROFILE"].Rows[0][11].ToString();
+                        ViewBag.XpCompany = ds.Tables["PROFILE"].Rows[0][12].ToString();
+                        ViewBag.Location = ds.Tables["PROFILE"].Rows[0][15].ToString();                       
                     }
                     else
                     {
                         return RedirectToAction("EditMember", "Accounts");
                     }
-                }
-       
-                return View(model);
-
+                    return View();
                 
             }
 
