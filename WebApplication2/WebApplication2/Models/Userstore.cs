@@ -114,6 +114,9 @@ namespace WebApplication2.Models
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                     return connection.Query<User>("select * from Users where UserId = @userId", new { userId = parsedUserId }).SingleOrDefault();
+
+
+            
             });
              
             //throw new NotImplementedException();
@@ -132,10 +135,30 @@ namespace WebApplication2.Models
 
             return Task.Factory.StartNew(() =>
             {
-        
-                 using (SqlConnection com = new SqlConnection(connectionString))
-                     return com.Query<User>("GetbyName", new { @usnm = userName }, commandType: CommandType.StoredProcedure).SingleOrDefault();          
-                   
+
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                com = new SqlCommand("UserGetbyName");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                ds = new DataSet();
+                com.Parameters.AddWithValue("@usnm", userName);
+                da.Fill(ds, "USER");
+                com.ExecuteNonQuery();
+                User retUser = new User();
+                if (ds.Tables["USER"].Rows.Count != 0)
+                {
+                    retUser.UserId = new Guid(ds.Tables["USER"].Rows[0][0].ToString());
+                    retUser.Role = Convert.ToBoolean(ds.Tables["USER"].Rows[0][1]);
+                    retUser.UserName = ds.Tables["USER"].Rows[0][2].ToString();
+                    retUser.Email = ds.Tables["USER"].Rows[0][3].ToString();
+                    retUser.PasswordHash = ds.Tables["USER"].Rows[0][4].ToString();
+                    retUser.SecurityStamp = ds.Tables["USER"].Rows[0][5].ToString();
+                    return retUser;
+                }
+                else
+                    return retUser;    
             });
              
         }
