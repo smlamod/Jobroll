@@ -11,6 +11,7 @@ namespace WebApplication2.Account
 {
     public partial class ManageLogins : System.Web.UI.Page
     {
+        /*
         protected string SuccessMessage
         {
             get;
@@ -57,5 +58,7 @@ namespace WebApplication2.Account
             }
             Response.Redirect("~/Account/ManageLogins" + msg);
         }
+    }
+         */
     }
 }

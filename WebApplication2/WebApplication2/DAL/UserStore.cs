@@ -8,6 +8,7 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using WebApplication2.Models;
 using System.Data;
+using System.Collections;
 
 namespace WebApplication2.Identity
 {
@@ -102,8 +103,31 @@ namespace WebApplication2.Identity
 
             return Task.Factory.StartNew(() =>
             {
-                using (SqlConnection connection = new SqlConnection(conn))
-                    return connection.Query<User>("select * from Users where UserId = @userId", new { userId = parsedUserId }).SingleOrDefault();
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                com = new SqlCommand("UserGetbyId");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                ds = new DataSet();
+                com.Parameters.AddWithValue("@uid", userId);
+                da.Fill(ds, "USER");
+                com.ExecuteNonQuery();
+                User retUser = new User();
+                if (ds.Tables["USER"].Rows.Count != 0)
+                {
+                    retUser.UserId = new Guid(ds.Tables["USER"].Rows[0][0].ToString());
+                    retUser.Role = Convert.ToBoolean(ds.Tables["USER"].Rows[0][1]);
+                    retUser.UserName = ds.Tables["USER"].Rows[0][2].ToString();
+                    retUser.Email = ds.Tables["USER"].Rows[0][3].ToString();
+                    retUser.PasswordHash = ds.Tables["USER"].Rows[0][4].ToString();
+                    retUser.SecurityStamp = ds.Tables["USER"].Rows[0][5].ToString();
+                    return retUser;
+                }
+                else
+                    return retUser;    
+
+
             });
         }
 
@@ -114,8 +138,29 @@ namespace WebApplication2.Identity
 
             return Task.Factory.StartNew(() =>
             {
-                using (SqlConnection connection = new SqlConnection(conn))
-                    return connection.Query<User>("select * from Users where lower(UserName) = lower(@userName)", new { userName }).SingleOrDefault();
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                com = new SqlCommand("UserGetbyName");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                ds = new DataSet();
+                com.Parameters.AddWithValue("@usnm", userName);
+                da.Fill(ds, "USER");
+                com.ExecuteNonQuery();
+                User retUser = new User();
+                if (ds.Tables["USER"].Rows.Count != 0)
+                {
+                    retUser.UserId = new Guid(ds.Tables["USER"].Rows[0][0].ToString());
+                    retUser.Role = Convert.ToBoolean(ds.Tables["USER"].Rows[0][1]);
+                    retUser.UserName = ds.Tables["USER"].Rows[0][2].ToString();
+                    retUser.Email = ds.Tables["USER"].Rows[0][3].ToString();
+                    retUser.PasswordHash = ds.Tables["USER"].Rows[0][4].ToString();
+                    retUser.SecurityStamp = ds.Tables["USER"].Rows[0][5].ToString();
+                    return retUser;
+                }
+                else
+                    return retUser;    
             });
         }
 
@@ -174,9 +219,30 @@ namespace WebApplication2.Identity
 
             return Task.Factory.StartNew(() =>
             {
-                using (SqlConnection connection = new SqlConnection(conn))
-                    return connection.Query<User>("select u.* from Users u inner join ExternalLogins l on l.UserId = u.UserId where l.LoginProvider = @loginProvider and l.ProviderKey = @providerKey",
-                        login).SingleOrDefault();
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                com = new SqlCommand("UserGetLogInfo");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                ds = new DataSet();
+                com.Parameters.AddWithValue("@lpr", login.LoginProvider);
+                com.Parameters.AddWithValue("@pky", login.ProviderKey);
+                da.Fill(ds, "USER");
+                com.ExecuteNonQuery();
+                User retUser = new User();
+                if (ds.Tables["USER"].Rows.Count != 0)
+                {
+                    retUser.UserId = new Guid(ds.Tables["USER"].Rows[0][0].ToString());
+                    retUser.Role = Convert.ToBoolean(ds.Tables["USER"].Rows[0][1]);
+                    retUser.UserName = ds.Tables["USER"].Rows[0][2].ToString();
+                    retUser.Email = ds.Tables["USER"].Rows[0][3].ToString();
+                    retUser.PasswordHash = ds.Tables["USER"].Rows[0][4].ToString();
+                    retUser.SecurityStamp = ds.Tables["USER"].Rows[0][5].ToString();
+                    return retUser;
+                }
+                else
+                    return retUser;    
             });
         }
 
@@ -187,8 +253,28 @@ namespace WebApplication2.Identity
 
             return Task.Factory.StartNew(() =>
             {
-                using (SqlConnection connection = new SqlConnection(conn))
-                    return (IList<UserLoginInfo>)connection.Query<UserLoginInfo>("select LoginProvider, ProviderKey from ExternalLogins where UserId = @userId", new { user.UserId }).ToList();
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                com = new SqlCommand("UserGetbyId");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                ds = new DataSet();
+                com.Parameters.AddWithValue("@uid", user.UserId);
+                da.Fill(ds, "LOGIN");
+                com.ExecuteNonQuery();
+                UserLoginInfo ulinfo;
+                IList newList = new List<UserLoginInfo>();
+                for (int x = 0; x < ds.Tables["LOGIN"].Rows.Count; x++ )
+                {
+                    ulinfo = new UserLoginInfo(ds.Tables["LOGIN"].Rows[0][0].ToString(), ds.Tables["LOGIN"].Rows[0][1].ToString());
+                    newList.Add(ulinfo);             
+                }
+                return newList;
+
+                //using (SqlConnection connection = new SqlConnection(conn))
+                 //   return (IList<UserLoginInfo>)connection.Query<UserLoginInfo>("select LoginProvider, ProviderKey from ExternalLogins where UserId = @userId", new { user.UserId }).ToList();
+                
             });
         }
 

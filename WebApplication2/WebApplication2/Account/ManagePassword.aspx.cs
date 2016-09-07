@@ -6,18 +6,20 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using WebApplication2.DAL;
 
 namespace WebApplication2.Account
 {
     public partial class ManagePassword : System.Web.UI.Page
     {
+        /*
         protected string SuccessMessage
         {
             get;
             private set;
         }
 
-        private bool HasPassword(ApplicationUserManager manager)
+        private bool HasPassword( manager)
         {
             return manager.HasPassword(User.Identity.GetUserId());
         }
@@ -93,5 +95,6 @@ namespace WebApplication2.Account
                 ModelState.AddModelError("", error);
             }
         }
+         */
     }
 }
