@@ -41,13 +41,26 @@ namespace WebApplication2.Controllers
 
             // GET: /Account/UserProfile
             //
+            public ActionResult UserProfile(EditMemberViewModel model)
+            {
+                if (ModelState.IsValid)
+                {
+
+                }
+                return View(model);
+            }
+
+            public ActionResult UserProfile()
+            {
+                return View();
+            }
+
             public ActionResult EditMember()
             {
                 return View();
             }
 
             [HttpPost]
-           
             public ActionResult EditMember (EditMemberViewModel model)
             {
                 if (ModelState.IsValid)

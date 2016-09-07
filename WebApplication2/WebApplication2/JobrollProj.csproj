@@ -169,8 +169,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\CompanyProfile.aspx" />
-    <Content Include="Account\UserProfile.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -246,6 +244,7 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\EditMember.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -254,20 +253,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\CompanyProfile.aspx.cs">
-      <DependentUpon>CompanyProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\CompanyProfile.aspx.designer.cs">
-      <DependentUpon>CompanyProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\UserProfile.aspx.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\UserProfile.aspx.designer.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
