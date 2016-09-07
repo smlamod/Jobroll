@@ -39,20 +39,53 @@ namespace WebApplication2.Controllers
 
             public UserManager<User> UserManager { get; private set; }
 
-            // GET: /Account/UserProfile
-            //
-            public ActionResult UserProfile(EditMemberViewModel model)
-            {
-                if (ModelState.IsValid)
-                {
-
-                }
-                return View(model);
-            }
-
             public ActionResult UserProfile()
             {
                 return View();
+            }
+
+            // GET: /Account/UserProfile
+            //
+            [HttpGet]
+            public ActionResult UserProfile(ProfileMemberViewModel model)
+            {
+                if (ModelState.IsValid)
+                {
+                    sqlcon = new SqlConnection(conn);
+                    sqlcon.Open();
+                    ds = new DataSet();
+                    com = new SqlCommand("MemberCheck");
+                    com.CommandType = CommandType.StoredProcedure;
+                    com.Connection = sqlcon;
+                    da = new SqlDataAdapter(com);
+
+                    com.Parameters.AddWithValue("@uid", User.Identity.GetUserId());
+                    da.Fill(ds, "PROFILE");
+                    com.ExecuteNonQuery();
+                    if (ds.Tables["PROFILE"].Rows.Count != 0)
+                    {
+                        model.FirstMidName = ds.Tables["PROFILE"].Rows[0][4].ToString();
+                        model.LastName = ds.Tables["PROFILE"].Rows[0][3].ToString();
+                        model.PhoneNumber = ds.Tables["PROFILE"].Rows[0][2].ToString();
+
+                        model.Skills = ds.Tables["PROFILE"].Rows[0][6].ToString();
+                        model.EduDegree = ds.Tables["PROFILE"].Rows[0][7].ToString();
+                        model.EduSchool = ds.Tables["PROFILE"].Rows[0][8].ToString();
+
+                        model.XpPosition = ds.Tables["PROFILE"].Rows[0][11].ToString();
+                        model.XpCompany = ds.Tables["PROFILE"].Rows[0][12].ToString();
+
+                        model.Location = ds.Tables["PROFILE"].Rows[0][15].ToString();
+                    }
+                    else
+                    {
+                        return RedirectToAction("EditMember", "Accounts");
+                    }
+                }
+       
+                return View(model);
+
+                
             }
 
             public ActionResult EditMember()

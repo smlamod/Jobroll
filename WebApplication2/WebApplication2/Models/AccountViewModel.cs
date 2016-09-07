@@ -80,6 +80,49 @@ namespace WebApplication2.Models
 
     }
 
+    public class ProfileMemberViewModel
+    {
+        
+        [Display(Name = "First Name")]
+        public string FirstMidName { get; set; }
+
+        
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
+        
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+
+        [Display(Name = "Skills")]
+        public string Skills { get; set; }
+
+        [Display(Name = "Educational Degree")]
+        public string EduDegree { get; set; }
+
+        
+        [Display(Name = "School")]
+        public string EduSchool { get; set; }
+        
+        [Display(Name = "Last Job Postion")]
+        public string XpPosition { get; set; }
+        
+        [Display(Name = "From Company ")]
+        public string XpCompany { get; set; }
+        
+        [Display(Name = "Location")]
+        public string Location { get; set; }
+
+        [Display(Name = "Expected Salary")]
+        public string ExpSalary { get; set; }
+
+    }
+
     public class LoginViewModel
     {
         [Required]
