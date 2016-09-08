@@ -60,13 +60,10 @@ namespace WebApplication2.Models
                 user.UserId = Guid.NewGuid();
                 //using (SqlConnection connection = new SqlConnection(connectionString))
                 //   connection.Execute("insert into Users(UserId, UserName, PasswordHash, SecurityStamp) values(@userId, @userName, @passwordHash, @securityStamp)", user);
-
-                try
-                {
                     //string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ToString();
                     sqlcon = new SqlConnection(conn);
                     sqlcon.Open();
-                    com = new SqlCommand("SignUp");
+                    com = new SqlCommand("UserSignUp");
                     com.CommandType = CommandType.StoredProcedure;
                     com.Connection = sqlcon;
                     da = new SqlDataAdapter(com);
@@ -77,10 +74,6 @@ namespace WebApplication2.Models
                     com.Parameters.AddWithValue("@pash", user.PasswordHash);
                     com.Parameters.AddWithValue("@scsp", user.SecurityStamp);
                     com.ExecuteNonQuery();
-                }
-                catch {
-                    sqlcon.Close(); 
-                }
             });
         }
         
@@ -173,7 +166,7 @@ namespace WebApplication2.Models
             {
                 sqlcon = new SqlConnection(conn);
                 sqlcon.Open();
-                com = new SqlCommand("Userupdate");
+                com = new SqlCommand("UserUpdate");
                 com.CommandType = CommandType.StoredProcedure;
                 com.Connection = sqlcon;
                 da = new SqlDataAdapter(com);
@@ -205,7 +198,7 @@ namespace WebApplication2.Models
 
                 sqlcon = new SqlConnection(conn);
                 sqlcon.Open();
-                com = new SqlCommand("AddElogin");
+                com = new SqlCommand("UserAddElogin");
                 com.CommandType = CommandType.StoredProcedure;
                 com.Connection = sqlcon;
                 da = new SqlDataAdapter(com);
@@ -247,9 +240,25 @@ namespace WebApplication2.Models
 
             return Task.Factory.StartNew(() =>
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                    return (IList<UserLoginInfo>)connection.Query<UserLoginInfo>("select LoginProvider, ProviderKey from ExternalLogins where UserId = @userId", new { user.UserId }).ToList();
-            });
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                com = new SqlCommand("UserGetbyId");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                ds = new DataSet();
+                com.Parameters.AddWithValue("@uid", user.UserId);
+                da.Fill(ds, "LOGIN");
+                com.ExecuteNonQuery();
+                UserLoginInfo ulinfo;
+                IList<UserLoginInfo> newList = new List<UserLoginInfo>();
+                for (int x = 0; x < ds.Tables["LOGIN"].Rows.Count; x++)
+                {
+                    ulinfo = new UserLoginInfo(ds.Tables["LOGIN"].Rows[0][0].ToString(), ds.Tables["LOGIN"].Rows[0][1].ToString());
+                    newList.Add(ulinfo);
+                }
+                return (IList<UserLoginInfo>)newList.Cast<UserLoginInfo>().ToList();
+});
              
             //throw new NotImplementedException();
         }

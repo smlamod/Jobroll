@@ -388,8 +388,8 @@ namespace WebApplication2.Controllers
                     if (info == null)
                     {
                         return View("ExternalLoginFailure");
-                    }
-                    var user = new User() { UserName = model.Email, Email = model.Email };
+                    }   
+                    var user = new User() { UserName = model.Email, Email = model.Email, Role= false };                 
                     var result = await UserManager.CreateAsync(user);
                     if (result.Succeeded)
                     {
