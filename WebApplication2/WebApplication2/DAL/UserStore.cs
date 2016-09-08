@@ -268,9 +268,10 @@ namespace WebApplication2.Identity
                 for (int x = 0; x < ds.Tables["LOGIN"].Rows.Count; x++ )
                 {
                     ulinfo = new UserLoginInfo(ds.Tables["LOGIN"].Rows[0][0].ToString(), ds.Tables["LOGIN"].Rows[0][1].ToString());
-                    newList.Add(ulinfo);             
+                    newList.Add(ulinfo);    
                 }
-                return newList;
+                return (IList<UserLoginInfo>)newList.Cast<UserLoginInfo>().ToList();
+                
 
                 //using (SqlConnection connection = new SqlConnection(conn))
                  //   return (IList<UserLoginInfo>)connection.Query<UserLoginInfo>("select LoginProvider, ProviderKey from ExternalLogins where UserId = @userId", new { user.UserId }).ToList();
