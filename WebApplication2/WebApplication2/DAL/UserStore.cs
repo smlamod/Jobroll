@@ -10,8 +10,10 @@ using WebApplication2.Models;
 using System.Data;
 using System.Collections;
 
-namespace WebApplication2.Identity
+namespace WebApplication2.DAL
 {
+    
+
     //THIS CLASS EXTENDS ASP.NET.IDENTITY FOR CUSTOM DATA ACCESS TO DATABASE
     public class UserStore : IUserStore<User>, IUserLoginStore<User>, IUserPasswordStore<User>, IUserSecurityStampStore<User>
     {
