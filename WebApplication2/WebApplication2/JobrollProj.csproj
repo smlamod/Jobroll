@@ -149,6 +149,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\ManageLogins.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="Account\Register.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
@@ -230,9 +231,6 @@
     <Compile Include="Account\EditMemberProfile.aspx.designer.cs">
       <DependentUpon>EditMemberProfile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\IdentityHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -254,6 +252,13 @@
     <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
       <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -271,7 +276,7 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DAL\OtherStore.cs" />
+    <Compile Include="DAL\Idhelper.cs" />
     <Compile Include="DAL\UserStore.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

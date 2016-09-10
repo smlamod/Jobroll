@@ -16,14 +16,7 @@ namespace WebApplication2.Account
     {
 
         public UserManager<User> UserManager { get; private set; }
-
-        //private IAuthenticationManager AuthenticationManager
-        //{
-        //    get
-        //    {
-        //        return HttpContext.GetOwinContext().Authentication;
-        //    }
-        //}
+        public IdentityHelper obj { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,22 +31,6 @@ namespace WebApplication2.Account
             }
         }
 
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.Current.GetOwinContext().Authentication;
-            }
-        }
-
-        public async Task SignInAsync(UserManager<User> manager, User user, bool isPersistent)
-        {
-            //IAuthenticationManager AuthenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            var identity = await manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
-        }
-
         protected async void LogIn(object sender, EventArgs e)
         {
             await DoLogIn();
@@ -62,15 +39,16 @@ namespace WebApplication2.Account
 
         protected async Task DoLogIn()
         {
-
+            
             if (IsValid)
             {
                 UserManager = new UserManager<User>(new UserStore());
+                obj = new IdentityHelper();
                 var user = await UserManager.FindAsync(Email.Text, Password.Text);
                 if (user != null)
                 {
-                    
-                   await SignInAsync(UserManager, user, RememberMe.Checked);
+
+                    await obj.SignInAsync(UserManager, user, RememberMe.Checked);
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                 }
                 else
@@ -81,5 +59,8 @@ namespace WebApplication2.Account
 
             }
         }
+
+
+        
     }
 }
