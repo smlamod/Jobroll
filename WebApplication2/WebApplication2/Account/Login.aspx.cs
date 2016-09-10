@@ -8,6 +8,7 @@ using WebApplication2.Models;
 using WebApplication2.DAL;
 using Microsoft.Owin.Security;
 using System.Threading.Tasks;
+using Microsoft.Owin.Host.SystemWeb;
 
 namespace WebApplication2.Account
 {
@@ -37,17 +38,25 @@ namespace WebApplication2.Account
             }
         }
 
-        public async Task SignInAsync(User user, bool isPersistent)
+        private IAuthenticationManager AuthenticationManager
         {
-            IAuthenticationManager AuthenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+            get
+            {
+                return HttpContext.Current.GetOwinContext().Authentication;
+            }
+        }
+
+        public async Task SignInAsync(UserManager<User> manager, User user, bool isPersistent)
+        {
+            //IAuthenticationManager AuthenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            var identity = await manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
 
-        protected void LogIn(object sender, EventArgs e)
+        protected async void LogIn(object sender, EventArgs e)
         {
-            DoLogIn();
+            await DoLogIn();
 
         }
 
@@ -56,12 +65,12 @@ namespace WebApplication2.Account
 
             if (IsValid)
             {
-
+                UserManager = new UserManager<User>(new UserStore());
                 var user = await UserManager.FindAsync(Email.Text, Password.Text);
                 if (user != null)
                 {
                     
-                   await SignInAsync(user, RememberMe.Checked);
+                   await SignInAsync(UserManager, user, RememberMe.Checked);
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                 }
                 else
