@@ -31,7 +31,7 @@
             <a href="/Account/Register">
                 <h2>Get started.</h2>
                 <h3>Kickstart your future today.</h3>
-                <p class="btn-register">Register now <span class="glyphicon glyphicon-chevron-right" style="margin-right: 0px;"></span></p>
+                <p class="btn-new" style="width: 88px;">Sign up ›<%--<span class="glyphicon glyphicon-chevron-right" style="margin-right: 0px;"></span>--%></p>
             </a>
         </div>
     </div>
