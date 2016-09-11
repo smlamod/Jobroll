@@ -1,21 +1,4 @@
-﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CompanyProfile.aspx.cs" Inherits="WebApplication2.Account.CompanyProfile" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="Frm_CompanyProfile" runat="server">
-    <div>
-    
-    </div>
-    </form>
-</body>
-</html>--%>
-
-<%@ Page Title="Company Profile" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="CompanyProfile.aspx.cs" Inherits="WebApplication2.Account.CompanyProfile" %>
+﻿<%@ Page Title="Company Profile" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="CompanyProfile.aspx.cs" Inherits="WebApplication2.Account.CompanyProfile" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="company-header">

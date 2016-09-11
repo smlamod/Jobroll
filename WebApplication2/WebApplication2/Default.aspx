@@ -17,7 +17,7 @@
         </div>
         <div class="feat-2">
             <div class="feat-message-2">
-                <h2>First impressions count.</h2>
+                <h2>Impress.</h2>
                 <h3>Send your professional identity online to your prospective companies.</h3>
             </div>
         </div>

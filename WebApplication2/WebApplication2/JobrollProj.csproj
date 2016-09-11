@@ -145,6 +145,7 @@
     <Content Include="About.aspx" />
     <Content Include="Account\CompanyProfile.aspx" />
     <Content Include="Account\EditMemberProfile.aspx" />
+    <Content Include="Account\JobDetails.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Manage.aspx" />
     <Content Include="Account\ManageLogins.aspx" />
@@ -232,6 +233,13 @@
     </Compile>
     <Compile Include="Account\EditMemberProfile.aspx.designer.cs">
       <DependentUpon>EditMemberProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\JobDetails.aspx.cs">
+      <DependentUpon>JobDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\JobDetails.aspx.designer.cs">
+      <DependentUpon>JobDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
