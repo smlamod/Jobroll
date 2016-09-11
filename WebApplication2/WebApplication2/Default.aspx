@@ -10,31 +10,36 @@
     </div>
     <div class="features">
         <div class="feat-1">
-            <div class="feat-message-1">
+            <div class="feat-text">
                 <h2>Search.</h2>
                 <h3>Employment-focused search, from hiring to salary rates and oppurtunities.</h3>
             </div>
         </div>
         <div class="feat-2">
-            <div class="feat-message-2">
+            <div class="feat-text feat-right">
                 <h2>Impress.</h2>
                 <h3>Send your professional identity online to your prospective companies.</h3>
             </div>
         </div>
         <div class="feat-3">
-            <div class="feat-message-3">
+            <div class="feat-text">
                 <h2>Get hired. Fast.</h2>
                 <h3>Employers can reach jobseekers through their job listing for instant communications.</h3>
             </div>
         </div>
         <div class="get-started">
-            <h2>Let's get started.</h2><br />
-            <a href="/Account/Register">Register now <span class="glyphicon glyphicon-chevron-right" style="color: gray;"></span></a>
+            <a href="/Account/Register">
+                <h2>Get started.</h2>
+                <h3>Kickstart your future today.</h3>
+                <p class="btn-register">Register now <span class="glyphicon glyphicon-chevron-right" style="margin-right: 0px;"></span></p>
+            </a>
         </div>
     </div>
-    <br /><br />
 
-    <footer>Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
+    <div class="footer">
+        <div class="footer-text">
+            Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
             <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
-        </footer>
+        </div>
+    </div>
 </asp:Content>
