@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using WebApplication2.DAL;
 
 namespace WebApplication2.Account
 {

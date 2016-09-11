@@ -13,6 +13,7 @@ namespace WebApplication2.Account
     {
         protected void EditMember_Click (object sender, EventArgs e)
         {
+            /*
             string usrid = User.Identity.GetUserId();
             using (var context = new JobrollContext())
             {
@@ -21,21 +22,23 @@ namespace WebApplication2.Account
                 jmember.LastName = tlast.Text;
                 context.SaveChanges();
             }
+             */
         }
 
         protected void Page_Load (object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                string usrid = User.Identity.GetUserId();
-                using (var context = new JobrollContext())
-                {
-                    var jmember = context.Members.First(a => a.UserId == usrid);
-                    tfirst.Text = jmember.FirstMidName;
-                    tlast.Text = jmember.LastName;
+            //if (!IsPostBack)
+            //{
 
-                }
-            }
+            //    string usrid = User.Identity.GetUserId();
+            //    using (var context = new JobrollContext())
+            //    {
+            //        var jmember = context.Members.First(a => a.UserId == usrid);
+            //        tfirst.Text = jmember.FirstMidName;
+            //        tlast.Text = jmember.LastName;
+
+            //    }
+            //}
         }
     }
 }
