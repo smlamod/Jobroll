@@ -52,6 +52,8 @@
                     <asp:LoginView runat="server">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
+                                <%--<li><asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>--%>
+                                <li class="search-in-list"><asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
                                 <li><a runat="server" href="~/Account/Register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
                                 <li><a runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-log-in"></span>Log in</a></li>
                             </ul>
@@ -59,11 +61,7 @@
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Welcome, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                </li>
-
+                                <li><asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" /></li>
                             </ul>
                         </LoggedInTemplate>
                         <RoleGroups>
@@ -98,10 +96,16 @@
             </div>
         </div>
 
-        <%--        <div class="container body-content">--%>
-        <div class="container">
+        <div class="container body-content">
+            <%--<div class="container">--%>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
+            <div class="footer">
+                <div class="footer-text">
+                    Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
+                    <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
+                </div>
+            </div>
         </div>
 
     </form>

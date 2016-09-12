@@ -46,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-                <p>
+                <p>                    
                     <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
                 </p>
                 <p>
@@ -63,4 +63,9 @@
             </section>
         </div>
     </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
 </asp:Content>

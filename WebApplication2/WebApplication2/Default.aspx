@@ -31,15 +31,15 @@
             <a href="/Account/Register">
                 <h2>Get started.</h2>
                 <h3>Kickstart your future today.</h3>
-                <p class="btn-new" style="width: 88px;">Sign up ›<%--<span class="glyphicon glyphicon-chevron-right" style="margin-right: 0px;"></span>--%></p>
+                <p class="btn-new" style="width: 88px;">Sign up ›</p>
             </a>
         </div>
     </div>
 
-    <div class="footer">
+    <%--<div class="footer">
         <div class="footer-text">
             Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
             <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
         </div>
-    </div>
+    </div>--%>
 </asp:Content>
