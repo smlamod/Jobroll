@@ -1,24 +1,7 @@
-﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CompanyProfile.aspx.cs" Inherits="WebApplication2.Account.CompanyProfile" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="Frm_CompanyProfile" runat="server">
-    <div>
-    
-    </div>
-    </form>
-</body>
-</html>--%>
-
-<%@ Page Title="Company Profile" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="CompanyProfile.aspx.cs" Inherits="WebApplication2.Account.CompanyProfile" %>
+﻿<%@ Page Title="Company Profile" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="CompanyProfile.aspx.cs" Inherits="WebApplication2.Account.CompanyProfile" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="company-header">
+    <div class="company-profile-header">
         <img src="http://www.myiconfinder.com/uploads/iconsets/256-256-da92ce9f71a953e629f8f49813b77c46-hp.png"/>
         <span class="company-name">Hewlett-Packard Enterprise</span>
         <ul>
@@ -67,17 +50,23 @@
                     <td>Business (e.g. Shirts)</td>
                 </tr> 
             </table>
-        </div>
-        
+        </div>        
     </div>
 
     
     <div class="job-listing">
-        <span class="company-job-listing">Latest Jobs</span>
+        <%--<span class="company-job-listing">Latest Jobs</span>--%>
+        <h3>Latest Jobs</h3>
     </div>
 
 
     <footer>Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
             <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
     </footer>
+    <%--<div class="footer">
+        <div class="footer-text">
+            Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
+            <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
+        </div>
+    </div>--%>
 </asp:Content>

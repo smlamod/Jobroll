@@ -47,9 +47,17 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <asp:Button runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn btn-default" />
+                <%--<asp:Button runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn btn-default" />--%>
+                <asp:Button runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn-new no-glyph" />
             </div>
         </div>
     </div>
-    
+    <br />
+    <br />
+    <div class="footer">
+        <div class="footer-text">
+            Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
+            <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
+        </div>
+    </div>
 </asp:Content>

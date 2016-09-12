@@ -8,7 +8,7 @@ body {
     padding-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #f8f8f8;
 }
 
@@ -21,6 +21,42 @@ h2 {
 ul {
     margin: 7px auto 20px auto;
     padding-left: 20px;
+}
+
+.btn-new {
+    font: 1em 'Roboto', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #ffffff;
+    border: 1px solid #eb7f00;
+    background-color: #eb7f00;
+    margin: 20px auto 0 auto;
+    padding: 7px 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;    
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+
+.btn-new:hover, .btn-new:focus {
+    color: #ffffff;
+    border: 1px solid #1695a3;
+    background-color: #1695a3;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+.btn-new:active {
+    color: #ffffff;
+    border: 1px solid #225378;
+    background-color: #225378;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
 }
 
 #leftsidebar {
@@ -63,10 +99,6 @@ ul {
     padding: 0;
     margin: auto;
     word-wrap: break-word;
-    /*border: 1px solid #e0e0e0;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;*/
 }
 
 #leftsidebar li {
@@ -95,11 +127,6 @@ ul {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-}
-
-#username {
-    padding: 10px 0;
-    border-bottom: 1px solid #e0e0e0;
 }
 
 
@@ -148,13 +175,12 @@ table, th, td {
   border-top: 1px solid #c6c6c6;
 }
 
-.company-header {
+.company-profile-header, .job-details-header {
     display: inline-block;
-    text-align: left;
-    overflow: auto;
+    text-align: left;    
 }
 
-.company-header img {
+.company-profile-header img {
     display: inline-block;
     float: left;
     border: none;
@@ -162,32 +188,45 @@ table, th, td {
     width: 130px;
     margin: 0 25px 0 0;
 }
-.company-header .info-content {
+
+.job-details-header img {
+    display: inline-block;
+    float: left;
+    border: none;
+    height: 90px;
+    width: 90px;
+    margin: 0 25px 0 0;
+}
+
+.info-content {
     padding-right: 20px;
 }
 
-.company-header ul {
+.company-profile-header ul, .job-details-header ul {
     list-style: none;
 }
 
-.company-header ul li {
+.company-profile-header ul li, .job-details-header ul li {
     float: left;
 }
 
 .company-name {
-    font-family: Roboto;
+    font: 3em 'Roboto', sans-serif;
     font-weight: 300;
-    font-size: 3em;
     vertical-align: middle;
     display: inline-block;
     word-wrap: break-word;
     margin-top: 25px;
 }
 
-.company-desc h3 {
-    font-family: Roboto;
-    font-weight: 500;
-    font-size: 1.75em;
+.company-open-pos {
+   font: 2em 'Roboto', sans-serif;
+    font-weight: 300;
+    vertical-align: middle;
+    display: inline-block;
+    word-wrap: break-word;
+    margin-top: 5px;
+    color: #1695a3;
 }
 
 .company-desc div {
@@ -195,6 +234,19 @@ table, th, td {
     float: left;
     width: 350px;
     margin-right: 30px;
+}
+
+.job-desc div {
+    display: table;
+    float: left;
+    width: 525px;
+    margin-right: 30px;
+}
+
+.company-desc h3, .job-desc h3 {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 1.5em;
 }
 
 .company-desc table {

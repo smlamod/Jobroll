@@ -4,15 +4,14 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-
 .intro-header {
-    color: #f8f8f8;
+    margin: -2% -10% 2% -10%;
+    color: #ffffff;
     background: linear-gradient(
       rgba(0, 0, 0, 0.5), 
       rgba(0, 0, 0, 0.5)
     ), url(../img/intro-bg.jpg) no-repeat center center;
     background-size: cover;
-    margin: -2% -10% 0 -10%;
 }
 
 .intro-message {
@@ -25,16 +24,13 @@
 
 .intro-message > h1 {
     margin: 0;
-    /*text-shadow: 2px 2px 3px rgba(0,0,0,0.6);*/
-    font-size: 5em;
-    font-family: Roboto;
+    font: 5em 'Roboto', sans-serif;
     font-weight: 100;
     position: relative;
 }
 
 
 .intro-message > h3 {
-    /*text-shadow: 2px 2px 3px rgba(0,0,0,0.6);*/
     width: 700px;
     margin: 20px auto 0 auto;
     font-family: Roboto;
@@ -50,44 +46,69 @@
 }
 
 .features {
-    font-family: Roboto;
-    font-weight: 300;
+    color: #ffffff;
+    margin: -2% -10% 0 -10%;
 }
 
-.features h2 {
-    font-size: 2.5em;
+.feat-text {
+    width: 400px;
     font-family: Roboto;
     font-weight: 300;    
-    margin: 30px auto -10px auto;
+}
+
+.feat-text > h3, .get-started h3 {
+    font-family: Roboto;
+    font-weight: 300;
+    line-height: 1.35em;
+    margin: 0;
+}
+.feat-text > h2, .get-started h2 {
+    margin: 5px auto;
+    font-size: 2.25em;
+}
+
+.feat-right {
+    float: right;
+    text-align: right;
+}
+
+.feat-1, .feat-2, .feat-3, .get-started {
+    height: 250px;
+    padding: 5% 8%;
 }
 
 .feat-1 {
-    margin: 0 auto;
-    padding: 20px 0;
-    display: inline-block;
-    height: 200px;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5)
+    ), url(../img/intro-bus-search.jpg) no-repeat center center;
+    background-size: cover;
 }
 
 .feat-2 {
-    width: 120%;
-    margin: 0px -10%;
-    float: right;
-    padding: 20px 0;
-    display: inline-block;
-    height: 200px;
-    text-align: right;    
-    background-color: #e0e0e0;
-}
-
-.feat-message-2 {
-    margin-right: 10%;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5)
+    ), url(../img/intro-first-impression.jpg) no-repeat center center;
+    background-size: cover;
 }
 
 .feat-3 {
-    margin: 0 auto;
-    padding: 20px 0;
-    display: inline-block;
-    height: 200px;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5)
+    ), url(../img/intro-get-hired.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.get-started {
+    height: 300px;
+    text-align: center;
+}
+
+.get-started > a {
+    text-decoration: none;
+    color: #3e3f3a;
 }
 
 .def-footer {
@@ -100,11 +121,16 @@
     color: rgba(0,0,0,0.6);    
 }
 
-footer {
-    position: relative;
-    float: left;
-    bottom: 20px;
-    margin: 35px 0 0 0;
+.footer {
+    clear: both;
+    bottom: 0;
+    margin: 0 -10%;
+    height: 100px;
+    background-color: #e0e0e0;
+}
+
+.footer-text {
+    padding: 2% 8%;
     font-size: 0.8em;
     color: #98978b;
 }
