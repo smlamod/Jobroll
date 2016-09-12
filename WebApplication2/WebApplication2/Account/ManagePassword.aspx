@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Manage Password" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManagePassword.aspx.cs" Inherits="WebApplication2.Account.ManagePassword" %>
+﻿<%@ Page Title="Manage Password" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManagePassword.aspx.cs" Inherits="WebApplication2.Account.ManagePassword"  Async="true"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
@@ -46,7 +46,7 @@
                 </div>
             </asp:PlaceHolder>
 
-            <asp:PlaceHolder runat="server" ID="changePasswordHolder" Visible="false">
+            <asp:PlaceHolder runat="server" ID="changePassword" Visible="false">
                 <div class="form-horizontal">
                     <h4>Change Password Form</h4>
                     <hr />

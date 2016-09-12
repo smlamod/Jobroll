@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Manage Account" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="WebApplication2.Account.Manage" %>
+﻿<%@ Page Title="Manage Account" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="WebApplication2.Account.Manage"  Async="true"%>
 
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
@@ -27,52 +27,7 @@
                         <asp:HyperLink NavigateUrl="/Account/ManageLogins" Text="[Manage]" runat="server" />
 
                     </dd>
-                    <%--
-                        Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-                        See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
-                        for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-                        Uncomment the following block after you have set up two-factor authentication
-                    --%>
-
-                    <dt>Phone Number:</dt>
-                    <%--
-                    <% if (HasPhoneNumber)
-                       { %>
-                    <dd>
-                        <asp:HyperLink NavigateUrl="/Account/AddPhoneNumber" runat="server" Text="[Add]" />
-                    </dd>
-                    <% }
-                       else
-                       { %>
-                    <dd>
-                        <asp:Label Text="" ID="PhoneNumber" runat="server" />
-                        <asp:HyperLink NavigateUrl="/Account/AddPhoneNumber" runat="server" Text="[Change]" /> &nbsp;|&nbsp;
-                        <asp:LinkButton Text="[Remove]" OnClick="RemovePhone_Click" runat="server" />
-                    </dd>
-                    <% } %>
-                    --%>
-
-                    <dt>Two-Factor Authentication:</dt>
-                    <dd>
-                        <p>
-                            There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
-                            for details on setting up this ASP.NET application to support two-factor authentication.
-                        </p>
-                        <% if (TwoFactorEnabled)
-                          { %> 
-                        <%--
-                        Enabled
-                        <asp:LinkButton Text="[Disable]" runat="server" CommandArgument="false" OnClick="TwoFactorDisable_Click" />
-                        --%>
-                        <% }
-                          else
-                          { %> 
-                        <%--
-                        Disabled
-                        <asp:LinkButton Text="[Enable]" CommandArgument="true" OnClick="TwoFactorEnable_Click" runat="server" />
-                        --%>
-                        <% } %>
-                    </dd>
+                
                 </dl>
             </div>
         </div>

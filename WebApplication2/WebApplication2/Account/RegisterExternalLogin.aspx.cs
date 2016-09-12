@@ -39,7 +39,7 @@ namespace WebApplication2.Account
             // Process the result from an auth provider in the request
             UserManager = new UserManager<User>(new UserStore());
             obj = new IdentityHelper();
-            //ProviderName = IdentityHelper.GetProviderNameFromRequest(Request);
+            ProviderName = IdentityHelper.GetProviderNameFromRequest(Request);
 
             if (!IsPostBack)
             {

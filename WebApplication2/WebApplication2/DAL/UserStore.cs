@@ -122,7 +122,11 @@ namespace WebApplication2.DAL
                     retUser.Role = Convert.ToBoolean(ds.Tables["USER"].Rows[0][1]);
                     retUser.UserName = ds.Tables["USER"].Rows[0][2].ToString();
                     retUser.Email = ds.Tables["USER"].Rows[0][3].ToString();
-                    retUser.PasswordHash = ds.Tables["USER"].Rows[0][4].ToString();
+                    string tmp = ds.Tables["USER"].Rows[0][4].ToString();
+                    if (tmp == "")
+                        retUser.PasswordHash = null;
+                    else
+                        retUser.PasswordHash = tmp;
                     retUser.SecurityStamp = ds.Tables["USER"].Rows[0][5].ToString();
                     return retUser;
                 }
@@ -157,7 +161,11 @@ namespace WebApplication2.DAL
                     retUser.Role = Convert.ToBoolean(ds.Tables["USER"].Rows[0][1]);
                     retUser.UserName = ds.Tables["USER"].Rows[0][2].ToString();
                     retUser.Email = ds.Tables["USER"].Rows[0][3].ToString();
-                    retUser.PasswordHash = ds.Tables["USER"].Rows[0][4].ToString();
+                    string tmp = ds.Tables["USER"].Rows[0][4].ToString();
+                    if (tmp == "")
+                        retUser.PasswordHash = null;
+                    else
+                        retUser.PasswordHash = tmp;
                     retUser.SecurityStamp = ds.Tables["USER"].Rows[0][5].ToString();
                     return retUser;
                 }
@@ -239,7 +247,12 @@ namespace WebApplication2.DAL
                     retUser.Role = Convert.ToBoolean(ds.Tables["USER"].Rows[0][1]);
                     retUser.UserName = ds.Tables["USER"].Rows[0][2].ToString();
                     retUser.Email = ds.Tables["USER"].Rows[0][3].ToString();
-                    retUser.PasswordHash = ds.Tables["USER"].Rows[0][4].ToString();
+                    string tmp = ds.Tables["USER"].Rows[0][4].ToString();
+                    if (tmp == "")
+                        retUser.PasswordHash = null;
+                    else
+                        retUser.PasswordHash = tmp;
+
                     retUser.SecurityStamp = ds.Tables["USER"].Rows[0][5].ToString();
                     return retUser;
                 }
@@ -309,8 +322,8 @@ namespace WebApplication2.DAL
         {
             if (user == null)
                 throw new ArgumentNullException("user");
-
-            return Task.FromResult(user.PasswordHash);
+     
+                return Task.FromResult(user.PasswordHash);
         }
 
         public virtual Task<bool> HasPasswordAsync(User user)

@@ -1,44 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Owin;
+using WebApplication2.Models;
 using WebApplication2.DAL;
+using System.Threading.Tasks;
+
 
 namespace WebApplication2.Account
 {
     public partial class ManagePassword : System.Web.UI.Page
     {
-        /*
+        public UserManager<User> UserManager { get; private set; }
+        public IdentityHelper obj { get; set; }
+
         protected string SuccessMessage
         {
             get;
             private set;
         }
 
-        private bool HasPassword( manager)
+        private bool HasPassword()
         {
-            return manager.HasPassword(User.Identity.GetUserId());
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user != null)
+            {
+                return user.PasswordHash != null;
+            }
+            return false;
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            UserManager = new UserManager<User>(new UserStore());
+            obj = new IdentityHelper();
 
             if (!IsPostBack)
             {
                 // Determine the sections to render
-                if (HasPassword(manager))
+                if (HasPassword())
                 {
-                    changePasswordHolder.Visible = true;
+                    setPassword.Visible = false;
+                    changePassword.Visible = true;
                 }
                 else
                 {
                     setPassword.Visible = true;
-                    changePasswordHolder.Visible = false;
+                    changePassword.Visible = false;
                 }
 
                 // Render success message
@@ -51,16 +61,16 @@ namespace WebApplication2.Account
             }
         }
 
-        protected void ChangePassword_Click(object sender, EventArgs e)
+        protected async void ChangePassword_Click(object sender, EventArgs e)
         {
             if (IsValid)
             {
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                IdentityResult result = manager.ChangePassword(User.Identity.GetUserId(), CurrentPassword.Text, NewPassword.Text);
+
+                IdentityResult result = UserManager.ChangePassword(User.Identity.GetUserId(), CurrentPassword.Text, NewPassword.Text);
                 if (result.Succeeded)
                 {
-                    var user = manager.FindById(User.Identity.GetUserId());
-                    IdentityHelper.SignIn(manager, user, isPersistent: false);
+                    var user = UserManager.FindById(User.Identity.GetUserId());
+                    await obj.SignInAsync(UserManager, user, isPersistent: false);
                     Response.Redirect("~/Account/Manage?m=ChangePwdSuccess");
                 }
                 else
@@ -75,8 +85,7 @@ namespace WebApplication2.Account
             if (IsValid)
             {
                 // Create the local login info and link the local account to the user
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                IdentityResult result = manager.AddPassword(User.Identity.GetUserId(), password.Text);
+                IdentityResult result = UserManager.AddPassword(User.Identity.GetUserId(), password.Text);
                 if (result.Succeeded)
                 {
                     Response.Redirect("~/Account/Manage?m=SetPwdSuccess");
@@ -95,6 +104,6 @@ namespace WebApplication2.Account
                 ModelState.AddModelError("", error);
             }
         }
-         */
+         
     }
 }
