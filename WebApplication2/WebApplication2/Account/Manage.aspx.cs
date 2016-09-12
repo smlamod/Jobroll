@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Owin;
+using System;
 using System.Web;
+using System.Web.UI;
+using System.Threading.Tasks;
+using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Owin;
 using WebApplication2.Models;
+using WebApplication2.DAL;
+
+
 
 namespace WebApplication2.Account
 {
@@ -22,7 +24,7 @@ namespace WebApplication2.Account
 
         protected void Page_Load()
         {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+          //  var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         }
 

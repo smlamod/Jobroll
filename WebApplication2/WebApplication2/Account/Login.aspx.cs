@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Owin;
+using System;
 using System.Web;
 using System.Web.UI;
+using System.Threading.Tasks;
+using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Owin;
 using WebApplication2.Models;
 using WebApplication2.DAL;
-using Microsoft.Owin.Security;
-using System.Threading.Tasks;
-using Microsoft.Owin.Host.SystemWeb;
+
 
 namespace WebApplication2.Account
 {
