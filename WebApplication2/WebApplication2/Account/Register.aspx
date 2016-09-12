@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="CheckBox1" CssClass="col-md-2" >Employer ?</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="CheckBox1" CssClass="col-md-2 control-label" style="padding-top: 0;">Employer ?</asp:Label>
             <div class="col-md-10">           
                  <asp:CheckBox runat="server" ID="CheckBox1" CssClass="form-inline" />
             </div>
@@ -52,12 +52,15 @@
             </div>
         </div>
     </div>
-    <br />
+    <%--<br />
     <br />
     <div class="footer">
         <div class="footer-text">
             Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
             <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
         </div>
-    </div>
+    </div>--%>
+    <br />
+    <br />
+    <br />
 </asp:Content>

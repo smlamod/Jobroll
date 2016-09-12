@@ -60,9 +60,9 @@
     </div>
 
 
-    <footer>Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
+    <%--<footer>Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
             <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
-    </footer>
+    </footer>--%>
     <%--<div class="footer">
         <div class="footer-text">
             Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
