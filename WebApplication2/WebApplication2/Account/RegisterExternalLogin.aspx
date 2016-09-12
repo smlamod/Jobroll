@@ -23,6 +23,13 @@
                 </div>
             </div>
 
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="CheckBox1" CssClass="col-md-2" >Employer ?</asp:Label>
+            <div class="col-md-10">           
+                 <asp:CheckBox runat="server" ID="CheckBox1" CssClass="form-inline" />
+            </div>
+        </div>
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <asp:Button runat="server" Text="Log in" CssClass="btn btn-default" OnClick="LogIn_Click" />

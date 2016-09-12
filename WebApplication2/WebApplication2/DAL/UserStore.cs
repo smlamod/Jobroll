@@ -127,7 +127,7 @@ namespace WebApplication2.DAL
                     return retUser;
                 }
                 else
-                    return retUser;    
+                    return null;    
 
 
             });
@@ -162,7 +162,7 @@ namespace WebApplication2.DAL
                     return retUser;
                 }
                 else
-                    return retUser;    
+                    return null;    
             });
         }
 
@@ -244,7 +244,7 @@ namespace WebApplication2.DAL
                     return retUser;
                 }
                 else
-                    return retUser;    
+                    return null;    
             });
         }
 
