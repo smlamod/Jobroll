@@ -270,7 +270,7 @@ namespace WebApplication2.DAL
             {
                 sqlcon = new SqlConnection(conn);
                 sqlcon.Open();
-                com = new SqlCommand("UserGetbyId");
+                com = new SqlCommand("UserGetELogInfo");
                 com.CommandType = CommandType.StoredProcedure;
                 com.Connection = sqlcon;
                 da = new SqlDataAdapter(com);
@@ -280,12 +280,15 @@ namespace WebApplication2.DAL
                 com.ExecuteNonQuery();
                 UserLoginInfo ulinfo;
                 IList newList = new List<UserLoginInfo>();
-                for (int x = 0; x < ds.Tables["LOGIN"].Rows.Count; x++ )
+
+                for (int x = 0; x < ds.Tables["LOGIN"].Rows.Count; x++)
                 {
                     ulinfo = new UserLoginInfo(ds.Tables["LOGIN"].Rows[0][0].ToString(), ds.Tables["LOGIN"].Rows[0][1].ToString());
-                    newList.Add(ulinfo);    
+                    newList.Add(ulinfo);
                 }
                 return (IList<UserLoginInfo>)newList.Cast<UserLoginInfo>().ToList();
+                
+
                 
 
                 //using (SqlConnection connection = new SqlConnection(conn))

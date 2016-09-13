@@ -40,6 +40,7 @@ namespace WebApplication2.Account
         protected void Page_Load()
         {
             UserManager = new UserManager<User>(new UserStore());
+            LoginsCount = UserManager.GetLogins(User.Identity.GetUserId()).Count;
             if (!IsPostBack)
             {
                 // Determine the sections to render

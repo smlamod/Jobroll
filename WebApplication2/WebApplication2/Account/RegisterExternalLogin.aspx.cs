@@ -103,34 +103,6 @@ namespace WebApplication2.Account
             {
                 AddErrors(result);
             }
-
-
-
-            //var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            //var user = new ApplicationUser() { UserName = email.Text, Email = email.Text };
-            //IdentityResult result = manager.Create(user);
-            //if (result.Succeeded)
-            //{
-            //    var loginInfo = Context.GetOwinContext().Authentication.GetExternalLoginInfo();
-            //    if (loginInfo == null)
-            //    {
-            //        RedirectOnFail();
-            //        return;
-            //    }
-            //    result = manager.AddLogin(user.Id, loginInfo.Login);
-            //    if (result.Succeeded)
-            //    {
-            //        IdentityHelper.SignIn(manager, user, isPersistent: false);
-
-            //        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-            //        // var code = manager.GenerateEmailConfirmationToken(user.Id);
-            //        // Send this link via email: IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id)
-
-            //        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-            //        return;
-            //    }
-            //}
-            //AddErrors(result);
         }
 
         private void AddErrors(IdentityResult result) 

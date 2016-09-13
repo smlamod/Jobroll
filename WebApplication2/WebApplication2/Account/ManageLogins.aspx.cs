@@ -53,7 +53,8 @@ namespace WebApplication2.Account
         {
             //var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             obj = new IdentityHelper();
-            var result = UserManager.RemoveLogin(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
+            //var result = UserManager.RemoveLogin(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
+            IdentityResult result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
             string msg = String.Empty;
             if (result.Succeeded)
             {
