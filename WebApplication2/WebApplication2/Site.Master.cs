@@ -6,11 +6,18 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
+using WebApplication2.DAL;
+using WebApplication2.Models;
+
+
 
 namespace WebApplication2
 {
     public partial class SiteMaster : MasterPage
     {
+        public UserManager<User> UserManager { get; private set; }
+
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
@@ -64,16 +71,32 @@ namespace WebApplication2
                     throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
                 }
             }
+            
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+            MultiView mv = (MultiView)Lview.FindControl("Mview");
+            UserManager = new UserManager<User>(new UserStore());
+            var user = UserManager.FindById(Context.User.Identity.GetUserId());
 
+                if(user.Role)
+                {
+                    mv.ActiveViewIndex = 1;
+                }
+                else
+                    mv.ActiveViewIndex = 0;
+
+            
+            }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut();
+
         }
     }
 

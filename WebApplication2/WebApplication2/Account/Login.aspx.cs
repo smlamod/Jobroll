@@ -47,9 +47,10 @@ namespace WebApplication2.Account
                 var user = await UserManager.FindAsync(Email.Text, Password.Text);
                 if (user != null)
                 {
-
+                    
                     await obj.SignInAsync(UserManager, user, RememberMe.Checked);
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+
                 }
                 else
                 {

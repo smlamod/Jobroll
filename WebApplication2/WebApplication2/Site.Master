@@ -49,48 +49,39 @@
                     <a class="navbar-brand" runat="server" href="~/">Jobroll</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <asp:LoginView runat="server">
+                    <asp:LoginView id="Lview" runat="server">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <%--<li><asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>--%>
-                                <li class="search-in-list"><asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
                                 <li><a runat="server" href="~/Account/Register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
                                 <li><a runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-log-in"></span>Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
-                        <LoggedInTemplate>
+                        <LoggedInTemplate >
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Welcome, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li><asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" /></li>
                             </ul>
-                        </LoggedInTemplate>
-                        <RoleGroups>
-                            <asp:RoleGroup Roles="member">
-                                <ContentTemplate>
-                                    <ul class="nav navbar-nav">
+                            <asp:MultiView runat="server" ID="Mview">
+                                <asp:View runat="server" Id="UserView">
+                                    <ul class="nav navbar-nav" id="nav-user">
                                         <li><a runat="server" href="~/Account/UserProfile">My Profile</a></li>
                                     </ul>
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Profile">Edit Profile</a></li>
+                                    <ul class="nav navbar-nav navbar-right" id="nav-right-user">
+                                        <li class="search-in-list"><asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
+                                        <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Member Profile">Edit Profile</a></li>
                                     </ul>
-                                </ContentTemplate>
-                            </asp:RoleGroup>
-                            <asp:RoleGroup Roles="company">
-                                <ContentTemplate>
-                                    <ul class="nav navbar-nav">
+                                </asp:View>
+                                <asp:View runat="server" ID="CompanyView">
+                                    <ul class="nav navbar-nav" id="nav-comp">
                                         <li><a runat="server" href="~/Account/CompanyProfile">Company Profile</a></li>
                                     </ul>
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li><a runat="server" href="~/Account/Manage" title="Manage your account">Welcome, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                        <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Profile">Edit Profile</a></li>
-                                        <li>
-                                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                        </li>
-
+                                    <ul class="nav navbar-nav navbar-right" id="nav-right-comp">
+                                        <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Company Profile">Edit Profile</a></li>
                                     </ul>
-                                </ContentTemplate>
-                            </asp:RoleGroup>
-                        </RoleGroups>
+                                </asp:View>
+                            </asp:MultiView>
+                        </LoggedInTemplate>
                     </asp:LoginView>
                 </div>
             </div>
