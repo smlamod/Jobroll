@@ -16,9 +16,14 @@ namespace WebApplication2
 {
     public partial class ProfilePage : System.Web.UI.Page
     {
+        public UserManager<User> UserManager { get; private set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            UserManager = new UserManager<User>(new UserStore());
+            var user = UserManager.FindById(Context.User.Identity.GetUserId());
+            if (user.Role)
+                Response.Redirect("/Error.aspx");
             
             /*
                     lfirst.Text = jmember.FirstMidName;
