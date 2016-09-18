@@ -21,7 +21,6 @@ namespace WebApplication2.DAL
 
         SqlConnection sqlcon;
         DataSet ds;
-        DataTable dt;
         SqlDataAdapter da;
         SqlCommand com;
         

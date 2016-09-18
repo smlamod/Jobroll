@@ -16,9 +16,16 @@ namespace WebApplication2.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            UserManager = new UserManager<User>(new UserStore());
-            var user = UserManager.FindById(Context.User.Identity.GetUserId());
-            if (!user.Role)
+            if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                UserManager = new UserManager<User>(new UserStore());
+                var user = UserManager.FindById(Context.User.Identity.GetUserId());
+                if (!user.Role)
+                    Response.Redirect("/Error.aspx");
+
+
+            }
+            else
                 Response.Redirect("/Error.aspx");
                 
         }
