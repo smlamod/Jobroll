@@ -127,6 +127,20 @@ namespace WebApplication2.Account
             lvDegree.DataSource = dt;
             lvDegree.DataBind();
 
+            com = new SqlCommand("MemberXPGetInfo");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            dt = new DataTable();
+            com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+            da.Fill(dt);
+            com.ExecuteNonQuery();
+            if (dt.Rows.Count != 0)
+            {
+                lvXp.DataSource = dt;
+                lvXp.DataBind();
+            }
+
         }
 
         protected string GetDegreeID(int index)
@@ -143,6 +157,23 @@ namespace WebApplication2.Account
             da.Fill(ds,"DEGREE");
             com.ExecuteNonQuery();
             return ds.Tables["DEGREE"].Rows[index][0].ToString();   
+        }
+
+        protected string GetXpID(int index)
+        {
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+            sqlcon = new SqlConnection(conn);
+            sqlcon.Open();
+            com = new SqlCommand("MemberXPGetInfo");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            ds = new DataSet();
+            com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+            da.Fill(ds, "XP");
+            com.ExecuteNonQuery();
+            return ds.Tables["XP"].Rows[index][0].ToString();  
+
         }
 
         protected void AddDegree_Click(object sender, EventArgs e)
@@ -230,7 +261,6 @@ namespace WebApplication2.Account
             com.Parameters.AddWithValue("@este", tedustate.Text);
             com.Parameters.AddWithValue("@edsc", tedudesc.Text);
 
-            da.Fill(ds, "DEGREE");
             com.ExecuteNonQuery();
 
             lmsg.Text = "Degree Updated";
@@ -265,7 +295,6 @@ namespace WebApplication2.Account
                 da = new SqlDataAdapter(com);
                 ds = new DataSet();
                 com.Parameters.AddWithValue("@did", DegreeId);
-                da.Fill(ds, "DEGREE");
                 com.ExecuteNonQuery();
                 lmsg.Text = "Degree Removed";
 
@@ -281,6 +310,165 @@ namespace WebApplication2.Account
 
         }
 
+        protected void AddExperience_Click(object sender, EventArgs e)
+        {
+            DateTime datevalue;
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+            sqlcon = new SqlConnection(conn);
+            sqlcon.Open();
+
+            
+            com = new SqlCommand("MemberCheck");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            ds = new DataSet();
+            com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+            da.Fill(ds, "MEMBER");
+            com.ExecuteNonQuery();
+            UserMember = int.Parse(ds.Tables["MEMBER"].Rows[0][0].ToString());
+
+            com = new SqlCommand("MemberXPCreate");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+
+            com.Parameters.AddWithValue("@mid", UserMember);
+            com.Parameters.AddWithValue("@xst", txpStart.Text);
+
+            if (DateTime.TryParse(txpStop.Text, out datevalue))
+            {
+                com.Parameters.AddWithValue("@xsp", datevalue.ToString());
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@xsp", DBNull.Value);
+            }
+            
+            com.Parameters.AddWithValue("@xpos", txpPosition.Text);
+            com.Parameters.AddWithValue("@xcom", txpCompany.Text);
+            com.Parameters.AddWithValue("@xcy", txpcity.Text);
+            com.Parameters.AddWithValue("@xste", txpstate.Text);
+            com.Parameters.AddWithValue("@xdsc", txpdesc.Text);
+            com.ExecuteNonQuery();
+
+            lmsg.Text = "Experience Added";
+            DataBind();
+
+        }
+
+        protected void LvXP_ItemDataBound(object sende, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                DateTime datevalue;
+                TextBox txpStart = (TextBox)e.Item.FindControl("txpStart");
+                TextBox txpStop = (TextBox)e.Item.FindControl("txpStop");
+                System.Data.DataRowView rowView = e.Item.DataItem as System.Data.DataRowView;
+
+                DateTime st = DateTime.Parse(rowView["XpStart"].ToString());
+                txpStart.Text = st.ToString("yyyy-MM-dd");
+
+
+                if (DateTime.TryParse(rowView["XpStop"].ToString(), out datevalue))
+                {
+                    txpStop.Text = datevalue.ToString("yyyy-MM-dd");
+                }
+                else
+                {
+                    txpStop.Text = null;
+                }
+
+            }
+        }
+
+        protected void LvXP_ItemUpdating(object sender, ListViewUpdateEventArgs e)
+        {
+            int XPid = int.Parse(GetXpID(e.ItemIndex));
+            DateTime datevalue;
+
+            TextBox txpStart = ((TextBox)lvXp.Items[e.ItemIndex].FindControl("txpStart"));
+            TextBox txpStop = ((TextBox)lvXp.Items[e.ItemIndex].FindControl("txpStop"));
+            TextBox txpPosition = ((TextBox)lvXp.Items[e.ItemIndex].FindControl("txpPosition"));
+            TextBox txpCompany = ((TextBox)lvXp.Items[e.ItemIndex].FindControl("txpCompany"));
+            TextBox txpcity = ((TextBox)lvXp.Items[e.ItemIndex].FindControl("txpcity"));
+            TextBox txpstate = ((TextBox)lvXp.Items[e.ItemIndex].FindControl("txpstate"));
+            TextBox txpdesc = ((TextBox)lvXp.Items[e.ItemIndex].FindControl("txpdesc"));
+
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+            sqlcon = new SqlConnection(conn);
+            sqlcon.Open();
+
+            com = new SqlCommand("MemberXPUpdate");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            ds = new DataSet();
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            ds = new DataSet();
+            com.Parameters.AddWithValue("@xid", XPid);
+            com.Parameters.AddWithValue("@xst", txpStart.Text);
+            if (DateTime.TryParse(txpStop.Text, out datevalue))
+            {
+                com.Parameters.AddWithValue("@xsp", datevalue.ToString());
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@xsp", DBNull.Value);
+            }
+            com.Parameters.AddWithValue("@xpos", txpPosition.Text);
+            com.Parameters.AddWithValue("@xcom", txpCompany.Text);
+            com.Parameters.AddWithValue("@xcy", txpcity.Text);
+            com.Parameters.AddWithValue("@xste", txpstate.Text);
+            com.Parameters.AddWithValue("@xdsc", txpdesc.Text);
+            com.ExecuteNonQuery();
+
+            lmsg.Text = "Experience Updated";
+            lvDegree.EditIndex = -1;
+            DataBind();
+        }
+
+        protected void LvXP_ItemEditing(object sender, ListViewEditEventArgs e)
+        {
+            lvXp.EditIndex = e.NewEditIndex;
+            DataBind();
+        }
+
+        protected void LvXp_ItemCanceling(object sender, ListViewCancelEventArgs e)
+        {
+            lvXp.EditIndex = -1;
+            DataBind();
+        }
+
+        protected void LvXp_ItemDelete(object sender, ListViewDeleteEventArgs e)
+        {
+            int XPid = int.Parse(GetXpID(e.ItemIndex));
+            try
+            {
+                string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                com = new SqlCommand("MemberXPRemove");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                ds = new DataSet();
+                com.Parameters.AddWithValue("@xid", XPid);
+
+                com.ExecuteNonQuery();
+                lmsg.Text = "Degree Removed";
+
+                lvDegree.EditIndex = -1;
+                DataBind();
+
+            }
+            catch (Exception)
+            {
+                lmsg.Text = "An Error Occured";
+                throw;
+            }
+        }
 
     }
 }

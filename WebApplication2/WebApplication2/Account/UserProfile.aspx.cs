@@ -140,7 +140,7 @@ namespace WebApplication2
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)
             {
-
+                DateTime datevalue;
                 Label ledstart = (Label)e.Item.FindControl("lxpstart");
                 Label ledstop = (Label)e.Item.FindControl("lxpstop");
                 System.Data.DataRowView rowView = e.Item.DataItem as System.Data.DataRowView;
@@ -148,13 +148,14 @@ namespace WebApplication2
                 DateTime st = DateTime.Parse(rowView["XpStart"].ToString());
                 ledstart.Text = st.ToString("MMMM yyyy");
 
-                if (rowView["XpStop"].ToString() != null)
+                if (DateTime.TryParse(rowView["XpStop"].ToString(), out datevalue))
                 {
-                    DateTime sp = DateTime.Parse(rowView["XpStop"].ToString());
-                    ledstop.Text = sp.ToString("MMMM yyyy");
+                    ledstop.Text = datevalue.ToString("MMMM yyyy");
                 }
                 else
+                {
                     ledstop.Text = "Present";
+                }
 
                 Literal lleddesc = (Literal)e.Item.FindControl("llxpdesc");
                 lleddesc.Text = Render_list(rowView["XpDesc"].ToString());
