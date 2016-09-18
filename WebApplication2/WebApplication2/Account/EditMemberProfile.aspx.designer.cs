@@ -22,6 +22,15 @@ namespace WebApplication2.Account {
         protected global::System.Web.UI.WebControls.Literal ErrorMessage;
         
         /// <summary>
+        /// lmsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lmsg;
+        
+        /// <summary>
         /// tfirst control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,24 @@ namespace WebApplication2.Account {
         protected global::System.Web.UI.WebControls.TextBox tlocation;
         
         /// <summary>
+        /// teduStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox teduStart;
+        
+        /// <summary>
+        /// teduStop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox teduStop;
+        
+        /// <summary>
         /// tedudegree control.
         /// </summary>
         /// <remarks>
@@ -119,6 +146,15 @@ namespace WebApplication2.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tedudesc;
+        
+        /// <summary>
+        /// upanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upanel1;
         
         /// <summary>
         /// lvDegree control.

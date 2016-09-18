@@ -8,6 +8,9 @@
 
     <div class="form-horizontal">
         <h4>Edit your Profile</h4>
+        <h4>
+            <asp:Label ID="lmsg" runat="server" />
+        </h4>
         <hr />
         <asp:ValidationSummary runat="server" CssClass="text-danger" />
 
@@ -72,10 +75,25 @@
             </div>
         </div>
 
-        <h2>Experience</h2>
-        <div id="Experience">
+        <h2>Education</h2>
+        <div id="Education">
 
             <div id="Addrow">
+
+                <div class="form-group">
+                    <asp:Label runat="server" AssociatedControlID="teduStart" CssClass="col-md-2 control-label">Enrollment Date:</asp:Label>
+                    <div class="col-md-10">
+                        <asp:TextBox runat="server" ID="teduStart" TextMode="Date" CssClass="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label runat="server" AssociatedControlID="teduStop" CssClass="col-md-2 control-label">Graduation Date:</asp:Label>
+                    <div class="col-md-10">
+                        <asp:TextBox runat="server" ID="teduStop" TextMode="Date" CssClass="form-control" />
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="teduDegree" CssClass="col-md-2 control-label">Degree</asp:Label>
                     <div class="col-md-10">
@@ -119,37 +137,146 @@
             </div>
 
             <table class="edu-table">
-                <asp:ListView ID="lvDegree" runat="server">
-                    <EmptyItemTemplate>
-                        <p>
-                            No Entries Found
-                        </p>
-                    </EmptyItemTemplate>
+                <asp:UpdatePanel id="upanel1" runat="server">
+                    <ContentTemplate>
+                        <asp:ListView ID="lvDegree" runat="server" OnItemCanceling="Lvdegree_ItemCanceling" 
+                            OnItemDeleting="Lvdegree_ItemDelete"                            
+                            OnItemDataBound="Lvdegree_ItemDatabound"
+                            OnItemEditing="Lvdegree_ItemEditing"
+                            OnItemUpdating="Lvdegree_ItemUpdating">
+                            <EmptyItemTemplate>
+                                <p>
+                                    No Entries Found
+                                </p>
+                            </EmptyItemTemplate>
 
-                    <ItemTemplate>
-                        <tr>
-                            <asp:TextBox runat="server" ID="lvIt_tedudegree" Text='<%# Eval("EduDegree") %>' />
-                            <asp:TextBox runat="server" ID="lvIt_teduschool" Text='<%# Eval("EduSchool") %>' />
-                            <asp:TextBox runat="server" ID="lvIt_teducity" Text='<%# Eval("EduCity") %>' />
-                            <asp:TextBox runat="server" ID="lvIt_tedustate" Text='<%# Eval("EduState") %>' />
-                            <asp:TextBox runat="server" ID="lvIt_tedudesc" TextMode="MultiLine" Text='<%# Eval("EduDesc") %>' />
-                            <asp:Button runat="server" OnClick="EditEdu_Click" Text="Update" CssClass="btn btn-default" />
-                        </tr>
-                    </ItemTemplate>
-                    <InsertItemTemplate>
-                        <tr>
-                            <asp:TextBox runat="server" ID="tedudegree" Text='<%# Bind("EduDegree") %>' />
-                            <asp:TextBox runat="server" ID="teduschool" Text='<%# Bind("EduSchool") %>' />
-                            <asp:TextBox runat="server" ID="teducity" Text='<%# Bind("EduCity") %>' />
-                            <asp:TextBox runat="server" ID="tedustate" Text='<%# Bind("EduState") %>' />
-                            <asp:TextBox runat="server" ID="tedudesc" TextMode="MultiLine" Text='<%# Bind("EduDesc") %>' />
-                            <asp:LinkButton ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
-                        </tr>
+                            <ItemTemplate>
+                                <tr>
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="teduStart" CssClass="col-md-2 control-label">Enrollment Date:</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="teduStart" Text='<%# Eval("EduStart") %>' TextMode="Date" Enabled="false" CssClass="form-control" />
+                                        </div>
+                                    </div>
 
-                    </InsertItemTemplate>
-                </asp:ListView>
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="teduStop" CssClass="col-md-2 control-label">Graduation Date:</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="teduStop" Text='<%# Eval("EduStop") %>' TextMode="Date" Enabled="false" CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="teduDegree" CssClass="col-md-2 control-label">Degree</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="tedudegree" Text='<%# Eval("EduDegree") %>' Enabled="false" CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="teduschool" CssClass="col-md-2 control-label">School</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="teduschool" Text='<%# Eval("EduSchool") %>' Enabled="false" CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="teducity" CssClass="col-md-2 control-label">City</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="teducity" Text='<%# Eval("EduCity") %>' Enabled="false" CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="tedustate" CssClass="col-md-2 control-label">State or Region</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="tedustate" Text='<%# Eval("EduState") %>' Enabled="false" CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="tedudesc" CssClass="col-md-2 control-label">Description</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="tedudesc" Text='<%# Eval("EduDesc") %>' TextMode="MultiLine" Enabled="false" CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <asp:Button runat="server" ID="btn_edit" CommandName="Edit" Text="Edit" CssClass="btn btn-default" />
+                                            <asp:Button runat="server" ID="btn_delete" CommandName="Delete" Text="Delete" CssClass="btn btn-default" />
+                                        </div>
+                                    </div>
+
+                                </tr>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <tr>
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="teduStart" CssClass="col-md-2 control-label">Enrollment Date:</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="teduStart" Text='<%# Eval("EduStart") %>' TextMode="Date" CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="teduStop" CssClass="col-md-2 control-label">Graduation Date:</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="teduStop" Text='<%# Eval("EduStop") %>' TextMode="Date" CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="teduDegree" CssClass="col-md-2 control-label">Degree</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="tedudegree" Text='<%# Eval("EduDegree") %>' CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="teduschool" CssClass="col-md-2 control-label">School</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="teduschool" Text='<%# Eval("EduSchool") %>' CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="teducity" CssClass="col-md-2 control-label">City</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="teducity" Text='<%# Eval("EduCity") %>' CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="tedustate" CssClass="col-md-2 control-label">State or Region</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="tedustate" Text='<%# Eval("EduState") %>' CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <asp:Label runat="server" AssociatedControlID="tedustate" CssClass="col-md-2 control-label">Description</asp:Label>
+                                        <div class="col-md-10">
+                                            <asp:TextBox runat="server" ID="tedudesc" Text='<%# Eval("EduDesc") %>' TextMode="MultiLine" CssClass="form-control" />
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <asp:Button runat="server" ID="btn_update" CommandName="Update" Text="Update" CssClass="btn btn-default" />
+                                            <asp:Button runat="server" ID="btn_cancel" CommandName="Cancel" Text="Cancel" CssClass="btn btn-default" />
+                                        </div>
+                                    </div>
+
+                            </EditItemTemplate>
+                        </asp:ListView>
+
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </table>
-
         </div>
 
 

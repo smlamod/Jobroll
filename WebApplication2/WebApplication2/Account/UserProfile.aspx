@@ -16,11 +16,13 @@
             <li><span class="glyphicon glyphicon-tree-conifer" style="color: gray;"></span><p><asp:Label runat="server" Text="Metro Manila, PH" Id="lloc"/></p></li>
         </ul>
         
+        <!--
         <div id="footer">
             <span>Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
                 <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
             </span>
         </div>
+        -->
     </div>
 
     <div id="maincontent">
@@ -44,7 +46,7 @@
                     <ItemTemplate>
                         <tr>
                             <th>
-                                <asp:Label runat="server" Text='<%# Eval("EduStart") %>' id="ledstart" />
+                                <asp:Label runat="server"  id="ledstart" />
                                 <asp:Label runat="server" Text=" - " />
                                 <asp:Label runat="server" Text='<%# Eval("EduStop") %>' id="ledstop" />
                             </th>

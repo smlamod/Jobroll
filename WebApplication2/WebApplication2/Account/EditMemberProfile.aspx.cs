@@ -21,6 +21,7 @@ namespace WebApplication2.Account
         DataTable dt;
         SqlDataAdapter da;
         SqlCommand com;
+        int UserMember { get; set; }
 
         protected void EditMember_Click (object sender, EventArgs e)
         {
@@ -60,6 +61,8 @@ namespace WebApplication2.Account
             da.Fill(ds, "MEMBER");
             com.ExecuteNonQuery();
 
+            lmsg.Text = "Basic Information Added/Updated";
+
         }
 
         protected void Page_Load (object sender, EventArgs e)
@@ -73,6 +76,7 @@ namespace WebApplication2.Account
                     if (user.Role)
                         Response.Redirect("/Error.aspx");
 
+                    lmsg.Text = "";
                     //FETCH ESSENTIAL MEMBER PROFILE
                     string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
                     sqlcon = new SqlConnection(conn);
@@ -90,6 +94,7 @@ namespace WebApplication2.Account
                     if (ds.Tables["MEMBER"].Rows.Count != 0)
                     {
                         //FETCH INFO PROFILE
+                        UserMember = int.Parse( ds.Tables["MEMBER"].Rows[0][0].ToString());
                         tfirst.Text = ds.Tables["MEMBER"].Rows[0][4].ToString();
                         tlast.Text = ds.Tables["MEMBER"].Rows[0][3].ToString();
                         tlocation.Text = ds.Tables["MEMBER"].Rows[0][7].ToString();
@@ -98,16 +103,7 @@ namespace WebApplication2.Account
                         tsalary.Text = ds.Tables["MEMBER"].Rows[0][8].ToString();
 
                         //FETCH EXPERIENCE PROFILE
-                        com = new SqlCommand("MemberDegreeGetInfo");
-                        com.CommandType = CommandType.StoredProcedure;
-                        com.Connection = sqlcon;
-                        da = new SqlDataAdapter(com);
-                        dt = new DataTable();
-                        com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
-                        da.Fill(dt);
-                        com.ExecuteNonQuery();
-                        lvDegree.DataSource = dt;
-                        lvDegree.DataBind();
+                        DataBind();
                     }
 
                 }
@@ -115,14 +111,176 @@ namespace WebApplication2.Account
  
         }
 
-        protected void EditEdu_Click(object sender, EventArgs e)
+        protected void DataBind()
         {
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+            sqlcon = new SqlConnection(conn);
+            sqlcon.Open();
+            com = new SqlCommand("MemberDegreeGetInfo");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            dt = new DataTable();
+            com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+            da.Fill(dt);
+            com.ExecuteNonQuery();
+            lvDegree.DataSource = dt;
+            lvDegree.DataBind();
 
+        }
+
+        protected string GetDegreeID(int index)
+        {
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+            sqlcon = new SqlConnection(conn);
+            sqlcon.Open();
+            com = new SqlCommand("MemberDegreeGetInfo");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            ds = new DataSet();
+            com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+            da.Fill(ds,"DEGREE");
+            com.ExecuteNonQuery();
+            return ds.Tables["DEGREE"].Rows[index][0].ToString();   
         }
 
         protected void AddDegree_Click(object sender, EventArgs e)
         {
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+            sqlcon = new SqlConnection(conn);
+            sqlcon.Open();
+
+            com = new SqlCommand("MemberCheck");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            ds = new DataSet();
+            com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+            da.Fill(ds, "MEMBER");
+            com.ExecuteNonQuery();
+            UserMember = int.Parse(ds.Tables["MEMBER"].Rows[0][0].ToString());
+
+            com = new SqlCommand("MemberDegreeCreate");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+
+            com.Parameters.AddWithValue("@mid", UserMember);
+            com.Parameters.AddWithValue("@est", teduStart.Text);
+            com.Parameters.AddWithValue("@esp", teduStop.Text);
+            com.Parameters.AddWithValue("@edg", tedudegree.Text);
+            com.Parameters.AddWithValue("@esh", teduschool.Text);
+            com.Parameters.AddWithValue("@ecy", teducity.Text);
+            com.Parameters.AddWithValue("@este",tedustate.Text);
+            com.Parameters.AddWithValue("@edsc", tedudesc.Text);
+            com.ExecuteNonQuery();
+
+            lmsg.Text = "Degree Added";
+            DataBind();
+        }
+
+        
+        protected void Lvdegree_ItemDatabound(object sender, ListViewItemEventArgs e)
+        {
+
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+
+                TextBox teduStart = (TextBox)e.Item.FindControl("teduStart");
+                TextBox teduStop = (TextBox)e.Item.FindControl("teduStop");
+                System.Data.DataRowView rowView = e.Item.DataItem as System.Data.DataRowView;
+
+                DateTime st = DateTime.Parse(rowView["EduStart"].ToString());
+                teduStart.Text = st.ToString("yyyy-MM-dd");
+
+                DateTime sp = DateTime.Parse(rowView["EduStop"].ToString());
+                teduStop.Text = sp.ToString("yyyy-MM-dd");
+
+            }
+        }
+
+        protected void Lvdegree_ItemUpdating(object sender, ListViewUpdateEventArgs e)
+        {
+
+            int DegreeId = int.Parse(GetDegreeID(e.ItemIndex));
+
+            TextBox teduStart = ((TextBox)lvDegree.Items[e.ItemIndex].FindControl("teduStart"));
+            TextBox teduStop = ((TextBox)lvDegree.Items[e.ItemIndex].FindControl("teduStop"));
+            TextBox teduDegree = ((TextBox)lvDegree.Items[e.ItemIndex].FindControl("teduDegree"));
+            TextBox teduschool = ((TextBox)lvDegree.Items[e.ItemIndex].FindControl("teduschool"));
+            TextBox teducity = ((TextBox)lvDegree.Items[e.ItemIndex].FindControl("teducity"));
+            TextBox tedustate = ((TextBox)lvDegree.Items[e.ItemIndex].FindControl("tedustate"));
+            TextBox tedudesc = ((TextBox)lvDegree.Items[e.ItemIndex].FindControl("tedudesc"));
+
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+            sqlcon = new SqlConnection(conn);
+            sqlcon.Open();
+
+            com = new SqlCommand("MemberDegreeUpdate");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            ds = new DataSet();
+            com.Parameters.AddWithValue("@did", DegreeId);
+            com.Parameters.AddWithValue("@est", teduStart.Text);
+            com.Parameters.AddWithValue("@esp", teduStop.Text);
+            com.Parameters.AddWithValue("@edg", teduDegree.Text);
+            com.Parameters.AddWithValue("@esh", teduschool.Text);
+            com.Parameters.AddWithValue("@ecy", teducity.Text);
+            com.Parameters.AddWithValue("@este", tedustate.Text);
+            com.Parameters.AddWithValue("@edsc", tedudesc.Text);
+
+            da.Fill(ds, "DEGREE");
+            com.ExecuteNonQuery();
+
+            lmsg.Text = "Degree Updated";
+
+            lvDegree.EditIndex = -1;
+            DataBind();
+        }
+
+        protected void Lvdegree_ItemCanceling(object sender, ListViewCancelEventArgs e)
+        {
+            lvDegree.EditIndex = -1;
+            DataBind();
+        }
+
+        protected void Lvdegree_ItemEditing(object sender, ListViewEditEventArgs e)
+        {
+            lvDegree.EditIndex = e.NewEditIndex;
+            DataBind();
+        }
+
+        protected void Lvdegree_ItemDelete(object sender, ListViewDeleteEventArgs e)
+        {
+            int DegreeId = int.Parse(GetDegreeID(e.ItemIndex));
+            try
+            {
+                string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                com = new SqlCommand("MemberDegreeRemove");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                ds = new DataSet();
+                com.Parameters.AddWithValue("@did", DegreeId);
+                da.Fill(ds, "DEGREE");
+                com.ExecuteNonQuery();
+                lmsg.Text = "Degree Removed";
+
+                lvDegree.EditIndex = -1;
+                DataBind();
+
+            }
+            catch (Exception)
+            {
+                lmsg.Text = "An Error Occured";
+                throw;
+            }
 
         }
+
+
     }
 }
