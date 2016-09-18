@@ -159,6 +159,7 @@
     <Content Include="img\intro-bus-search.jpg" />
     <Content Include="img\intro-first-impression.jpg" />
     <Content Include="img\intro-get-hired.jpg" />
+    <Content Include="JB.sql" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
