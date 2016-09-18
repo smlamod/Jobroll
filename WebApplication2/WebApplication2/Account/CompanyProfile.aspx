@@ -3,9 +3,9 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="company-profile-header">
         <img src="http://www.myiconfinder.com/uploads/iconsets/256-256-da92ce9f71a953e629f8f49813b77c46-hp.png"/>
-        <span class="company-name">Hewlett-Packard Enterprise</span>
+        <span class="company-name"><asp:Label runat="server" Text="Hewlett-Packard Enterprise" Id="lcomp"/> </span>
         <ul>
-            <li><span class="glyphicon glyphicon-earphone" style="color: gray;"></span><span class="info-content">+63 919 302 9182</span></li>
+            <li><span class="glyphicon glyphicon-earphone" style="color: gray;"></span><span class="info-content"><asp:Label runat="server" Text="+63 912 345 6789" Id="lphone"/> </span></li>
             <li><span class="glyphicon glyphicon-envelope" style="color: gray;"></span><span class="info-content"><asp:Label runat="server" Text="softeng@jobroll.com" Id="lemail"/></span></li>
             <li><span class="glyphicon glyphicon-tree-conifer" style="color: gray;"></span><span class="info-content"><asp:Label runat="server" Text="Metro Manila, PH" Id="lloc"/></span></li>
         </ul>

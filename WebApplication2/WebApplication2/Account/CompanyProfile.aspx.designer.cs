@@ -13,6 +13,24 @@ namespace WebApplication2.Account {
     public partial class CompanyProfile {
         
         /// <summary>
+        /// lcomp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lcomp;
+        
+        /// <summary>
+        /// lphone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lphone;
+        
+        /// <summary>
         /// lemail control.
         /// </summary>
         /// <remarks>
