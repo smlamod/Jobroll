@@ -10,114 +10,123 @@
 namespace WebApplication2.Account {
     
     
-    public partial class CompanyProfile {
+    public partial class EditCompanyProfile {
         
         /// <summary>
-        /// lcomp control.
+        /// ErrorMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lcomp;
+        protected global::System.Web.UI.WebControls.Literal ErrorMessage;
         
         /// <summary>
-        /// lphone control.
+        /// lmsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lphone;
+        protected global::System.Web.UI.WebControls.Label lmsg;
         
         /// <summary>
-        /// lemail control.
+        /// tcname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lemail;
+        protected global::System.Web.UI.WebControls.TextBox tcname;
         
         /// <summary>
-        /// lloc control.
+        /// tcaddr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lloc;
+        protected global::System.Web.UI.WebControls.TextBox tcaddr;
         
         /// <summary>
-        /// lover control.
+        /// tcphone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lover;
+        protected global::System.Web.UI.WebControls.TextBox tcphone;
         
         /// <summary>
-        /// ljoin control.
+        /// tcover control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ljoin;
+        protected global::System.Web.UI.WebControls.TextBox tcover;
         
         /// <summary>
-        /// lpoc control.
+        /// tcjoin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lpoc;
+        protected global::System.Web.UI.WebControls.TextBox tcjoin;
         
         /// <summary>
-        /// lindustry control.
+        /// tcproc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lindustry;
+        protected global::System.Web.UI.WebControls.TextBox tcproc;
         
         /// <summary>
-        /// lweb control.
+        /// tcindstry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lweb;
+        protected global::System.Web.UI.WebControls.TextBox tcindstry;
         
         /// <summary>
-        /// lsize control.
+        /// tcweb control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lsize;
+        protected global::System.Web.UI.WebControls.TextBox tcweb;
         
         /// <summary>
-        /// lemp control.
+        /// tcsize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lemp;
+        protected global::System.Web.UI.WebControls.TextBox tcsize;
         
         /// <summary>
-        /// ldress control.
+        /// tcemp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ldress;
+        protected global::System.Web.UI.WebControls.TextBox tcemp;
+        
+        /// <summary>
+        /// tccode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tccode;
     }
 }

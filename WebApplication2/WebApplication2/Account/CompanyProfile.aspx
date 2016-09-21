@@ -14,40 +14,38 @@
     <div class="company-desc">
         <div>
             <h3>Overview</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text 
-                ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <p><asp:Label runat="server" Text="<Insert Overview>" Id="lover"/></p>
         </div>
         <div>
             <h3>Why join us?</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text 
-                ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <p><asp:Label runat="server" Text="<Insert Why Join>" Id="ljoin"/></p>
         </div>
         <div>
             <h3>Company Snapshot</h3>
             <table>
                 <tr>
                     <th>Average application processing time</th>
-                    <td>6</td>
+                    <td><asp:Label runat="server" Text="Eternity" Id="lpoc"/></td>
                 </tr>
                 <tr>
                     <th>Industry</th>  
-                    <td>Enterprise Products/FMCG</td>
+                    <td><asp:Label runat="server" Text="Any" Id="lindustry"/></td>
                 </tr>
                 <tr>
                     <th>Website</th>  
-                    <td>http://www.hpe.com</td>
+                    <td><asp:Label runat="server" Text="http://www.hpe.com" Id="lweb"/>  </td>
                 </tr>
                 <tr>
                     <th>Company Size</th>  
-                    <td>501 - 1000 </td>
+                    <td><asp:Label runat="server" Text="501-1000" Id="lsize"/></td>
                 </tr>        
                 <tr>
                     <th>Employees Working Hours</th>  
-                    <td>Saturdays or Shift required except for Support Group</td>
+                    <td><asp:Label runat="server" Text="Saturdays or Shift required except for Support Group" Id="lemp"/></td>
                 </tr>
                 <tr>
                     <th>Dress Code</th>  
-                    <td>Business (e.g. Shirts)</td>
+                    <td><asp:Label runat="server" Text="Business (e.g. Shirts)" Id="ldress"/></td>
                 </tr> 
             </table>
         </div>        

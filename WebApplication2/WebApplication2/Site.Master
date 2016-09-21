@@ -77,7 +77,7 @@
                                         <li><a runat="server" href="~/Account/CompanyProfile">Company Profile</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right" id="nav-right-comp">
-                                        <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Company Profile">Edit Profile</a></li>
+                                        <li><a runat="server" href="~/Account/EditCompanyProfile" title="Edit your Company Profile">Edit Profile</a></li>
                                     </ul>
                                 </asp:View>
                             </asp:MultiView>
