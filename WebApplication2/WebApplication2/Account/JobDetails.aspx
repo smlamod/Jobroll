@@ -22,10 +22,9 @@
             <p>SM Mall of Asia, Pasay City, Philippines</p>
         </div>    
     </div>
-    <div class="footer">
-        <div class="footer-text">
-            Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
-            <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
-        </div>
-    </div>
+
+    <div></div>
+    <br />
+    <br />
+    <br />
 </asp:Content>
