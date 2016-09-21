@@ -90,7 +90,7 @@
                 </div>
             </div>
 
-                        <div class="form-group">
+            <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="tcemp" CssClass="col-md-2 control-label">Work Hours</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="tcemp" CssClass="form-control" />
@@ -113,8 +113,178 @@
             </div>
         </div>
 
+        <h2>Job Offers</h2>
+        <div id="Add Job">
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="tjbName" CssClass="col-md-2 control-label">Job Name:</asp:Label>
+                <div class="col-md-10">
+                    <asp:TextBox runat="server" ID="tjbName" CssClass="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="tjbDesc" CssClass="col-md-2 control-label">Job Description:</asp:Label>
+                <div class="col-md-10">
+                    <asp:TextBox runat="server" ID="tjbDesc" TextMode="MultiLine" CssClass="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="tjbReqt" CssClass="col-md-2 control-label">Job Requirements:</asp:Label>
+                <div class="col-md-10">
+                    <asp:TextBox runat="server" ID="tjbReqt" CssClass="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="tjbLoc" CssClass="col-md-2 control-label">Job Location:</asp:Label>
+                <div class="col-md-10">
+                    <asp:TextBox runat="server" ID="tjbLoc" CssClass="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="tjbExp" CssClass="col-md-2 control-label">Expected Salary:</asp:Label>
+                <div class="col-md-10">
+                    <asp:TextBox runat="server" ID="tjbExp" TextMode="Number" CssClass="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="cjbPub" CssClass="col-md-2 control-label" Style="padding-top: 0;">Publish ?</asp:Label>
+                <div class="col-md-10">
+                    <asp:CheckBox runat="server" ID="cjbPub" CssClass="form-inline" />
+                </div>
+            </div>
+
+                            <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <asp:Button runat="server" OnClick="AddJob_Click" Text="Add Job Listing" CssClass="btn btn-default" />
+                    </div>
+                </div>
 
 
+        </div>
+        <table class="edu-table" >
+            <asp:ListView ID="lvJob" runat="server"  
+                OnItemUpdating="LvJob_ItemUpdating"
+                OnItemEditing="LvJob_ItemEditing" 
+                OnItemCanceling="LvJob_ItemCanceling" 
+                OnItemDeleting="LvJob_ItemDelete"        
+                
+                >
+                <EmptyItemTemplate>
+                    <p>
+                        No Entries Found
+                    </p>
+                </EmptyItemTemplate>
+                <ItemTemplate>
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tjbName" CssClass="col-md-2 control-label">Job Name:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tjbName" Enabled="false" Text='<%# Eval("JobName") %>' CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tjbDesc" CssClass="col-md-2 control-label">Job Description:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tjbDesc" Enabled="false" Text='<%# Eval("JobDesc") %>' TextMode="MultiLine" CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tjbReqt" CssClass="col-md-2 control-label">Job Requirements:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tjbReqt" Enabled="false" Text='<%# Eval("JobReqt") %>' CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tjbLoc" CssClass="col-md-2 control-label">Job Location:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tjbLoc" Enabled="false" Text='<%# Eval("JobLocation") %>' CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tjbExp" CssClass="col-md-2 control-label">Expected Salary:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tjbExp" Enabled="false" Text='<%# Eval("JobExpected") %>' TextMode="Number" CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="cjbPub" CssClass="col-md-2 control-label" Style="padding-top: 0;">Publish ?</asp:Label>
+                        <div class="col-md-10">
+                            <asp:CheckBox runat="server" ID="cjbPub" Enabled="false" Checked='<%# Eval("JobPublished") %>' CssClass="form-inline" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <asp:Button runat="server" ID="btn_edit" CommandName="Edit" Text="Edit" CssClass="btn btn-default" />
+                            <asp:Button runat="server" ID="btn_delete" CommandName="Delete" Text="Delete" CssClass="btn btn-default" />
+                        </div>
+                    </div>
+
+                </ItemTemplate>
+
+                <EditItemTemplate>
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tjbName" CssClass="col-md-2 control-label">Job Name:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tjbName" Text='<%# Eval("JobName") %>' CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tjbDesc" CssClass="col-md-2 control-label">Job Description:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tjbDesc" Text='<%# Eval("JobDesc") %>' TextMode="MultiLine" CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tjbReqt" CssClass="col-md-2 control-label">Job Requirements:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tjbReqt" Text='<%# Eval("JobReqt") %>' CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tjbLoc" CssClass="col-md-2 control-label">Job Location:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tjbLoc" Text='<%# Eval("JobLocation") %>' CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tjbExp" CssClass="col-md-2 control-label">Expected Salary:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tjbExp" Text='<%# Eval("JobExpected") %>' TextMode="Number" CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="cjbPub" CssClass="col-md-2 control-label" Style="padding-top: 0;">Publish ?</asp:Label>
+                        <div class="col-md-10">
+                            <asp:CheckBox runat="server" ID="cjbPub" Checked='<%# Eval("JobPublished") %>' CssClass="form-inline" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <asp:Button runat="server" ID="btn_update" CommandName="Update" Text="Update" CssClass="btn btn-default" />
+                            <asp:Button runat="server" ID="btn_cancel" CommandName="Cancel" Text="Cancel" CssClass="btn btn-default" />
+                        </div>
+                    </div>
+
+                </EditItemTemplate>
+
+
+            </asp:ListView>
+        </table>
     </div>
 
 

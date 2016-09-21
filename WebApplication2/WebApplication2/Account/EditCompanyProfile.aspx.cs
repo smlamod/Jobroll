@@ -21,8 +21,24 @@ namespace WebApplication2.Account
         DataTable dt;
         SqlDataAdapter da;
         SqlCommand com;
-        int UserMember { get; set; }
+        int UserCompany { get; set; }
 
+
+        protected string GetJobId(int index)
+        {
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+            sqlcon = new SqlConnection(conn);
+            sqlcon.Open();
+            com = new SqlCommand("JobGetInfo");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            ds = new DataSet();
+            com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+            da.Fill(ds, "JOB");
+            com.ExecuteNonQuery();
+            return ds.Tables["JOB"].Rows[index][0].ToString();  
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -62,6 +78,9 @@ namespace WebApplication2.Account
                         tcsize.Text = ds.Tables["COMPANY"].Rows[0][11].ToString();
                         tcemp.Text = ds.Tables["COMPANY"].Rows[0][12].ToString();
                         tccode.Text = ds.Tables["COMPANY"].Rows[0][13].ToString();
+
+                        //FETCH JOBS
+                        DataBind();
                     }
 
 
@@ -72,7 +91,19 @@ namespace WebApplication2.Account
 
         protected void DataBind()
         {
-
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+            sqlcon = new SqlConnection(conn);
+            sqlcon.Open();
+            com = new SqlCommand("JobGetInfo");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            dt = new DataTable();
+            com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+            da.Fill(dt);
+            com.ExecuteNonQuery();
+            lvJob.DataSource = dt;
+            lvJob.DataBind();
 
         }
 
@@ -124,6 +155,120 @@ namespace WebApplication2.Account
             lmsg.Text = "Basic Information Added/Updated";
         }
 
+        protected void AddJob_Click (object sender, EventArgs e)
+        {
+
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+            sqlcon = new SqlConnection(conn);
+            sqlcon.Open();
+
+            com = new SqlCommand("CompanyCheck");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            ds = new DataSet();
+            com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+            da.Fill(ds, "COMPANY");
+            com.ExecuteNonQuery();
+            UserCompany = int.Parse(ds.Tables["COMPANY"].Rows[0][0].ToString());
+
+            com = new SqlCommand("JobCreate");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+
+            com.Parameters.AddWithValue("@cid", UserCompany);
+            com.Parameters.AddWithValue("@jname", tjbName.Text);
+            com.Parameters.AddWithValue("@jdesc", tjbDesc.Text);
+            com.Parameters.AddWithValue("@jreqt", tjbReqt.Text);
+            com.Parameters.AddWithValue("@jloc", tjbLoc.Text);
+            com.Parameters.AddWithValue("@jexp", tjbExp.Text);
+            com.Parameters.AddWithValue("@jpub", cjbPub.Checked);
+            com.ExecuteNonQuery();
+            lmsg.Text = "Job Added Added";
+
+            DataBind();
+        }
+
+        protected void LvJob_ItemUpdating(object sender, ListViewUpdateEventArgs e)
+        {
+
+            int JobId = int.Parse(GetJobId(e.ItemIndex));
+
+            TextBox tjbName = ((TextBox)lvJob.Items[e.ItemIndex].FindControl("tjbName"));
+            TextBox tjbDesc = ((TextBox)lvJob.Items[e.ItemIndex].FindControl("tjbDesc"));
+            TextBox tjbReqt = ((TextBox)lvJob.Items[e.ItemIndex].FindControl("tjbReqt"));
+            TextBox tjbLoc = ((TextBox)lvJob.Items[e.ItemIndex].FindControl("tjbLoc"));
+            TextBox tjbExp = ((TextBox)lvJob.Items[e.ItemIndex].FindControl("tjbExp"));
+            CheckBox cjbPub = ((CheckBox)lvJob.Items[e.ItemIndex].FindControl("cjbPub"));
+
+
+            string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+            sqlcon = new SqlConnection(conn);
+            sqlcon.Open();
+
+            com = new SqlCommand("JobUpdate");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection = sqlcon;
+            da = new SqlDataAdapter(com);
+            ds = new DataSet();
+
+            com.Parameters.AddWithValue("@jid", JobId);
+            com.Parameters.AddWithValue("@jname", tjbName.Text);
+            com.Parameters.AddWithValue("@jdesc", tjbDesc.Text);
+            com.Parameters.AddWithValue("@jreqt", tjbReqt.Text);
+            com.Parameters.AddWithValue("@jloc", tjbLoc.Text);
+            com.Parameters.AddWithValue("@jexp", tjbExp.Text);
+            com.Parameters.AddWithValue("@jpub", cjbPub.Checked);
+
+            com.ExecuteNonQuery();
+
+            lmsg.Text = "Job Updated";
+
+            lvJob.EditIndex = -1;
+            DataBind();
+        }
+
+
+        protected void LvJob_ItemEditing(object sender, ListViewEditEventArgs e)
+        {
+
+            lvJob.EditIndex = e.NewEditIndex;
+            DataBind();
+        }
+
+        protected void LvJob_ItemCanceling(object sender, ListViewCancelEventArgs e)
+        {
+            lvJob.EditIndex = -1;
+            DataBind();
+        }
+
+        protected void LvJob_ItemDelete(object sender, ListViewDeleteEventArgs e)
+        {
+            int JobId = int.Parse(GetJobId(e.ItemIndex));
+            try
+            {
+                string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+                sqlcon = new SqlConnection(conn);
+                sqlcon.Open();
+                com = new SqlCommand("JobRemove");
+                com.CommandType = CommandType.StoredProcedure;
+                com.Connection = sqlcon;
+                da = new SqlDataAdapter(com);
+                ds = new DataSet();
+                com.Parameters.AddWithValue("@jid", JobId);
+                com.ExecuteNonQuery();
+                lmsg.Text = "Job Removed";
+
+                lvJob.EditIndex = -1;
+                DataBind();
+
+            }
+            catch (Exception)
+            {
+                lmsg.Text = "An Error Occured";
+                throw;
+            }
+        }
 
 
     }
