@@ -389,7 +389,15 @@ create Procedure MemberDegreeCreate
 )
 as
 declare @did as integer
+if exists(select * from [Degree_Member])
+begin
 set @did=(select MAX(DegreeId) from [Degree_Member])+1
+end
+else
+begin
+set @did=0
+end
+
 insert into [Degree_Member] values (@did,(select MemberId from [Members] where MemberId = @mid),@est,@esp,@edg,@esh,@ecy,@este,@edsc)
 go
 
@@ -444,7 +452,16 @@ create procedure MemberXPCreate
 )
 as
 DECLARE @xid as integer
+if exists(select * from [XP_Member])
+begin
 set @xid=(select MAX(XpId) from [XP_Member])+1
+end
+else
+begin
+set @xid=0
+end
+
+
 insert into [XP_Member] values (@xid,(select MemberId from [Members] where MemberId = @mid),@xst,@xsp,@xpos,@xcom,@xcy,@xste,@xdsc)
 GO
 
@@ -539,7 +556,14 @@ create procedure JobCreate
 )
 as
 declare @jid as integer
+if exists(select * from [Jobs])
+begin
 set @jid=(select MAX(JobId) from [Jobs])+1
+end
+else
+begin
+set @jid=0
+end
 insert into [Jobs] values (@jid,@cid,@jname,@jdesc,@jreqt,null,@jloc,@jexp,@jpub)
 go
 
@@ -561,10 +585,10 @@ go
 
 create procedure JobGetInfo
 (
-	@jid as integer
+	@uid as nvarchar(max)
 )
 as
-select * from [Jobs] where JobId = @jid
+select * FROM [Jobs] J JOIN [Companies] C ON J.CompanyId=C.CompanyId  where C.UserId = @uid
 GO
 
 create procedure JobGetName
@@ -576,7 +600,7 @@ select * from [Jobs] where JobName like @jname
 order by JobExpected desc
 go
 
-create procedure JobDelete
+create procedure JobRemove
 (
 	@jid as integer
 )
