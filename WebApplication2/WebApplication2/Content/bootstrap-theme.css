@@ -1367,8 +1367,11 @@ a.text-warning:hover,
 a.text-warning:focus {
   color: #ef5c0e;
 }
+
 .text-danger {
   color: #d9534f;
+  display: block;
+  padding-left: 110px;
 }
 a.text-danger:hover,
 a.text-danger:focus {

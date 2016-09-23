@@ -36,16 +36,13 @@
 }
 
 .image-hero {
-    margin-top: -389px;
+    margin-top: -409px;
     margin-left: -143px;
     position: absolute;
     z-index: 1;
-    height: 641px;
+    height: 661px;
     color: #ffffff;
-    background: linear-gradient(
-      rgba(0, 0, 0, 0.5), 
-      rgba(0, 0, 0, 0.5)
-    ), url(../img/intro-bg.jpg) no-repeat center center;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../img/intro-bg.jpg) no-repeat;
     background-size: cover;
 }
 

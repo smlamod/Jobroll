@@ -1,7 +1,8 @@
-﻿/*html, body {
-    width: 100%;
-    height: 100%;
-}*/
+﻿* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 body {
     margin: 0;
@@ -105,18 +106,6 @@ body {
     margin: 0 auto;
     padding-top: 20px;
 }
-
-/*#maincontent {
-    width: 925px;
-    margin-left: 220px;
-    margin-bottom: 20px;
-    border: 1px solid #e0e0e0;
-    background-color: #ffffff;
-    padding: 0 20px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-}*/
 
 h2 {
     font-family: Roboto;
@@ -461,4 +450,70 @@ table, th, td {
     list-style: none;
     float: left;
     border-right: 1px solid #e0e0e0;
+}
+
+#login-local, #login-external {
+    width: 50%;
+    display: block;
+    float: left;
+    padding-right: 25px;
+}
+
+#login-local {
+    border-right: 1px solid #e0e0e0;
+}
+
+.input-item {
+    margin-top: 16px;
+}
+
+.input-label {
+    width: 100px;
+    text-align: right;
+    float: left;
+    padding: 9px 15px 9px 0;
+    margin: 0 10px 0 0;
+}
+
+.input-field {
+    display: inline-block;
+    margin-bottom: 7px;
+    width: 100%;
+    height: 36px;
+    padding: 8px 8px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #3e3f3a;
+    border: 1px solid #dfd7ca;
+    border-radius: 4px;
+
+    -webkit-transition: 0.35s;
+    -o-transition: 0.35s;
+    transition: 0.35s;
+}
+
+.input-field:hover {
+  outline: none;
+  border: 1px solid #9CB2C2;
+  
+  -webkit-transition: 0.35s;
+  -o-transition: 0.35s;
+  transition: 0.35s;
+}
+
+.input-field:active, .input-field:focus {
+    outline: none;
+    border: 1px solid #1695a3;
+  
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.login-button-group {
+    margin: 0 0 0 110px;
+}
+
+#MainContent_RememberMe {
+    margin-top: 12px;
 }

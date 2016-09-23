@@ -88,13 +88,12 @@
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
-            <%-- This is here to force changes. --%>
-            <div id="footer">
+            <%--<div id="footer">
                 <div class="footer-text content-width">
                     Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
                     <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
                 </div>
-            </div>
+            </div>--%>
         </div>
     </form>
 </body>
