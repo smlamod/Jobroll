@@ -1,10 +1,9 @@
-﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="WebApplication2.Account.Login" Async="true" EnableEventValidation="false"%>
+﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="WebApplication2.Account.Login" Async="true" EnableEventValidation="false" %>
 
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h2><%: Title %>.</h2>
-
     <div class="row">
         <div class="col-md-8">
             <section id="loginForm">
@@ -41,7 +40,6 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <%--<asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" />--%>
                             <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn-new" />
                         </div>
                     </div>
@@ -50,10 +48,10 @@
                     <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
                 </p>
                 <p>
-                    <%-- Enable this once you have account confirmation enabled for password reset functionality
+    <%-- Enable this once you have account confirmation enabled for password reset functionality
                     <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
-                    --%>
-                </p>
+    --%>
+    </p>
             </section>
         </div>
 
@@ -63,7 +61,12 @@
             </section>
         </div>
     </div>
-
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <br />
     <br />
     <br />

@@ -2592,7 +2592,7 @@ output {
 
 .form-control:hover {
   outline: none;
-  border: 1px solid #eb7f00;
+  border: 1px solid #9CB2C2;
   
   -webkit-transition: 0.35s;
   -o-transition: 0.35s;
@@ -2603,9 +2603,9 @@ output {
     outline: none;
     border: 1px solid #1695a3;
   
-    -webkit-transition: 0.35s;
-    -o-transition: 0.35s;
-    transition: 0.35s;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
 }
 
 
@@ -4370,7 +4370,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 
 @media (max-width: 767px) {
-  .navbar-nav .open .dropdown-menu {
+  .-nav .open .dropdown-menu {
     position: static;
     float: none;
     width: auto;

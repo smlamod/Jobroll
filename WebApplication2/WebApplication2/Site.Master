@@ -38,45 +38,43 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Jobroll</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <asp:LoginView id="Lview" runat="server">
+
+        <div id="wrapper">
+            <div class="navibar">
+                <div class="content-width">
+                    <a class="navibar-brand" runat="server" href="~/">Jobroll</a>
+                    <asp:LoginView ID="Lview" runat="server">
                         <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
+                            <ul class="navibar-links">
+                                <li>
+                                    <asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
                                 <li><a runat="server" href="~/Account/Register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
                                 <li><a runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-log-in"></span>Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
-                        <LoggedInTemplate >
-                            <ul class="nav navbar-nav navbar-right">
+                        <LoggedInTemplate>
+                            <ul class="navibar-links">
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Welcome, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li><asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" /></li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </li>
                             </ul>
                             <asp:MultiView runat="server" ID="Mview">
-                                <asp:View runat="server" Id="UserView">
-                                    <ul class="nav navbar-nav" id="nav-user">
+                                <asp:View runat="server" ID="UserView">
+                                    <ul class="navibar-links" id="nav-user">
                                         <li><a runat="server" href="~/Account/UserProfile">My Profile</a></li>
                                     </ul>
-                                    <ul class="nav navbar-nav navbar-right" id="nav-right-user">
-                                        <li class="search-in-list"><asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
+                                    <ul class="navibar-links" id="nav-right-user">
+                                        <li>
+                                            <asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
                                         <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Member Profile">Edit Profile</a></li>
                                     </ul>
                                 </asp:View>
                                 <asp:View runat="server" ID="CompanyView">
-                                    <ul class="nav navbar-nav" id="nav-comp">
+                                    <ul class="navibar-links" id="nav-comp">
                                         <li><a runat="server" href="~/Account/CompanyProfile">Company Profile</a></li>
                                     </ul>
-                                    <ul class="nav navbar-nav navbar-right" id="nav-right-comp">
+                                    <ul class="nav-comp" id="nav-right-comp">
                                         <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Company Profile">Edit Profile</a></li>
                                     </ul>
                                 </asp:View>
@@ -85,20 +83,19 @@
                     </asp:LoginView>
                 </div>
             </div>
-        </div>
 
-        <div class="container body-content">
-            <%--<div class="container">--%>
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <div class="footer">
-                <div class="footer-text">
+            <div id="body-content" class="content-width">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+            <div id="footer">
+                <div class="footer-text content-width">
                     Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
                     <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
                 </div>
             </div>
         </div>
-
     </form>
 </body>
 </html>

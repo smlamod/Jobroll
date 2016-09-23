@@ -159,6 +159,8 @@
     <Content Include="img\intro-bus-search.jpg" />
     <Content Include="img\intro-first-impression.jpg" />
     <Content Include="img\intro-get-hired.jpg" />
+    <Content Include="img\img-search-dark.png" />
+    <Content Include="img\img-search-light.png" />
     <Content Include="JB.sql" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
