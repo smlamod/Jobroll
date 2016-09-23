@@ -135,11 +135,8 @@ namespace WebApplication2.Account
             com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
             da.Fill(dt);
             com.ExecuteNonQuery();
-            if (dt.Rows.Count != 0)
-            {
                 lvXp.DataSource = dt;
                 lvXp.DataBind();
-            }
 
         }
 
@@ -337,7 +334,7 @@ namespace WebApplication2.Account
 
             if (DateTime.TryParse(txpStop.Text, out datevalue))
             {
-                com.Parameters.AddWithValue("@xsp", datevalue.ToString());
+                com.Parameters.AddWithValue("@xsp", datevalue.ToString("yyyy-MM-dd"));
             }
             else
             {

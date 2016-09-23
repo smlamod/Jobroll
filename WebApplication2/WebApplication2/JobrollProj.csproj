@@ -134,6 +134,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Account\EditCompanyProfile.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Account\CompanyProfile.aspx" />
@@ -220,6 +221,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\EditCompanyProfile.aspx.cs">
+      <DependentUpon>EditCompanyProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditCompanyProfile.aspx.designer.cs">
+      <DependentUpon>EditCompanyProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\UserProfile.aspx.designer.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>

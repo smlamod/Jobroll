@@ -102,12 +102,26 @@ CREATE TABLE [Companies]
 (
 	[CompanyId]		int  NOT NULL,
 	[UserId]		UNIQUEIDENTIFIER NOT NULL,
+	
 	[PhoneNumber]	nvarchar(max) NULL,
-	[CompanyName]	nvarchar(max) NULL,
-	[CompanyAddr]	nvarchar(max) NULL,
-	[CompanyDesc]	nvarchar(max) NULL,
-	[CompanyLogo]	nvarchar(max) NULL,
+	[CompLogo]	nvarchar(max) NULL,
+
+	[CompName]	nvarchar(max) NULL,
+	[CompAddr]	nvarchar(max) NULL,
+
+	[CompOver]	nvarchar(max) NULL,
+	[CompJoin]	nvarchar(max) NULL,
+	[CompProc]	nvarchar(max) NULL,
+
+	[CompIndstry] nvarchar(max) NULL,
+	[CompWeb]	nvarchar(max) NULL,
+	[CompSize] nvarchar(max) NULL,
+	[CompWork] nvarchar(max) NULL,
+	[CompDress] nvarchar(max) NULL,	
+	
 )
+
+
 
 ALTER TABLE [Companies]
 	ADD CONSTRAINT [PKCompanies] PRIMARY KEY CLUSTERED ([CompanyId] ASC)
@@ -122,6 +136,7 @@ CREATE TABLE [Jobs]
 (
 	[JobId]			int	NOT NULL,
 	[CompanyId]		int	NOT NULL,
+
 	[JobName]		nvarchar(max) NULL,
 	[JobDesc]		nvarchar(max) NULL,
 	[JobReqt]		nvarchar(max) NULL,
@@ -129,8 +144,6 @@ CREATE TABLE [Jobs]
 	[JobLocation]	nvarchar(max) NULL,
 	[JobExpected]	float NOT NULL,
 	[JobPublished]	bit NOT NULL,
-	[JobStart]		datetime NOT NULL,
-	[JobEnd]		datetime NOT NULL,
 )
 
 ALTER TABLE [Jobs]
@@ -189,26 +202,23 @@ INSERT INTO [XP_Member] values (
 
 INSERT INTO [Companies] values (
 1,'7dd211e1-2d3f-4dfd-a646-dcbac6c4011e'
-,'+02452789',
-'Contoso Ltd.','Ermita, Manila PH',
+,'+639123456789',NULL,
+'Hewlett-Packard Enterprise','Metro Manila, PH',
 'Contoso Ltd. (also known as Contoso and Contoso University) is a fictional company used by Microsoft as an example company and domain.',
-'')
+'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
+'6 Hours','Enterprise Products/FMCG','http://www.hpe.com','	501 - 1000','Saturdays or Shift required except for Support Group','Business (e.g. Shirts)')
+
 INSERT INTO [Jobs] values (
 1,1,'Data Scientist',
 'Able to extract information from large sets of data',
 'Graduate of Applied Mathematics, Computer Science',
 'Data Mining','Ermita, Manila',20000,
-1,'2016-01-01','2017-01-01'
-)
+1)
 INSERT INTO [ExternalLogins] VALUES
            ('b6ade1fa-aaa1-4792-8e0f-bb20412a029a'
            ,'95e29d28-a460-4f3a-864d-52a1518a1530'
            ,'LinkedIn'
            ,'fhPeWu2OhL')
-
-
-
-
 GO
 -- STORED PROCEDURES
 
@@ -379,7 +389,15 @@ create Procedure MemberDegreeCreate
 )
 as
 declare @did as integer
+if exists(select * from [Degree_Member])
+begin
 set @did=(select MAX(DegreeId) from [Degree_Member])+1
+end
+else
+begin
+set @did=0
+end
+
 insert into [Degree_Member] values (@did,(select MemberId from [Members] where MemberId = @mid),@est,@esp,@edg,@esh,@ecy,@este,@edsc)
 go
 
@@ -434,7 +452,16 @@ create procedure MemberXPCreate
 )
 as
 DECLARE @xid as integer
+if exists(select * from [XP_Member])
+begin
 set @xid=(select MAX(XpId) from [XP_Member])+1
+end
+else
+begin
+set @xid=0
+end
+
+
 insert into [XP_Member] values (@xid,(select MemberId from [Members] where MemberId = @mid),@xst,@xsp,@xpos,@xcom,@xcy,@xste,@xdsc)
 GO
 
@@ -463,3 +490,130 @@ create procedure MemberXPRemove
 as
 DELETE from [XP_Member] where [XpId] = @xid
 GO
+
+create procedure CompanyCheck
+(
+	@uid as nvarchar(max)
+)
+as
+SELECT * FROM [Companies] where UserId = @uid
+Go
+
+create procedure CompanyCreate
+(
+	@uid as nvarchar(max),
+	@pnum as nvarchar(max),
+	
+	@cname as nvarchar(max),
+	@caddr as nvarchar(max),
+	@cover as nvarchar(max),
+	@cjoin as nvarchar(max),
+	@cproc as nvarchar(max),
+	@cind as nvarchar(max),
+	@cweb as nvarchar(max),
+	@csize as nvarchar(max),
+	@cwork as nvarchar(max),
+	@cdress as nvarchar(max)
+)
+as
+declare @cid as integer
+set @cid =(select MAX(CompanyId) from [Companies])+1 
+insert into [Companies] values (@cid,@uid,@pnum,null,@cname,@caddr,@cover,@cjoin,@cproc,@cind,@cweb,@csize,@cwork,@cdress)
+go
+
+create procedure CompanyUpdate
+(
+	@uid as nvarchar(max),
+	@pnum as nvarchar(max),
+	
+	@cname as nvarchar(max),
+	@caddr as nvarchar(max),
+	@cover as nvarchar(max),
+	@cjoin as nvarchar(max),
+	@cproc as nvarchar(max),
+	@cind as nvarchar(max),
+	@cweb as nvarchar(max),
+	@csize as nvarchar(max),
+	@cwork as nvarchar(max),
+	@cdress as nvarchar(max)
+)
+as
+UPDATE [Companies] SET PhoneNumber = @pnum, CompLogo = '', CompName = @cname, CompAddr = @caddr,
+CompOver = @cover, CompJoin = @cjoin, CompIndstry = @cind, CompWeb = @cweb, CompSize = @csize, CompWork = @cwork,
+CompDress = @cdress where [UserId] = @uid
+go
+
+create procedure JobCreate
+(
+	@cid as integer,
+
+	@jname as nvarchar(max),
+	@jdesc as nvarchar(max),
+	@jreqt as nvarchar(max),
+	@jloc as nvarchar(max),
+	@jexp as nvarchar(max),
+	@jpub as bit
+)
+as
+declare @jid as integer
+if exists(select * from [Jobs])
+begin
+set @jid=(select MAX(JobId) from [Jobs])+1
+end
+else
+begin
+set @jid=0
+end
+insert into [Jobs] values (@jid,@cid,@jname,@jdesc,@jreqt,null,@jloc,@jexp,@jpub)
+go
+
+create procedure JobUpdate
+(
+	@jid as integer,
+
+	@jname as nvarchar(max),
+	@jdesc as nvarchar(max),
+	@jreqt as nvarchar(max),
+	@jloc as nvarchar(max),
+	@jexp as nvarchar(max),
+	@jpub as bit
+)
+as
+update [Jobs] set JobName = @jname, JobDesc = @jdesc, JobReqt = @jreqt, JobLocation = @jloc, JobExpected = @jexp, JobPublished =@jpub
+where [JobId] = @jid
+go
+
+create procedure JobGetInfo
+(
+	@uid as nvarchar(max)
+)
+as
+select * FROM [Jobs] J JOIN [Companies] C ON J.CompanyId=C.CompanyId  where C.UserId = @uid
+GO
+
+create procedure JobGetName
+(
+	@jname as varchar(30)
+)
+as
+select * from [Jobs] where JobName like @jname
+order by JobExpected desc
+go
+
+create procedure JobRemove
+(
+	@jid as integer
+)
+as
+delete from [Jobs] where JobId = @jid
+go
+
+create procedure JobGetPublished
+(
+	@cid as integer
+)
+as
+select * from [Jobs] where CompanyId = @cid and JobPublished = 1
+go
+
+
