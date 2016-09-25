@@ -31,22 +31,30 @@ namespace WebApplication2
             if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
 
-                string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
-                sqlcon = new SqlConnection(conn);
-                sqlcon.Open();
-                com = new SqlCommand("JobGetName");
-                com.CommandType = CommandType.StoredProcedure;
-                com.Connection = sqlcon;
-                da = new SqlDataAdapter(com);
-                dt = new DataTable();
-                com.Parameters.AddWithValue("@jname", qry);
-                da.Fill(dt);
-                com.ExecuteNonQuery();
-                lvJobr.DataSource = dt;
-                lvJobr.DataBind();
+                if (qry != null)
+                {
+                    string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
+                    sqlcon = new SqlConnection(conn);
+                    sqlcon.Open();
+                    com = new SqlCommand("JobGetName");
+                    com.CommandType = CommandType.StoredProcedure;
+                    com.Connection = sqlcon;
+                    da = new SqlDataAdapter(com);
+                    dt = new DataTable();
+                    com.Parameters.AddWithValue("@jname", qry);
+                    da.Fill(dt);
+                    com.ExecuteNonQuery();
+                    lvJobr.DataSource = dt;
+                    lvJobr.DataBind();
+                }
             }
             else
                 Response.Redirect("/Error.aspx?id=4");
+        }
+
+        protected void Search_click(object sender, EventArgs e)
+        {
+            Response.Redirect("/SearchResults?qry=" + tjbsearch.Text);     
         }
     }
 }

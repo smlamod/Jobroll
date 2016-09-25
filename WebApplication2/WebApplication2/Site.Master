@@ -51,8 +51,7 @@
                 <div class="navbar-collapse collapse">
                     <asp:LoginView id="Lview" runat="server">
                         <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
+                            <ul class="nav navbar-nav navbar-right">                 
                                 <li><a runat="server" href="~/Account/Register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
                                 <li><a runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-log-in"></span>Log in</a></li>
                             </ul>
@@ -65,10 +64,11 @@
                             <asp:MultiView runat="server" ID="Mview">
                                 <asp:View runat="server" Id="UserView">
                                     <ul class="nav navbar-nav" id="nav-user">
+                                        <li><a runat="server" href="~/SearchResults">Find A Job</a></li>
                                         <li><a runat="server" href="~/Account/UserProfile">My Profile</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right" id="nav-right-user">
-                                        <li class="search-in-list"><asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
+                                        
                                         <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Member Profile">Edit Profile</a></li>
                                     </ul>
                                 </asp:View>
