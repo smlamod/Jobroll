@@ -40,9 +40,9 @@
             <table class="edu-tbl">
                 <asp:ListView ID="lvDegree" runat="server"
                     OnItemDatabound="Lvdegree_ItemDatabound">
-                    <EmptyItemTemplate>
+                    <EmptyDataTemplate>
                         <p> No Entries Found </p>
-                    </EmptyItemTemplate>
+                    </EmptyDataTemplate>
                     <ItemTemplate>
                         <tr>
                             <th>
@@ -80,9 +80,9 @@
         <div id="sec-exp">
             <table class="exp-tbl">
                 <asp:ListView runat="server" ID="lvXp" OnItemDataBound="LvXP_ItemDataBound">
-                    <EmptyItemTemplate>
+                    <EmptyDataTemplate>
                         <p>No Entries Found </p>
-                    </EmptyItemTemplate>
+                    </EmptyDataTemplate>
                     <ItemTemplate>
                         <tr>
                             <th>

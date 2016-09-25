@@ -77,7 +77,7 @@ namespace WebApplication2.Account
                 ldress.Text = ds.Tables["COMPANY"].Rows[0][13].ToString();
             }
             else
-                Response.Redirect("/Error.aspx");
+                Response.Redirect("/Error.aspx?id=4");
                 
         }
     }

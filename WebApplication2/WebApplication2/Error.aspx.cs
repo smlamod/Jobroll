@@ -28,6 +28,9 @@ namespace WebApplication2
                 case 3:
                     lmsg.Text = "The user has no information to display";
                     break;
+                case 4:
+                    lmsg.Text = "You must be signed in";
+                    break;
                 default:
                     lmsg.Text = "An Error has occured";
                     break;

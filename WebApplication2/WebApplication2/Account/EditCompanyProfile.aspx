@@ -173,11 +173,11 @@
                 OnItemDeleting="LvJob_ItemDelete"        
                 
                 >
-                <EmptyItemTemplate>
+                <EmptyDataTemplate>
                     <p>
                         No Entries Found
                     </p>
-                </EmptyItemTemplate>
+                </EmptyDataTemplate>
                 <ItemTemplate>
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="tjbName" CssClass="col-md-2 control-label">Job Name:</asp:Label>

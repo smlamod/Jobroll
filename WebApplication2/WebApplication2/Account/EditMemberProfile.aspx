@@ -141,11 +141,11 @@
                     OnItemDataBound="Lvdegree_ItemDatabound"
                     OnItemEditing="Lvdegree_ItemEditing"
                     OnItemUpdating="Lvdegree_ItemUpdating">
-                    <EmptyItemTemplate>
+                    <EmptyDataTemplate>
                         <p>
                             No Entries Found
                         </p>
-                    </EmptyItemTemplate>
+                    </EmptyDataTemplate>
 
                     <ItemTemplate>
                         <tr>
@@ -340,11 +340,11 @@
                     OnItemUpdating="LvXP_ItemUpdating" 
                     OnItemCanceling="LvXp_ItemCanceling" 
                     OnItemDeleting="LvXp_ItemDelete" >
-                    <EmptyItemTemplate>
+                    <EmptyDataTemplate>
                         <p>
                             No Entries Found
                         </p>
-                    </EmptyItemTemplate>
+                    </EmptyDataTemplate>
                     <ItemTemplate>
                         <tr>
                             <div class="form-group">

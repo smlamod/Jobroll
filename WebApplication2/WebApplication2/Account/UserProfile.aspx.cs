@@ -106,7 +106,7 @@ namespace WebApplication2
 
             }
             else
-                Response.Redirect("/Error.aspx");
+                Response.Redirect("/Error.aspx?id=4");
         }
 
         protected string Render_list(string str)

@@ -74,7 +74,7 @@ namespace WebApplication2.Account
                     UserManager = new UserManager<User>(new UserStore());
                     var user = UserManager.FindById(Context.User.Identity.GetUserId());
                     if (user.Role)
-                        Response.Redirect("/Error.aspx");
+                        Response.Redirect("/Error.aspx?id=2");
 
                     lmsg.Text = "";
                     //FETCH ESSENTIAL MEMBER PROFILE
@@ -107,6 +107,8 @@ namespace WebApplication2.Account
                     }
 
                 }
+                else
+                    Response.Redirect("/Error.aspx?id=4");
             }
  
         }
