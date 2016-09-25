@@ -15,14 +15,6 @@
             <li><span class="glyphicon glyphicon-envelope" style="color: gray;"></span><p><asp:Label runat="server" Text="softeng@jobroll.com" Id="lemail"/></p></li>
             <li><span class="glyphicon glyphicon-tree-conifer" style="color: gray;"></span><p><asp:Label runat="server" Text="Metro Manila, PH" Id="lloc"/></p></li>
         </ul>
-        
-        <!--
-        <div id="footer">
-            <span>Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
-                <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
-            </span>
-        </div>
-        -->
     </div>
 
     <div id="maincontent">
@@ -109,8 +101,8 @@
                         </tr>
                     </ItemTemplate>
                 </asp:ListView>
-                <!--
-                <tr>
+                
+               <%-- <tr>
                     <th>June 2010 - July 2011</th>
                     <td>
                         <p>
@@ -149,8 +141,8 @@
                             <li>Collected data, analyzed records, and created reports as requested.</li>
                         </ul>
                     </td>
-                </tr>
-                -->
+                </tr>--%>
+                
             </table>
         </div>
     </div>
