@@ -15,6 +15,7 @@ namespace WebApplication2.Account
 {
     public partial class CompanyProfile : System.Web.UI.Page
     {
+        string uid { get; set; }
         public UserManager<User> UserManager { get; private set; }
         SqlConnection sqlcon;
         DataSet ds;
@@ -24,12 +25,20 @@ namespace WebApplication2.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string quid = Request.QueryString["uid"];
             if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
+                if (quid == null)
+                {
+                    uid = Context.User.Identity.GetUserId();
+                }
+                else
+                    uid = quid;
+
                 UserManager = new UserManager<User>(new UserStore());
-                var user = UserManager.FindById(Context.User.Identity.GetUserId());
+                var user = UserManager.FindById(uid);
                 if (!user.Role)
-                    Response.Redirect("/Error.aspx");
+                    Response.Redirect("/Error.aspx?id=2");
 
                 //FETCH ESSENTIAL MEMBER PROFILE
                 string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
@@ -40,15 +49,22 @@ namespace WebApplication2.Account
                 com.Connection = sqlcon;
                 da = new SqlDataAdapter(com);
                 ds = new DataSet();
-                com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+                com.Parameters.AddWithValue("@uid", uid);
                 da.Fill(ds, "COMPANY");
                 com.ExecuteNonQuery();
 
                 //REDIRECT HERE IF EMPTY
                 if (ds.Tables["COMPANY"].Rows.Count == 0)
-                    Response.Redirect("/Account/EditCompanyProfile.aspx");
+                {
+                    if (quid == null)
+                        Response.Redirect("/Account/EditCompanyProfile.aspx");
+                    else
+                        Response.Redirect("/Error.aspx?id=3");
+                }
+                   
                 
                 lphone.Text = ds.Tables["COMPANY"].Rows[0][2].ToString();
+                lemail.Text = ds.Tables["COMPANY"].Rows[0][20].ToString();
                 lcomp.Text = ds.Tables["COMPANY"].Rows[0][4].ToString();
                 ldress.Text = ds.Tables["COMPANY"].Rows[0][5].ToString();
                 lover.Text = ds.Tables["COMPANY"].Rows[0][6].ToString();

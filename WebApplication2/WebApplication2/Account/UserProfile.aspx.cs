@@ -19,7 +19,7 @@ namespace WebApplication2
 {
     public partial class ProfilePage : System.Web.UI.Page
     {
-        
+        string uid { get; set; }
         public UserManager<User> UserManager { get; private set; }
         SqlConnection sqlcon;
         DataSet ds;
@@ -30,14 +30,23 @@ namespace WebApplication2
 
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+            string quid = Request.QueryString["uid"];
             if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                UserManager = new UserManager<User>(new UserStore());
-                var user = UserManager.FindById(Context.User.Identity.GetUserId());
-                if (user.Role)
-                    Response.Redirect("/Error.aspx");
+                if (quid == null)
+                {
+                    uid = Context.User.Identity.GetUserId();
+                }
+                else
+                    uid = quid;
 
+                UserManager = new UserManager<User>(new UserStore());
+                var user = UserManager.FindById(uid);
+                if (user.Role)
+                    Response.Redirect("/Error.aspx?id=2");
+
+                //get uid to display the profile
+                
                 //FETCH ESSENTIAL MEMBER PROFILE
                 string conn = ConfigurationManager.ConnectionStrings["JBConnection"].ConnectionString;
                 sqlcon = new SqlConnection(conn);
@@ -47,17 +56,23 @@ namespace WebApplication2
                 com.Connection = sqlcon;
                 da = new SqlDataAdapter(com);
                 ds = new DataSet();
-                com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+                com.Parameters.AddWithValue("@uid", uid);
                 da.Fill(ds, "MEMBER");
                 com.ExecuteNonQuery();
 
                 //REDIRECT HERE IF EMPTY
                 if (ds.Tables["MEMBER"].Rows.Count == 0)
-                    Response.Redirect("/Account/EditMemberProfile.aspx");
+                {
+                    if (quid == null)
+                        Response.Redirect("/Account/EditMemberProfile.aspx");                        
+                    else
+                        Response.Redirect("/Error.aspx?id=3");
+                }
+                    
 
                 lfirst.Text = ds.Tables["MEMBER"].Rows[0][4].ToString();
                 llast.Text = ds.Tables["MEMBER"].Rows[0][3].ToString();
-                lemail.Text = Context.User.Identity.GetUserName();
+                lemail.Text = ds.Tables["MEMBER"].Rows[0][15].ToString();
                 lloc.Text = ds.Tables["MEMBER"].Rows[0][7].ToString();
                 lphone.Text = ds.Tables["MEMBER"].Rows[0][2].ToString();
                 llskill.Text = Render_list(ds.Tables["MEMBER"].Rows[0][6].ToString());
@@ -68,7 +83,7 @@ namespace WebApplication2
                 com.Connection = sqlcon;
                 da = new SqlDataAdapter(com);
                 dt = new DataTable();
-                com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+                com.Parameters.AddWithValue("@uid", uid);
                 da.Fill(dt);
                 com.ExecuteNonQuery();
                 lvDegree.DataSource = dt;
@@ -80,7 +95,7 @@ namespace WebApplication2
                 com.Connection = sqlcon;
                 da = new SqlDataAdapter(com);
                 dt = new DataTable();
-                com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+                com.Parameters.AddWithValue("@uid", uid);
                 da.Fill(dt);
                 com.ExecuteNonQuery();
                 if (dt.Rows.Count != 0)
