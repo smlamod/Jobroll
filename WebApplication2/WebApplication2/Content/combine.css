@@ -234,7 +234,8 @@ table, th, td {
     vertical-align: top;
 }
 
-.ent-name, .sch-name {
+.ent-name, 
+.sch-name {
     font-family: Roboto;
     font-weight: 400;
     font-size: 0.85em;
@@ -243,7 +244,8 @@ table, th, td {
     margin: auto;
 }
 
-.ent-pos, .sch-pos {
+.ent-pos, 
+.sch-pos {
     font-family: Roboto;
     font-weight: 500;
     font-size: 1.10em;
@@ -329,7 +331,8 @@ table, th, td {
     margin-right: 30px;
 }
 
-.company-desc h3, .job-desc h3 {
+.company-desc h3,
+.job-desc h3 {
     font-family: Roboto;
     font-weight: 500;
     font-size: 1.5em;
@@ -421,7 +424,8 @@ table, th, td {
     transition-duration: 0.2s;
 }
 
-.search-result:active, .search-result:focus {
+.search-result:active, 
+.search-result:focus {
     border: 1px solid #90A9BC;
 
     -webkit-transition-duration: 0.2s;
@@ -453,7 +457,8 @@ table, th, td {
     border-right: 1px solid #e0e0e0;
 }
 
-#login-local, #login-external {
+#login-local, 
+#login-external {
     width: 45%;
     display: block;
     float: left;
@@ -503,7 +508,8 @@ table, th, td {
   transition: 0.35s;
 }
 
-.input-field:active, .input-field:focus {
+.input-field:active, 
+.input-field:focus {
     outline: none;
     border: 1px solid #1695a3;
   

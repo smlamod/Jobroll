@@ -46,8 +46,7 @@
                     <asp:LoginView ID="Lview" runat="server">
                         <AnonymousTemplate>
                             <ul class="navibar-links">
-                                <li>
-                                    <asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
+                                <li><asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
                                 <li><a runat="server" href="~/Account/Register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
                                 <li><a runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-log-in"></span>Log in</a></li>
                             </ul>
@@ -63,8 +62,6 @@
                                 <asp:View runat="server" ID="UserView">
                                     <ul class="navibar-links" id="nav-user">
                                         <li><a runat="server" href="~/Account/UserProfile">My Profile</a></li>
-                                    </ul>
-                                    <ul class="navibar-links" id="nav-right-user">
                                         <li>
                                             <asp:TextBox runat="server" ID="Search" CssClass="search-input-box" TextMode="Search" Text="Search for jobs" /></li>
                                         <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Member Profile">Edit Profile</a></li>
@@ -73,8 +70,6 @@
                                 <asp:View runat="server" ID="CompanyView">
                                     <ul class="navibar-links" id="nav-comp">
                                         <li><a runat="server" href="~/Account/CompanyProfile">Company Profile</a></li>
-                                    </ul>
-                                    <ul class="nav-comp" id="nav-right-comp">
                                         <li><a runat="server" href="~/Account/EditMemberProfile" title="Edit your Company Profile">Edit Profile</a></li>
                                     </ul>
                                 </asp:View>
