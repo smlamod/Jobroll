@@ -3,19 +3,38 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="form-horizontal">
         <h4>Search for Jobs</h4>
-        <div class="form-class">
-            <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tjbsearch" class="form-control" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="tjbsearch"
-                    Display="Dynamic" CssClass="text-danger" ErrorMessage="Search Term Required" />
-                <asp:ModelErrorMessage runat="server" ModelStateKey="tjbsearch" CssClass="text-error" />
-                <asp:Button runat="server" OnClick="Search_click" Text="Search" CssClass="btn btn-default" />
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="tjbsearch" CssClass="col-md-2 control-label">Search term</asp:Label>
+                <div class="col-md-10">
+                    <asp:TextBox runat="server" ID="tjbsearch" class="form-control" />
+                </div>
             </div>
+
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="tsalary" CssClass="col-md-2 control-label">Salary Greater Than</asp:Label>
+                <div class="col-md-10">
+                    <asp:TextBox runat="server" ID="tsalary" CssClass="form-control" TextMode="Number" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="tlocation" CssClass="col-md-2 control-label">Job Location</asp:Label>
+                <div class="col-md-10">
+                    <asp:TextBox runat="server" ID="tlocation" CssClass="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <asp:Button runat="server" OnClick="Search_click" Text="Search" CssClass="btn btn-default" />
+                </div>
+            </div>
+
         </div>
         <br />
-        <br />
-        <br />
-        <br />
+
         <asp:ListView ID="lvJobr" runat="server">
             <EmptyDataTemplate>
                 <p>
