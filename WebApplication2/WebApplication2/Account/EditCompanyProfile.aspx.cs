@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -68,6 +69,8 @@ namespace WebApplication2.Account
                     if (ds.Tables["COMPANY"].Rows.Count != 0)
                     {
                         tcphone.Text = ds.Tables["COMPANY"].Rows[0][2].ToString();
+                        Session["OldFile"] = ds.Tables["COMPANY"].Rows[0][3].ToString();
+
                         tcname.Text = ds.Tables["COMPANY"].Rows[0][4].ToString();
                         tcaddr.Text = ds.Tables["COMPANY"].Rows[0][5].ToString();
                         tcover.Text = ds.Tables["COMPANY"].Rows[0][6].ToString();
@@ -78,7 +81,7 @@ namespace WebApplication2.Account
                         tcsize.Text = ds.Tables["COMPANY"].Rows[0][11].ToString();
                         tcemp.Text = ds.Tables["COMPANY"].Rows[0][12].ToString();
                         tccode.Text = ds.Tables["COMPANY"].Rows[0][13].ToString();
-
+                        
                         //FETCH JOBS
                         DataBind();
                     }
@@ -140,6 +143,36 @@ namespace WebApplication2.Account
             ds = new DataSet();
 
             com.Parameters.AddWithValue("@uid", Context.User.Identity.GetUserId());
+
+            if (fupload.HasFile)
+            {
+                string fileName = Path.GetFileName(fupload.PostedFile.FileName);
+                string[] buff = fileName.Split('.');
+                string render = "";
+                int x = 0;
+                foreach (string s in buff)
+                {
+                    if (x != 0)
+                    {
+                        render += Guid.NewGuid();
+                        render += '.';
+                        render += s;
+                    }
+                    x++;
+                }
+                fupload.PostedFile.SaveAs(Server.MapPath("/img/dp/") + render);
+                com.Parameters.AddWithValue("@dpic", "\\img\\dp\\" + render);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(Session["OldFile"] as string))
+                {
+                    com.Parameters.AddWithValue("@dpic", DBNull.Value);
+                }
+                else
+                    com.Parameters.AddWithValue("@dpic", Session["OldFile"]);
+            }
+
             com.Parameters.AddWithValue("@pnum", tcphone.Text);
             com.Parameters.AddWithValue("@cname", tcname.Text);
             com.Parameters.AddWithValue("@caddr", tcaddr.Text);

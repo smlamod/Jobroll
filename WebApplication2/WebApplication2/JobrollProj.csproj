@@ -156,6 +156,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\dp\0c.png" />
+    <Content Include="img\dp\0m.gif" />
+    <Content Include="img\dp\1.PNG" />
+    <Content Include="img\dp\2.png" />
     <Content Include="img\intro-bg.jpg" />
     <Content Include="img\intro-bus-search.jpg" />
     <Content Include="img\intro-first-impression.jpg" />

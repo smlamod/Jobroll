@@ -85,6 +85,15 @@ namespace WebApplication2.Account {
         protected global::System.Web.UI.WebControls.TextBox tlocation;
         
         /// <summary>
+        /// fupload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fupload;
+        
+        /// <summary>
         /// teduStart control.
         /// </summary>
         /// <remarks>

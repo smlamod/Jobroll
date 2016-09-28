@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Edit Profile" Language="C#" AutoEventWireup="True" MasterPageFile="~/Site.Master" CodeBehind="EditCompanyProfile.aspx.cs" Inherits="WebApplication2.Account.EditCompanyProfile" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
+    <h2><%: Title %></h2>
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>
@@ -104,7 +104,12 @@
                 </div>
             </div>
 
-
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="tccode" CssClass="col-md-2 control-label">Picture</asp:Label>
+                <div class="col-md-2">
+                    <asp:FileUpload ID="fupload" runat="server" />
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

@@ -175,7 +175,7 @@ INSERT INTO [Users] values ('7dd211e1-2d3f-4dfd-a646-dcbac6c4011e',1,'EliFRoush@
 INSERT INTO [Members] values (
 1,'95e29d28-a460-4f3a-864d-52a1518a1530'
 ,'+639062532889',
-'Lamod','Shawn L.','',
+'Lamod','Shawn L.','\img\dp\1.PNG',
 'Bash Scripting' + CHAR(13) + 'C C# C++ Intel x86 Programming'
 ,'Manila',30000)
 
@@ -202,7 +202,7 @@ INSERT INTO [XP_Member] values (
 
 INSERT INTO [Companies] values (
 1,'7dd211e1-2d3f-4dfd-a646-dcbac6c4011e'
-,'+639123456789',NULL,
+,'+639123456789','\img\dp\2.png',
 'Hewlett-Packard Enterprise','Metro Manila, PH',
 'Contoso Ltd. (also known as Contoso and Contoso University) is a fictional company used by Microsoft as an example company and domain.',
 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
@@ -325,7 +325,7 @@ create procedure MemberCheck
 	@uid as nvarchar(max)
 )
 as
-SELECT * FROM [Members] where UserId = @uid
+SELECT *,U.Email FROM [Members] M JOIN [Users] U on M.UserId=U.UserId where U.UserId = @uid
 Go
 
 create procedure MemberCreate
@@ -334,7 +334,7 @@ create procedure MemberCreate
 	@pnum as nvarchar(max),
 	@lname as nvarchar(max),
 	@fname as nvarchar(max),
-	
+	@dpic as nvarchar(max),
 	@skls as nvarchar(max),
 
 	@loc as nvarchar(max),
@@ -345,7 +345,7 @@ declare @mid as int
 set @mid=(select MAX(MemberId) from [Members])+1
 insert into [Members] values(@mid,
 (select UserId from [Users] where UserId = @uid)
-,@pnum,@lname,@fname,null,@skls,@loc,@salry)
+,@pnum,@lname,@fname,@dpic,@skls,@loc,@salry)
 GO
 
 create procedure MemberUpdate
@@ -354,7 +354,7 @@ create procedure MemberUpdate
 	@pnum as nvarchar(max),
 	@lname as nvarchar(max),
 	@fname as nvarchar(max),
-
+	@dpic as nvarchar(max),
 	@skls as nvarchar(max),
 
 	@loc as nvarchar(max),
@@ -362,7 +362,7 @@ create procedure MemberUpdate
 )
 as
 update [Members] set PhoneNumber = @pnum,FirstMidName = @fname, LastName=@lname, Skills =@skls, 
-Location = @loc, ExpSalary =@salry where UserId = @uid
+Location = @loc, ExpSalary =@salry, Profpic=@dpic where UserId = @uid
 GO
 
 create procedure MemberDegreeGetInfo
@@ -496,14 +496,14 @@ create procedure CompanyCheck
 	@uid as nvarchar(max)
 )
 as
-SELECT * FROM [Companies] where UserId = @uid
+SELECT *,U.Email FROM [Companies] C JOIN [Users] U on C.UserId=U.UserId where C.UserId = @uid
 Go
 
 create procedure CompanyCreate
 (
 	@uid as nvarchar(max),
 	@pnum as nvarchar(max),
-	
+	@dpic as nvarchar(max),
 	@cname as nvarchar(max),
 	@caddr as nvarchar(max),
 	@cover as nvarchar(max),
@@ -518,14 +518,14 @@ create procedure CompanyCreate
 as
 declare @cid as integer
 set @cid =(select MAX(CompanyId) from [Companies])+1 
-insert into [Companies] values (@cid,@uid,@pnum,null,@cname,@caddr,@cover,@cjoin,@cproc,@cind,@cweb,@csize,@cwork,@cdress)
+insert into [Companies] values (@cid,@uid,@pnum,@dpic,@cname,@caddr,@cover,@cjoin,@cproc,@cind,@cweb,@csize,@cwork,@cdress)
 go
 
 create procedure CompanyUpdate
 (
 	@uid as nvarchar(max),
 	@pnum as nvarchar(max),
-	
+	@dpic as nvarchar(max),
 	@cname as nvarchar(max),
 	@caddr as nvarchar(max),
 	@cover as nvarchar(max),
@@ -538,7 +538,7 @@ create procedure CompanyUpdate
 	@cdress as nvarchar(max)
 )
 as
-UPDATE [Companies] SET PhoneNumber = @pnum, CompLogo = '', CompName = @cname, CompAddr = @caddr,
+UPDATE [Companies] SET PhoneNumber = @pnum, CompLogo = @dpic, CompName = @cname, CompAddr = @caddr,
 CompOver = @cover, CompJoin = @cjoin, CompIndstry = @cind, CompWeb = @cweb, CompSize = @csize, CompWork = @cwork,
 CompDress = @cdress where [UserId] = @uid
 go
@@ -591,12 +591,20 @@ as
 select * FROM [Jobs] J JOIN [Companies] C ON J.CompanyId=C.CompanyId  where C.UserId = @uid
 GO
 
+create procedure JobGetId
+(
+	@jid as nvarchar(max)
+)
+as
+select * FROM [Jobs] J JOIN [Companies] C ON J.CompanyId=C.CompanyId  where J.JobId = @jid and JobPublished = 1
+GO
+
 create procedure JobGetName
 (
 	@jname as varchar(30)
 )
 as
-select * from [Jobs] where JobName like @jname
+select * from [Jobs] J join [Companies] C on J.CompanyId=C.CompanyId  where JobName like @jname and JobPublished = 1
 order by JobExpected desc
 go
 

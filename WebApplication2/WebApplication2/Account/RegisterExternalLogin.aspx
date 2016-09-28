@@ -9,7 +9,7 @@
             <hr />
             <asp:ValidationSummary runat="server" ShowModelStateErrors="true" CssClass="text-danger" />
             <p class="text-info">
-                You've authenticated with <strong><%: ProviderName %></strong>. Please enter an email below for the current site
+                You've authenticated with <strong> LinkedIn </strong>. Please enter an email below for the current site
                 and click the Log in button.
             </p>
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,8 @@ namespace WebApplication2.Account
         SqlDataAdapter da;
         SqlCommand com;
         int UserMember { get; set; }
+        string fileName { get; set; }
+        string oldfileName { get; set; }
 
         protected void EditMember_Click (object sender, EventArgs e)
         {
@@ -55,9 +58,44 @@ namespace WebApplication2.Account
             com.Parameters.AddWithValue("@pnum", tphone.Text);
             com.Parameters.AddWithValue("@lname", tlast.Text);
             com.Parameters.AddWithValue("@fname", tfirst.Text);
+
+
+            if (fupload.HasFile)
+            {
+                fileName = Path.GetFileName(fupload.PostedFile.FileName);
+                //fileName = Guid.NewGuid().ToString();
+               
+
+                string[] buff = fileName.Split('.');
+                string render = "";
+                int x = 0;
+                foreach (string s in buff)
+                {
+                    if (x !=0)
+                    {
+                        render += Guid.NewGuid();
+                        render += '.';
+                        render += s;
+                    }
+                    x++;
+                }
+                fupload.PostedFile.SaveAs(Server.MapPath("/img/dp/") + render);
+                com.Parameters.AddWithValue("@dpic", "\\img\\dp\\" + render);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(Session["OldFile"] as string))
+                {
+                com.Parameters.AddWithValue("@dpic", DBNull.Value);
+                }
+                else
+                    com.Parameters.AddWithValue("@dpic", Session["OldFile"]);
+            }
+            
             com.Parameters.AddWithValue("@skls", tskills.Text);
             com.Parameters.AddWithValue("@salry", tsalary.Text);
             com.Parameters.AddWithValue("@loc", tlocation.Text);
+
             da.Fill(ds, "MEMBER");
             com.ExecuteNonQuery();
 
@@ -101,6 +139,7 @@ namespace WebApplication2.Account
                         tphone.Text = ds.Tables["MEMBER"].Rows[0][2].ToString();
                         tskills.Text = ds.Tables["MEMBER"].Rows[0][6].ToString();
                         tsalary.Text = ds.Tables["MEMBER"].Rows[0][8].ToString();
+                        Session["OldFile"] = ds.Tables["MEMBER"].Rows[0][5].ToString();
 
                         //FETCH EXPERIENCE PROFILE
                         DataBind();
@@ -112,6 +151,7 @@ namespace WebApplication2.Account
             }
  
         }
+
 
         protected void DataBind()
         {

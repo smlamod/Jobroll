@@ -23,6 +23,16 @@ namespace WebApplication2.Account
         SqlDataAdapter da;
         SqlCommand com;
 
+        protected string Render_pic(string str)
+        {
+            if (str == "")
+                str = "\\img\\dp\\0c.png";
+            string render = "<img src=\"";
+            render += str;
+            render += "\"/>";
+            return render;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string quid = Request.QueryString["uid"];
@@ -61,9 +71,10 @@ namespace WebApplication2.Account
                     else
                         Response.Redirect("/Error.aspx?id=3");
                 }
-                   
-                
+
+
                 lphone.Text = ds.Tables["COMPANY"].Rows[0][2].ToString();
+                lldp.Text = Render_pic(ds.Tables["COMPANY"].Rows[0][3].ToString());
                 lemail.Text = ds.Tables["COMPANY"].Rows[0][20].ToString();
                 lcomp.Text = ds.Tables["COMPANY"].Rows[0][4].ToString();
                 ldress.Text = ds.Tables["COMPANY"].Rows[0][5].ToString();
@@ -75,10 +86,11 @@ namespace WebApplication2.Account
                 lsize.Text = ds.Tables["COMPANY"].Rows[0][11].ToString();
                 lemp.Text = ds.Tables["COMPANY"].Rows[0][12].ToString();
                 ldress.Text = ds.Tables["COMPANY"].Rows[0][13].ToString();
+
             }
             else
                 Response.Redirect("/Error.aspx?id=4");
-                
+
         }
     }
 }

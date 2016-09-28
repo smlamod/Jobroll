@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div id="leftsidebar">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/Harry-Potter-1-.jpg"/>
+        <asp:Literal Id="lldp" runat="server" />
         <span class="user-name">
             <asp:Label runat="server" Text="James Carlo" Id="lfirst"/>
             <asp:Label runat="server" Text=" " />
@@ -16,13 +16,6 @@
             <li><span class="glyphicon glyphicon-tree-conifer" style="color: gray;"></span><p><asp:Label runat="server" Text="Metro Manila, PH" Id="lloc"/></p></li>
         </ul>
         
-        <!--
-        <div id="footer">
-            <span>Copyright &copy; <%: DateTime.Now.Year %> Jobroll Ltd.<br />
-                <a href="/About">About</a> &sdot; <a href="/Contact">Contact</a>
-            </span>
-        </div>
-        -->
     </div>
 
     <div id="maincontent">

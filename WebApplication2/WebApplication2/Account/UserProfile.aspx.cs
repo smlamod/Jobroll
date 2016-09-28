@@ -76,6 +76,7 @@ namespace WebApplication2
                 lloc.Text = ds.Tables["MEMBER"].Rows[0][7].ToString();
                 lphone.Text = ds.Tables["MEMBER"].Rows[0][2].ToString();
                 llskill.Text = Render_list(ds.Tables["MEMBER"].Rows[0][6].ToString());
+                lldp.Text = Render_pic(ds.Tables["MEMBER"].Rows[0][5].ToString());
 
                 //FETCH EDUCATION DETAILS
                 com = new SqlCommand("MemberDegreeGetInfo");
@@ -107,6 +108,16 @@ namespace WebApplication2
             }
             else
                 Response.Redirect("/Error.aspx?id=4");
+        }
+
+        protected string Render_pic(string str)
+        {
+            if (str == "")
+                str = "\\img\\dp\\0m.gif";
+            string render = "<img src=\"";
+            render += str;
+            render += "\"/>";
+            return render;
         }
 
         protected string Render_list(string str)

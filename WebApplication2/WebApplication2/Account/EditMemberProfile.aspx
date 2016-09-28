@@ -69,6 +69,13 @@
             </div>
 
             <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="tlocation" CssClass="col-md-2 control-label">Picture</asp:Label>
+                <div class="col-md-2">
+                    <asp:FileUpload ID="fupload" runat="server" />                 
+                </div>
+            </div>
+
+            <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <asp:Button runat="server" OnClick="EditMember_Click" Text="Update" CssClass="btn btn-default" />
                 </div>
